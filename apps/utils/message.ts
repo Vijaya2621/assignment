@@ -3,15 +3,9 @@
  * @description: It contain response messages.
  */
 
-export const MESSAGES = {
-  SOMETHING_WENT_WRONG: 'Something went wrong',
-  INTERNAL_SERVER_ERROR: 'Internal server error',
-  TOKEN_REQUIRED: 'Auth token is requried.',
-  TOKEN_EXPIRED: 'Session expired, please login again.',
+// success messages
+export const SUCCESS_MESSAGES = {
   LOGIN: 'Login successfully',
-  VALIDATION_ERROR: 'Validation error',
-
-  INVALIDLOGIN: 'Invalid login request. Please check and try again.',
 
   CREATE: (value: string) => {
     return `${value} created successfully.`;
@@ -25,6 +19,17 @@ export const MESSAGES = {
   DELETE: (value: string) => {
     return `${value} deleted successfully.`;
   },
+};
+
+//error messages
+export const ERROR_MESSAGES = {
+  SOMETHING_WENT_WRONG: 'Something went wrong',
+  INTERNAL_SERVER_ERROR: 'Internal server error',
+  TOKEN_REQUIRED: 'Auth token is requried.',
+  TOKEN_EXPIRED: 'Session expired, please login again.',
+  VALIDATION_ERROR: 'Validation error',
+  UNAUTHORIZED_USER: 'Unauthorized user',
+  INVALIDLOGIN: 'Invalid login request. Please check and try again.',
   NOTEXIST: (value: string) => {
     return `${value} not exist.`;
   },
@@ -36,18 +41,19 @@ export const MESSAGES = {
   },
 };
 
+//status code
 export const STATUSCODE = {
-  success: 200,
-  badRequest: 400,
-  serverError: 501,
-  internalservererror: 500,
-  forbidden: 203,
-  notFound: 204,
-  notAllowed: 205,
-  tokenExpired: 401,
-  emailOrUserExist: 207,
-  wrongPassword: 208,
-  accountDeactivated: 209,
-  authTokenRequired: 499,
-  unauthorized: 403,
+  SUCCESS: 200,
+  BADREQUEST: 400,
+  SERVERERROR: 501,
+  INTERNALSERVERERROR: 500,
+  FORBIDDEN: 203,
+  NOTFOUND: 204,
+  NOTALLOWED: 205,
+  FAILED: 401,
+  EMAILORUSEREXIST: 207,
+  WRONGPASSWORD: 208,
+  ACCOUNTDEACTIVATED: 209,
+  AUTHTOKENREQUIRED: 499,
+  UNAUTHORIZED: 403,
 };

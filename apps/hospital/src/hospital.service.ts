@@ -1,19 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Hospital } from './hospital.entity';
+import { Hospitals } from './hospital.entity';
 import { Repository } from 'typeorm';
 import { FindHospitalDto, HospitalDto } from './hospital.dto';
 import { errorResponses, responses } from 'apps/utils/response';
-import { MESSAGES, STATUSCODE } from '../../utils/message';
+import {
+  ERROR_MESSAGES,
+  SUCCESS_MESSAGES,
+  STATUSCODE,
+} from '../../utils/message';
 import { BaseService } from 'apps/abstracts';
 import { IHospital } from 'apps/utils/entities';
 import { allowedFieldsToSortForHospitals } from './hospital.common';
+import jwt from 'jsonwebtoken';
 
+import * as bcrypt from 'bcrypt';
 @Injectable()
 export class HospitalService extends BaseService {
   constructor(
-    @InjectRepository(Hospital)
-    private readonly hospitalRepository: Repository<Hospital>,
+    @InjectRepository(Hospitals)
+    private readonly hospitalRepository: Repository<Hospitals>,
   ) {
     super();
   }
@@ -30,9 +36,14 @@ export class HospitalService extends BaseService {
           where: { hospitalId: data.hospitalId, email: data.email },
         });
         if (existingHospital) {
-          return this._getBadRequestError(MESSAGES.ALREADYEXIST(data.name));
+          return this._getBadRequestError(
+            ERROR_MESSAGES.ALREADYEXIST(data.name),
+          );
         }
       }
+      // Hash the password before creating the user
+      const hashedPassword = await bcrypt.hash(data.password, 15);
+      data.password = hashedPassword;
       //if not then create the new hospital
       const created = this.hospitalRepository.create(data);
       //save the created hospital
@@ -40,15 +51,64 @@ export class HospitalService extends BaseService {
       //if saved then return success response
       const successRes = {
         saved,
-        message: MESSAGES.CREATE,
+        message: SUCCESS_MESSAGES.CREATE,
       };
-      return await responses(successRes, STATUSCODE.success);
+      return await responses(successRes, STATUSCODE.SUCCESS); // use capital letters
       //if not saved then return error response
     } catch (error) {
       const errorRes = {
-        message: MESSAGES.errorLog,
+        message: ERROR_MESSAGES.errorLog,
       };
-      return await errorResponses(errorRes, STATUSCODE.badRequest);
+      return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
+    }
+  }
+
+  /**login hospital
+   *@description function to login a hospital
+   *@param  hospitalId
+   */
+  async loginHospital(req) {
+    try {
+      const { password } = req;
+      //checking if the user is registered or not
+      const hospital = await this.hospitalRepository.findOne({
+        where: { email: req.email },
+      });
+      if (!hospital) {
+        const errorRes = {
+          message: ERROR_MESSAGES.INVALIDLOGIN,
+        };
+        return await errorResponses(errorRes, STATUSCODE.FAILED);
+      }
+      //comparing password of user
+      const comparepassword = await bcrypt.compare(password, hospital.password);
+      const myToken = 'JWT_SECRET_KEY';
+      let token;
+      if (!(hospital && comparepassword)) {
+        token = jwt.sign(
+          {
+            userId: hospital.id,
+            email: hospital.email,
+            userName: hospital.name,
+          },
+          myToken,
+          { expiresIn: '1h' },
+        );
+        const errorRes = {
+          message: ERROR_MESSAGES.INVALIDLOGIN,
+        };
+        return await errorResponses(errorRes, STATUSCODE.FAILED);
+      }
+      const successRes = {
+        generatedToken: token,
+        message: SUCCESS_MESSAGES.CREATE,
+      };
+      return await responses(successRes, STATUSCODE.SUCCESS);
+    } catch (error) {
+      const errorRes = {
+        message: ERROR_MESSAGES.errorLog,
+      };
+      return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -66,21 +126,21 @@ export class HospitalService extends BaseService {
       //if not found then return error
       if (!foundHospital) {
         const errorRes = {
-          message: MESSAGES.NOTEXIST,
+          message: ERROR_MESSAGES.NOTEXIST,
         };
-        return await errorResponses(errorRes, STATUSCODE.notFound);
+        return await errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
       //if found then return hospital
       const successRes = {
         foundHospital,
-        message: MESSAGES.CREATE,
+        message: SUCCESS_MESSAGES.CREATE,
       };
-      return await responses(successRes, STATUSCODE.success);
+      return await responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
-        message: MESSAGES.errorLog,
+        message: ERROR_MESSAGES.errorLog,
       };
-      return await errorResponses(errorRes, STATUSCODE.badRequest);
+      return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
     }
   }
   /**update hospital
@@ -98,9 +158,9 @@ export class HospitalService extends BaseService {
       //if not then give error
       if (!foundHospital) {
         const errorRes = {
-          message: MESSAGES.NOTEXIST,
+          message: ERROR_MESSAGES.NOTEXIST,
         };
-        return await errorResponses(errorRes, STATUSCODE.notFound);
+        return await errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
       //updating hospital details
       const updateHospital = await this.hospitalRepository.preload({
@@ -112,14 +172,14 @@ export class HospitalService extends BaseService {
         await this.hospitalRepository.save(updateHospital);
       const successRes = {
         updatedHospital,
-        message: MESSAGES.UPDATE,
+        message: SUCCESS_MESSAGES.UPDATE,
       };
-      return await responses(successRes, STATUSCODE.success);
+      return await responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
-        message: MESSAGES.errorLog,
+        message: ERROR_MESSAGES.errorLog,
       };
-      return await errorResponses(errorRes, STATUSCODE.badRequest);
+      return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -137,22 +197,22 @@ export class HospitalService extends BaseService {
       //if not found then give error
       if (!foundHospital) {
         const errorRes = {
-          message: MESSAGES.NOTEXIST,
+          message: ERROR_MESSAGES.NOTEXIST,
         };
-        return await errorResponses(errorRes, STATUSCODE.notFound);
+        return await errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
       //deleting the hospital
       const deletedHospital = await this.hospitalRepository.delete(id);
       const successRes = {
         deletedHospital,
-        message: MESSAGES.DELETE,
+        message: SUCCESS_MESSAGES.DELETE,
       };
-      return await responses(successRes, STATUSCODE.success);
+      return await responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
-        message: MESSAGES.errorLog,
+        message: ERROR_MESSAGES.errorLog,
       };
-      return await errorResponses(errorRes, STATUSCODE.badRequest);
+      return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -178,13 +238,13 @@ export class HospitalService extends BaseService {
         }>(data.sort);
         if (allowedFieldsToSortForHospitals.includes(param[0])) {
           const KEYS = {
-            name: `task.${param[0]}`,
+            name: `hospital.${param[0]}`,
           };
           // Order by key and parameter
           qr.orderBy(KEYS[param[0]], param[1]);
         }
       } else {
-        qr.orderBy(`task.updatedAt`, 'DESC');
+        qr.orderBy(`hospital.updatedAt`, 'DESC');
       }
       return await this._paginate<IHospital>(qr, {
         limit: data.limit || 10,
@@ -192,9 +252,9 @@ export class HospitalService extends BaseService {
       });
     } catch (error) {
       const errorRes = {
-        message: MESSAGES.errorLog,
+        message: ERROR_MESSAGES.errorLog,
       };
-      return await errorResponses(errorRes, STATUSCODE.badRequest);
+      return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
     }
   }
 

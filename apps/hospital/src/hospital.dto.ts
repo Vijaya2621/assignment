@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
-import { PaginationDto } from 'apps/dtos/pagination.dto';
+import { PaginationDto } from 'apps/common/dtos/pagination.dto';
 
 export class HospitalDto {
   @ApiProperty({ description: 'name' })
@@ -18,6 +18,10 @@ export class HospitalDto {
   @ApiProperty({ description: 'city' })
   @IsString()
   city: string;
+
+  @ApiProperty({ description: 'password' })
+  @IsString()
+  password: string;
 
   @ApiProperty({ description: 'state' })
   @IsString()

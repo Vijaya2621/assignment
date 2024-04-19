@@ -11,8 +11,12 @@ import {
 import { HospitalService } from './hospital.service';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { FindHospitalDto, HospitalDto } from './hospital.dto';
-import { MESSAGES, STATUSCODE } from 'apps/utils/message';
-import { Hospital } from './hospital.entity';
+import {
+  ERROR_MESSAGES,
+  SUCCESS_MESSAGES,
+  STATUSCODE,
+} from 'apps/utils/message';
+import { Hospitals } from './hospital.entity';
 
 @Controller('hospital')
 export class HospitalController {
@@ -27,19 +31,19 @@ export class HospitalController {
      */
   }
   @Post()
-  @ApiOperation({ summary: MESSAGES.CREATE('Hospital') })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.CREATE('Hospital') }) //use enum
   @ApiResponse({
-    status: STATUSCODE.success,
-    description: MESSAGES.CREATE('Hospital'),
+    status: STATUSCODE.SUCCESS,
+    description: SUCCESS_MESSAGES.CREATE('Hospital'), //use enum
     type: HospitalDto,
   })
   @ApiResponse({
-    status: STATUSCODE.internalservererror,
-    description: MESSAGES.INTERNAL_SERVER_ERROR,
+    status: STATUSCODE.INTERNALSERVERERROR, // use capital letters
+    description: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
   })
   @ApiResponse({
-    status: STATUSCODE.badRequest,
-    description: MESSAGES.VALIDATION_ERROR,
+    status: STATUSCODE.BADREQUEST,
+    description: ERROR_MESSAGES.VALIDATION_ERROR,
   })
   create(
     @Body()
@@ -52,19 +56,19 @@ export class HospitalController {
    * controller to find a particular hospital by id
    */
   @Get('/:id')
-  @ApiOperation({ summary: MESSAGES.FETCH('hospital') })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH('hospital') })
   @ApiResponse({
-    status: STATUSCODE.success,
-    description: MESSAGES.FETCH('hospital'),
-    type: Hospital,
+    status: STATUSCODE.SUCCESS,
+    description: SUCCESS_MESSAGES.FETCH('hospital'),
+    type: Hospitals,
   })
   @ApiResponse({
-    status: STATUSCODE.internalservererror,
-    description: MESSAGES.INTERNAL_SERVER_ERROR,
+    status: STATUSCODE.INTERNALSERVERERROR,
+    description: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
   })
   @ApiResponse({
-    status: STATUSCODE.badRequest,
-    description: MESSAGES.VALIDATION_ERROR,
+    status: STATUSCODE.BADREQUEST,
+    description: ERROR_MESSAGES.VALIDATION_ERROR,
   })
   async findHospitalById(
     @Param('id')
@@ -77,19 +81,19 @@ export class HospitalController {
    * controller to find a particular hospital by id
    */
   @Get()
-  @ApiOperation({ summary: MESSAGES.FETCH('hospital') })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH('hospital') })
   @ApiResponse({
-    status: STATUSCODE.success,
-    description: MESSAGES.FETCH('hospital'),
-    type: Hospital,
+    status: STATUSCODE.SUCCESS,
+    description: SUCCESS_MESSAGES.FETCH('hospital'),
+    type: Hospitals,
   })
   @ApiResponse({
-    status: STATUSCODE.internalservererror,
-    description: MESSAGES.INTERNAL_SERVER_ERROR,
+    status: STATUSCODE.INTERNALSERVERERROR,
+    description: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
   })
   @ApiResponse({
-    status: STATUSCODE.badRequest,
-    description: MESSAGES.VALIDATION_ERROR,
+    status: STATUSCODE.BADREQUEST,
+    description: ERROR_MESSAGES.VALIDATION_ERROR,
   })
   async findAllHospital(@Query() data: FindHospitalDto) {
     return await this.hospitalService.getAll(data);
@@ -99,20 +103,20 @@ export class HospitalController {
    * controller to update a particular hospital by id
    */
   @Patch('/:id')
-  @ApiOperation({ summary: MESSAGES.UPDATE('hospital') })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.UPDATE('hospital') })
   @ApiResponse({
-    status: STATUSCODE.success,
-    description: MESSAGES.UPDATE('hospital'),
+    status: STATUSCODE.SUCCESS,
+    description: SUCCESS_MESSAGES.UPDATE('hospital'),
     isArray: true,
     type: HospitalDto,
   })
   @ApiResponse({
-    status: STATUSCODE.internalservererror,
-    description: MESSAGES.INTERNAL_SERVER_ERROR,
+    status: STATUSCODE.INTERNALSERVERERROR,
+    description: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
   })
   @ApiResponse({
-    status: STATUSCODE.badRequest,
-    description: MESSAGES.VALIDATION_ERROR,
+    status: STATUSCODE.BADREQUEST,
+    description: ERROR_MESSAGES.VALIDATION_ERROR,
   })
   async updateHospital(
     @Param('id')
@@ -126,20 +130,20 @@ export class HospitalController {
    * controller to delete a particular hospital by id
    */
   @Delete('/:id')
-  @ApiOperation({ summary: MESSAGES.UPDATE('hospital') })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.UPDATE('hospital') })
   @ApiResponse({
-    status: STATUSCODE.success,
-    description: MESSAGES.UPDATE('hospital'),
+    status: STATUSCODE.SUCCESS,
+    description: SUCCESS_MESSAGES.UPDATE('hospital'),
     isArray: true,
     type: HospitalDto,
   })
   @ApiResponse({
-    status: STATUSCODE.internalservererror,
-    description: MESSAGES.INTERNAL_SERVER_ERROR,
+    status: STATUSCODE.INTERNALSERVERERROR,
+    description: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
   })
   @ApiResponse({
-    status: STATUSCODE.badRequest,
-    description: MESSAGES.VALIDATION_ERROR,
+    status: STATUSCODE.BADREQUEST,
+    description: ERROR_MESSAGES.VALIDATION_ERROR,
   })
   async deleteHospital(
     @Param('id')

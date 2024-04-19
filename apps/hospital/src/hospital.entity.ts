@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { BaseEntityWithId } from 'apps/abstracts';
+import { BaseEntityWithMeta } from 'apps/abstracts';
 import { Column, Entity, Index } from 'typeorm';
 
 @Entity()
-export class Hospital extends BaseEntityWithId {
+export class Hospitals extends BaseEntityWithMeta {
   @ApiProperty({ description: 'hospitalId' })
   @Column({ unique: true })
   hospitalId: string;
@@ -17,6 +17,11 @@ export class Hospital extends BaseEntityWithId {
   @Index()
   @Column({ type: 'varchar', length: 50, nullable: true })
   email: string;
+
+  @ApiProperty({ description: 'password' })
+  @Index()
+  @Column({ type: 'varchar', length: 50, nullable: true })
+  password: string;
 
   @ApiProperty({ description: 'address' })
   @Column({ type: 'varchar', length: 100, nullable: true })
