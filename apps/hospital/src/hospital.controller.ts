@@ -22,23 +22,18 @@ import { Hospitals } from './hospital.entity';
 export class HospitalController {
   constructor(private readonly hospitalService: HospitalService) {}
 
-  @Get()
-  getHello(): string {
-    return this.hospitalService.getHello();
-
-    /**
-     * controller to create hospital
-     */
-  }
+  /**
+   * controller to create hospital
+   */
   @Post()
-  @ApiOperation({ summary: SUCCESS_MESSAGES.CREATE('Hospital') }) //use enum
+  @ApiOperation({ summary: SUCCESS_MESSAGES.CREATE('Hospital') })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
-    description: SUCCESS_MESSAGES.CREATE('Hospital'), //use enum
+    description: SUCCESS_MESSAGES.CREATE('Hospital'),
     type: HospitalDto,
   })
   @ApiResponse({
-    status: STATUSCODE.INTERNALSERVERERROR, // use capital letters
+    status: STATUSCODE.INTERNALSERVERERROR,
     description: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
   })
   @ApiResponse({
@@ -50,6 +45,28 @@ export class HospitalController {
     data: HospitalDto,
   ) {
     return this.hospitalService.createHospital(data);
+  }
+
+  @Post('/logIn')
+  @ApiOperation({ summary: SUCCESS_MESSAGES.CREATE('Hospital') })
+  @ApiResponse({
+    status: STATUSCODE.SUCCESS,
+    description: SUCCESS_MESSAGES.CREATE('Hospital'),
+    type: HospitalDto,
+  })
+  @ApiResponse({
+    status: STATUSCODE.INTERNALSERVERERROR,
+    description: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
+  })
+  @ApiResponse({
+    status: STATUSCODE.BADREQUEST,
+    description: ERROR_MESSAGES.VALIDATION_ERROR,
+  })
+  logIn(
+    @Body()
+    data: HospitalDto,
+  ) {
+    return this.hospitalService.loginHospital(data);
   }
 
   /**
@@ -121,8 +138,10 @@ export class HospitalController {
   async updateHospital(
     @Param('id')
     id: string,
+    @Body()
     data: HospitalDto,
   ) {
+    debugger
     return await this.hospitalService.updateHospital(data, id);
   }
 

@@ -71,3 +71,69 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## App skeleton
+.
+├── apps
+│   ├── abstracts
+│   │   ├── base.entity.ts
+│   │   ├── base.service.ts
+│   └── assignment
+│       ├── src
+│       │   ├── main.ts
+│       │   └── app.controller.ts
+│       │   ├── app.module.ts
+│       │   ├── app.service.ts
+│       │__tests__
+│       │         ├── app.e2e.spec.ts
+│       │         └── jest-e2e.json
+│       └── tsconfig.json
+│   └── doctor
+│       ├── src
+│       │   ├── main.ts
+│       │   └── doctor.controller.ts
+│       │   ├── doctor.module.ts
+│       │   ├── doctor.service.ts
+│       │   ├── doctor.entity.ts
+│       │   ├── doctor.controller.spec.ts
+│       │__tests__
+│       │         ├── app.e2e.spec.ts
+│       │         └── jest-e2e.json
+│       └── tsconfig.json
+│   └── hospital
+│       ├── src
+│       │   ├── main.ts
+│       │   └── hospital.controller.ts
+│       │   ├── hospital.module.ts
+│       │   ├── hospital.common.ts
+│       │   ├── hospital.service.ts
+│       │   ├── hospital.entity.ts
+│       │   ├── hospital.controller.spec.ts
+│       │__tests__
+│       │         ├── app.e2e.spec.ts
+│       │         └── jest-e2e.json
+│       └── tsconfig.json
+│   ├── abstracts
+│       ├── base.entity.ts
+│       ├── base.service.ts
+│   ├── common
+│       ├── dtos
+│       │   └── pagination.dto.ts
+│       ├── loggers
+│       │   ├── logger.ts
+│       ├── middleware
+│       │   └── middleware.service.ts
+│       │   ├── middleware.module.ts
+│   ├── database
+│       ├── database.config.ts
+│   ├── utils
+│       ├── entities.ts
+│       ├── env.config.ts
+│       ├── message.ts
+│       ├── response.ts
+├── nest-cli.json
+├── package.json
+├── README.md
+├── tsconfig.build.json
+├── tsconfig.json
+└── yarn.lock

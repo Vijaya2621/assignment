@@ -6,16 +6,16 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
     TypeOrmModule.forFeature([Doctor]),
-    // TypeOrmModule.forRoot({
-    //   type: 'mysql',
-    //   host: 'localhost',
-    //   port: 3306,
-    //   username: 'dits',
-    //   password: 'password',
-    //   database: 'hospital_management',
-    //   entities: [],
-    //   synchronize: true,
-    // }),
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'dits',
+      password: 'password',
+      database: 'hospital_management',
+      entities: ['Doctor'],
+      synchronize: true,
+    }),
   ],
   controllers: [DoctorController],
   providers: [DoctorService],

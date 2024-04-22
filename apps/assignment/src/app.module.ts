@@ -1,16 +1,13 @@
-import { Module, forwardRef } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DoctorModule } from 'apps/doctor/src/doctor.module';
 import { HospitalModule } from 'apps/hospital/src/hospital.module';
-import { ConfigModule } from '@nestjs/config';
+import { Hospitals } from 'apps/hospital/src/hospital.entity';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      cache: true,
-    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -18,11 +15,11 @@ import { ConfigModule } from '@nestjs/config';
       username: 'dits',
       password: 'password',
       database: 'hospital_management',
-      entities: [],
+      entities: [Hospitals],
       synchronize: true,
     }),
-    forwardRef(() => DoctorModule),
-    forwardRef(() => HospitalModule),
+    DoctorModule,
+    HospitalModule,
   ],
   controllers: [AppController],
   providers: [AppService],

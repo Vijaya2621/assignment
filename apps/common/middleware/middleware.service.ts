@@ -13,7 +13,7 @@ export class AuthMiddleware implements NestMiddleware {
       const errorRes = {
         message: ERROR_MESSAGES.UNAUTHORIZED_USER,
       };
-      return await errorResponses(errorRes, STATUSCODE.unauthorized);
+      return await errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
     }
 
     const authHeader = req.headers.authorization;
@@ -23,7 +23,7 @@ export class AuthMiddleware implements NestMiddleware {
       const errorRes = {
         message: ERROR_MESSAGES.UNAUTHORIZED_USER,
       };
-      return await errorResponses(errorRes, STATUSCODE.unauthorized);
+      return await errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
     }
 
     const token = bearerToken[1];
@@ -35,7 +35,7 @@ export class AuthMiddleware implements NestMiddleware {
       const errorRes = {
         message: ERROR_MESSAGES.errorLog,
       };
-      return await errorResponses(errorRes, STATUSCODE.badRequest);
+      return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
     }
   }
 }

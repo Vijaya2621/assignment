@@ -19,11 +19,11 @@ async function responses(payload, statusCode, message = 'Success') {
 
 //error response
 
-async function errorResponses(payload, statusCode, message = 'Fail') {
+async function errorResponses(error, statusCode, message = 'Fail') {
   try {
     const errorRes = {
+      error: error,
       statusCode: statusCode,
-      response: payload,
       message,
     };
     return errorRes;

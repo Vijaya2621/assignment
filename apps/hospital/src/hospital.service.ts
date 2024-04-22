@@ -30,33 +30,32 @@ export class HospitalService extends BaseService {
    */
   async createHospital(data: HospitalDto) {
     try {
-      //checking if the hospital already exist or not with there hospitalId and email
-      if (data?.hospitalId && data?.email) {
-        const existingHospital = await this.hospitalRepository.findOne({
-          where: { hospitalId: data.hospitalId, email: data.email },
-        });
-        if (existingHospital) {
-          return this._getBadRequestError(
-            ERROR_MESSAGES.ALREADYEXIST(data.name),
-          );
-        }
+      debugger
+      //  checking if the hospital already exist or not with there hospitalId and email
+
+      const existingHospital = await this.hospitalRepository.findOne({
+        where: { hospitalId: data.hospitalId, email: data.email },
+      });
+      if (existingHospital) {
+        return this._getBadRequestError(ERROR_MESSAGES.ALREADYEXIST(data.name));
       }
-      // Hash the password before creating the user
+      //Hash the password before creating the user
       const hashedPassword = await bcrypt.hash(data.password, 15);
       data.password = hashedPassword;
-      //if not then create the new hospital
+      //    if not then create the new hospital
       const created = this.hospitalRepository.create(data);
-      //save the created hospital
+      // save the created hospital
       const saved = await this.hospitalRepository.save(created);
-      //if saved then return success response
+      //  if saved then return success response
       const successRes = {
         saved,
         message: SUCCESS_MESSAGES.CREATE,
       };
       return await responses(successRes, STATUSCODE.SUCCESS); // use capital letters
-      //if not saved then return error response
+      //   if not saved then return error response
     } catch (error) {
       const errorRes = {
+        error,
         message: ERROR_MESSAGES.errorLog,
       };
       return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
@@ -69,6 +68,7 @@ export class HospitalService extends BaseService {
    */
   async loginHospital(req) {
     try {
+      debugger
       const { password } = req;
       //checking if the user is registered or not
       const hospital = await this.hospitalRepository.findOne({
@@ -87,9 +87,9 @@ export class HospitalService extends BaseService {
       if (!(hospital && comparepassword)) {
         token = jwt.sign(
           {
-            userId: hospital.id,
+            id: hospital.id,
             email: hospital.email,
-            userName: hospital.name,
+            name: hospital.name,
           },
           myToken,
           { expiresIn: '1h' },
@@ -151,6 +151,7 @@ export class HospitalService extends BaseService {
 
   async updateHospital(data: HospitalDto, id: string) {
     try {
+      debugger
       //check if the hospital exist or not of given id
       const foundHospital = await this.hospitalRepository.findOne({
         where: { id },
@@ -256,9 +257,5 @@ export class HospitalService extends BaseService {
       };
       return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
     }
-  }
-
-  getHello(): string {
-    return 'Hello World qwertyuiopasdfghjk';
   }
 }

@@ -20,7 +20,7 @@ export class Hospitals extends BaseEntityWithMeta {
 
   @ApiProperty({ description: 'password' })
   @Index()
-  @Column({ type: 'varchar', length: 50, nullable: true })
+  @Column({ type: 'varchar', length: 200, nullable: true })
   password: string;
 
   @ApiProperty({ description: 'address' })
