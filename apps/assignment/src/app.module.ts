@@ -5,9 +5,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DoctorModule } from 'apps/doctor/src/doctor.module';
 import { HospitalModule } from 'apps/hospital/src/hospital.module';
 import { Hospitals } from 'apps/hospital/src/hospital.entity';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      envFilePath: ['.env'],
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',

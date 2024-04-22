@@ -3,9 +3,11 @@ import { HospitalService } from './hospital.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Hospitals } from './hospital.entity';
 import { HospitalController } from './hospital.controller';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule,
     TypeOrmModule.forFeature([Hospitals]),
     TypeOrmModule.forRoot({
       type: 'mysql',

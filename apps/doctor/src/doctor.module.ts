@@ -3,8 +3,10 @@ import { DoctorController } from './doctor.controller';
 import { DoctorService } from './doctor.service';
 import { Doctor } from './doctor.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
+    ConfigModule,
     TypeOrmModule.forFeature([Doctor]),
     TypeOrmModule.forRoot({
       type: 'mysql',
