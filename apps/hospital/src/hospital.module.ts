@@ -7,7 +7,9 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    ConfigModule,
+    ConfigModule.forRoot({
+      envFilePath: ['.env'],
+    }),
     TypeOrmModule.forFeature([Hospitals]),
     TypeOrmModule.forRoot({
       type: 'mysql',

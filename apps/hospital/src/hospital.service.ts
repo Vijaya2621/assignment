@@ -13,16 +13,17 @@ import { BaseService } from 'apps/abstracts';
 import { IHospital } from 'apps/utils/entities';
 import { allowedFieldsToSortForHospitals } from './hospital.common';
 import jwt from 'jsonwebtoken';
-
+import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcrypt';
 @Injectable()
 export class HospitalService extends BaseService {
   constructor(
+    private readonly configService: ConfigService,
     @InjectRepository(Hospitals)
     private readonly hospitalRepository: Repository<Hospitals>,
   ) {
     super();
-  }
+  } 
 
   /**create hospital
    *@param data
@@ -30,7 +31,6 @@ export class HospitalService extends BaseService {
    */
   async createHospital(data: HospitalDto) {
     try {
-      debugger
       //  checking if the hospital already exist or not with there hospitalId and email
 
       const existingHospital = await this.hospitalRepository.findOne({
@@ -68,42 +68,58 @@ export class HospitalService extends BaseService {
    */
   async loginHospital(req) {
     try {
-      debugger
       const { password } = req;
+
       //checking if the user is registered or not
       const hospital = await this.hospitalRepository.findOne({
         where: { email: req.email },
       });
+
       if (!hospital) {
         const errorRes = {
           message: ERROR_MESSAGES.INVALIDLOGIN,
         };
         return await errorResponses(errorRes, STATUSCODE.FAILED);
       }
+
       //comparing password of user
       const comparepassword = await bcrypt.compare(password, hospital.password);
-      const myToken = 'JWT_SECRET_KEY';
-      let token;
-      if (!(hospital && comparepassword)) {
-        token = jwt.sign(
-          {
-            id: hospital.id,
-            email: hospital.email,
-            name: hospital.name,
-          },
-          myToken,
-          { expiresIn: '1h' },
-        );
+
+      if (!comparepassword) {
         const errorRes = {
           message: ERROR_MESSAGES.INVALIDLOGIN,
         };
         return await errorResponses(errorRes, STATUSCODE.FAILED);
       }
-      const successRes = {
-        generatedToken: token,
-        message: SUCCESS_MESSAGES.CREATE,
+
+      const myToken = process.env.SECRET_KEY;
+      if (!myToken) {
+        // Handle the case where SECRET_KEY is not defined
+        throw new Error('SECRET_KEY is not defined');
+      }
+
+      let token;
+      //checking if password is correct then generate token
+      if (comparepassword == true) {
+        token = jwt.sign(
+          {
+            id: hospital.id,
+            email: hospital.email,
+          },
+          myToken,
+          { expiresIn: 'EXPIRESIN' },
+        );
+        const successRes = {
+          generatedToken: token,
+          message: SUCCESS_MESSAGES.CREATE,
+        };
+        return await responses(successRes, STATUSCODE.SUCCESS);
+      }
+      //otherwise return error
+      const errorRes = {
+        message: ERROR_MESSAGES.INVALIDLOGIN,
       };
-      return await responses(successRes, STATUSCODE.SUCCESS);
+      return await errorResponses(errorRes, STATUSCODE.FAILED);
     } catch (error) {
       const errorRes = {
         message: ERROR_MESSAGES.errorLog,
@@ -151,7 +167,6 @@ export class HospitalService extends BaseService {
 
   async updateHospital(data: HospitalDto, id: string) {
     try {
-      debugger
       //check if the hospital exist or not of given id
       const foundHospital = await this.hospitalRepository.findOne({
         where: { id },

@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   Query,
+  ValidationPipe,
 } from '@nestjs/common';
 import { HospitalService } from './hospital.service';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
@@ -17,6 +18,8 @@ import {
   STATUSCODE,
 } from 'apps/utils/message';
 import { Hospitals } from './hospital.entity';
+import {  YupValidationPipe } from 'apps/utils/validation';
+import { CreateUserSchema } from './hospital.schema';
 
 @Controller('hospital')
 export class HospitalController {
@@ -40,8 +43,9 @@ export class HospitalController {
     status: STATUSCODE.BADREQUEST,
     description: ERROR_MESSAGES.VALIDATION_ERROR,
   })
+
   create(
-    @Body()
+    @Body(new YupValidationPipe(CreateUserSchema))
     data: HospitalDto,
   ) {
     return this.hospitalService.createHospital(data);
@@ -141,7 +145,6 @@ export class HospitalController {
     @Body()
     data: HospitalDto,
   ) {
-    debugger
     return await this.hospitalService.updateHospital(data, id);
   }
 

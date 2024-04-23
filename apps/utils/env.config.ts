@@ -9,3 +9,5 @@ export const POSTGRES_PORT = process.env.POSTGRES_PORT || 3306;
 export const DB_USERNAME = process.env.DB_USERNAME || 'dits';
 export const DB_PASSWORD = process.env.password || 'password';
 export const DATABASE = process.env.DATABASE || 'hospital_management';
+export const SECRET_KEY = process.env.SECRET_KEY || 'JWT_SECRET_KEY';
+export const EXPIRESIN = process.env.EXPIRESIN || '1h';

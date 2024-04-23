@@ -6,7 +6,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
-    ConfigModule,
+    ConfigModule.forRoot({
+      envFilePath: ['.env'],
+    }),
     TypeOrmModule.forFeature([Doctor]),
     TypeOrmModule.forRoot({
       type: 'mysql',
