@@ -32,3 +32,13 @@ export interface IHospital extends IBaseWithMeta {
   zipCode: string;
   phoneNumber: string;
 }
+export interface IDoctor extends IBaseWithMeta {
+  specialzation: string;
+  name: string;
+  email: string;
+  licenseNumber: string;
+  emailVerified: boolean;
+  image: string;
+  active: boolean;
+  phoneNumber: string;
+}

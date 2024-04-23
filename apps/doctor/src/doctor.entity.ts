@@ -19,11 +19,15 @@ export class Doctor extends BaseEntityWithId {
 
   @ApiProperty({ description: 'role' })
   @Column({ type: 'varchar', length: 100, default: ROLES.ADMIN })
-  role: ROLES;
+  role?: ROLES;
 
-  @ApiProperty({ description: 'Primary email' })
+  @ApiProperty({ description: 'email' })
   @Column({ type: 'varchar', length: 50, nullable: true, unique: true })
   email: string;
+
+  @ApiProperty({ description: 'password' })
+  @Column({ type: 'varchar', length: 100, nullable: true, unique: true })
+  password: string;
 
   @ApiProperty({ description: 'specialzation' })
   @Column({ type: 'varchar', length: 100, nullable: true })
