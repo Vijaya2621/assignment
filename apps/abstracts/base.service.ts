@@ -74,4 +74,12 @@ export abstract class BaseService {
       },
     });
   }
+
+  responses = (data: object, statusCode: number, message = 'Success') => {
+    return { statusCode, data, message };
+  };
+  //error response
+  errorResponses = (errorRes: object, statusCode, message = 'Fail') => {
+    return { errorRes, statusCode, message };
+  };
 }

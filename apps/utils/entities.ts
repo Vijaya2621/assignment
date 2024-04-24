@@ -1,8 +1,8 @@
 //enums
 export enum ROLES {
+  SUPER_ADMIN = 'superAdmin',
   ADMIN = 'admin',
   DOCTOR = 'doctor',
-  SUPER_ADMIN = 'superAdmin',
   HEALTHCARE_WORKER = 'healthcareworker',
   PATIENT = 'patient',
 }
@@ -32,7 +32,8 @@ export interface IHospital extends IBaseWithMeta {
   zipCode: string;
   phoneNumber: string;
 }
-export interface IDoctor extends IBaseWithMeta {
+
+export interface IHealthCareWorker extends IBaseWithMeta {
   specialzation: string;
   name: string;
   email: string;

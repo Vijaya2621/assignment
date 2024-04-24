@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { DoctorService } from './doctor.service';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import {
@@ -6,12 +15,36 @@ import {
   STATUSCODE,
   SUCCESS_MESSAGES,
 } from 'apps/utils/message';
-import { DoctorDto } from './doctor.dto';
-import { Doctor } from './doctor.entity';
+import { DoctorDto, FindDoctorDto } from './doctor.dto';
+import { HealthCareWorker } from './doctor.entity';
+import { DoctorSchema } from './doctor.schema';
+import { YupValidationPipe } from 'apps/utils/validation';
 
 @Controller('doctor')
 export class DoctorController {
   constructor(private readonly doctorService: DoctorService) {}
+
+  /**
+   * controller to find  Doctor
+   */
+  @Get('/all')
+  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH('Doctor') })
+  @ApiResponse({
+    status: STATUSCODE.SUCCESS,
+    description: SUCCESS_MESSAGES.FETCH('Doctor'),
+    type: HealthCareWorker,
+  })
+  @ApiResponse({
+    status: STATUSCODE.INTERNALSERVERERROR,
+    description: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
+  })
+  @ApiResponse({
+    status: STATUSCODE.BADREQUEST,
+    description: ERROR_MESSAGES.VALIDATION_ERROR,
+  })
+  async findAllDoctor(@Query() data: FindDoctorDto) {
+    return await this.doctorService.getAll(data);
+  }
 
   @Get()
   getHello(): string {
@@ -37,7 +70,7 @@ export class DoctorController {
     description: ERROR_MESSAGES.VALIDATION_ERROR,
   })
   create(
-    @Body()
+    @Body(new YupValidationPipe(DoctorSchema))
     data: DoctorDto,
   ) {
     return this.doctorService.createDoctor(data);
@@ -51,7 +84,7 @@ export class DoctorController {
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
     description: SUCCESS_MESSAGES.FETCH('doctor'),
-    type: Doctor,
+    type: HealthCareWorker,
   })
   @ApiResponse({
     status: STATUSCODE.INTERNALSERVERERROR,

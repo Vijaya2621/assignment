@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Hospitals } from './hospital.entity';
 import { Repository } from 'typeorm';
 import { FindHospitalDto, HospitalDto } from './hospital.dto';
-import { errorResponses, responses } from 'apps/utils/response';
 import {
   ERROR_MESSAGES,
   SUCCESS_MESSAGES,
@@ -12,7 +11,7 @@ import {
 import { BaseService } from 'apps/abstracts';
 import { IHospital } from 'apps/utils/entities';
 import { allowedFieldsToSortForHospitals } from './hospital.common';
-import jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcrypt';
 @Injectable()
@@ -31,6 +30,7 @@ export class HospitalService extends BaseService {
    */
   async createHospital(data: HospitalDto) {
     try {
+      debugger;
       //  checking if the hospital already exist or not with there hospitalId and email
 
       const existingHospital = await this.hospitalRepository.findOne({
@@ -51,14 +51,14 @@ export class HospitalService extends BaseService {
         saved,
         message: SUCCESS_MESSAGES.CREATE,
       };
-      return await responses(successRes, STATUSCODE.SUCCESS); // use capital letters
+      return this.responses(successRes, STATUSCODE.SUCCESS); 
       //   if not saved then return error response
     } catch (error) {
       const errorRes = {
         error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -68,8 +68,8 @@ export class HospitalService extends BaseService {
    */
   async loginHospital(req) {
     try {
+      debugger
       const { password } = req;
-
       //checking if the user is registered or not
       const hospital = await this.hospitalRepository.findOne({
         where: { email: req.email },
@@ -79,7 +79,7 @@ export class HospitalService extends BaseService {
         const errorRes = {
           message: ERROR_MESSAGES.INVALIDLOGIN,
         };
-        return await errorResponses(errorRes, STATUSCODE.FAILED);
+        return this.errorResponses(errorRes, STATUSCODE.FAILED);
       }
 
       //comparing password of user
@@ -89,7 +89,7 @@ export class HospitalService extends BaseService {
         const errorRes = {
           message: ERROR_MESSAGES.INVALIDLOGIN,
         };
-        return await errorResponses(errorRes, STATUSCODE.FAILED);
+        return this.errorResponses(errorRes, STATUSCODE.FAILED);
       }
 
       const myToken = process.env.SECRET_KEY;
@@ -107,24 +107,24 @@ export class HospitalService extends BaseService {
             email: hospital.email,
           },
           myToken,
-          { expiresIn: 'EXPIRESIN' },
-        );
+          { expiresIn: '1h' },
+        )
         const successRes = {
           generatedToken: token,
           message: SUCCESS_MESSAGES.CREATE,
         };
-        return await responses(successRes, STATUSCODE.SUCCESS);
+        return this.responses(successRes, STATUSCODE.SUCCESS);
       }
       //otherwise return error
       const errorRes = {
         message: ERROR_MESSAGES.INVALIDLOGIN,
       };
-      return await errorResponses(errorRes, STATUSCODE.FAILED);
+      return this.errorResponses(errorRes, STATUSCODE.FAILED);
     } catch (error) {
       const errorRes = {
         message: ERROR_MESSAGES.errorLog,
       };
-      return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -144,19 +144,19 @@ export class HospitalService extends BaseService {
         const errorRes = {
           message: ERROR_MESSAGES.NOTEXIST,
         };
-        return await errorResponses(errorRes, STATUSCODE.NOTFOUND);
+        return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
       //if found then return hospital
       const successRes = {
         foundHospital,
         message: SUCCESS_MESSAGES.CREATE,
       };
-      return await responses(successRes, STATUSCODE.SUCCESS);
+      return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
         message: ERROR_MESSAGES.errorLog,
       };
-      return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
     }
   }
   /**update hospital
@@ -166,6 +166,7 @@ export class HospitalService extends BaseService {
    */
 
   async updateHospital(data: HospitalDto, id: string) {
+    debugger
     try {
       //check if the hospital exist or not of given id
       const foundHospital = await this.hospitalRepository.findOne({
@@ -176,7 +177,7 @@ export class HospitalService extends BaseService {
         const errorRes = {
           message: ERROR_MESSAGES.NOTEXIST,
         };
-        return await errorResponses(errorRes, STATUSCODE.NOTFOUND);
+        return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
       //updating hospital details
       const updateHospital = await this.hospitalRepository.preload({
@@ -190,12 +191,12 @@ export class HospitalService extends BaseService {
         updatedHospital,
         message: SUCCESS_MESSAGES.UPDATE,
       };
-      return await responses(successRes, STATUSCODE.SUCCESS);
+      return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
         message: ERROR_MESSAGES.errorLog,
       };
-      return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -215,7 +216,7 @@ export class HospitalService extends BaseService {
         const errorRes = {
           message: ERROR_MESSAGES.NOTEXIST,
         };
-        return await errorResponses(errorRes, STATUSCODE.NOTFOUND);
+        return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
       //deleting the hospital
       const deletedHospital = await this.hospitalRepository.delete(id);
@@ -223,12 +224,12 @@ export class HospitalService extends BaseService {
         deletedHospital,
         message: SUCCESS_MESSAGES.DELETE,
       };
-      return await responses(successRes, STATUSCODE.SUCCESS);
+      return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
         message: ERROR_MESSAGES.errorLog,
       };
-      return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -270,7 +271,7 @@ export class HospitalService extends BaseService {
       const errorRes = {
         message: ERROR_MESSAGES.errorLog,
       };
-      return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
     }
   }
 }

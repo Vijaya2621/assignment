@@ -18,7 +18,7 @@ import {
 } from 'apps/utils/message';
 import { Hospitals } from './hospital.entity';
 import { YupValidationPipe } from 'apps/utils/validation';
-import { CreateUserSchema } from './hospital.schema';
+import { HospitalSchema } from './hospital.schema';
 
 @Controller('hospital')
 export class HospitalController {
@@ -43,7 +43,7 @@ export class HospitalController {
     description: ERROR_MESSAGES.VALIDATION_ERROR,
   })
   create(
-    @Body(new YupValidationPipe(CreateUserSchema))
+    @Body(new YupValidationPipe(HospitalSchema))
     data: HospitalDto,
   ) {
     return this.hospitalService.createHospital(data);

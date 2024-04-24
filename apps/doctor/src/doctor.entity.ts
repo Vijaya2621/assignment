@@ -1,10 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { BaseEntityWithId } from '../../abstracts';
+import { BaseEntityWithMeta } from '../../abstracts';
 import { ROLES } from '../../utils/entities';
 import { Column, Entity } from 'typeorm';
 
 @Entity()
-export class Doctor extends BaseEntityWithId {
+export class HealthCareWorker extends BaseEntityWithMeta {
   @ApiProperty({ description: 'is email verified' })
   @Column({ type: 'boolean', default: false })
   emailVerified: boolean;

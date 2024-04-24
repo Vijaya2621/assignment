@@ -1,22 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from 'apps/abstracts';
-import { Doctor } from './doctor.entity';
+import { HealthCareWorker } from './doctor.entity';
 import { Repository } from 'typeorm';
-import { DoctorDto } from './doctor.dto';
+import { DoctorDto, FindDoctorDto } from './doctor.dto';
 import {
   ERROR_MESSAGES,
   STATUSCODE,
   SUCCESS_MESSAGES,
 } from 'apps/utils/message';
 import * as bcrypt from 'bcrypt';
-import { errorResponses, responses } from 'apps/utils/response';
+import { allowedFieldsToSortForDoctors } from 'apps/hospital/src/hospital.common';
+import { IHealthCareWorker } from 'apps/utils/entities';
 
 @Injectable()
 export class DoctorService extends BaseService {
   constructor(
-    @InjectRepository(Doctor)
-    private readonly doctorRepository: Repository<Doctor>,
+    @InjectRepository(HealthCareWorker)
+    private readonly doctorRepository: Repository<HealthCareWorker>,
   ) {
     super();
   }
@@ -28,7 +29,8 @@ export class DoctorService extends BaseService {
    *@param data
    *@description this function is used to create a doctor
    */
-   async createDoctor(data: DoctorDto) {
+  async createDoctor(data: DoctorDto) {
+    debugger;
     try {
       //  checking if the doctor already exist or not with there email
 
@@ -50,14 +52,14 @@ export class DoctorService extends BaseService {
         saved,
         message: SUCCESS_MESSAGES.CREATE,
       };
-      return await responses(successRes, STATUSCODE.SUCCESS); // use capital letters
+      return this.responses(successRes, STATUSCODE.SUCCESS);
       //   if not saved then return error response
     } catch (error) {
       const errorRes = {
         error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -77,19 +79,19 @@ export class DoctorService extends BaseService {
         const errorRes = {
           message: ERROR_MESSAGES.NOTEXIST,
         };
-        return await errorResponses(errorRes, STATUSCODE.NOTFOUND);
+        return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
       //if found then return Doctor
       const successRes = {
         foundDoctor,
         message: SUCCESS_MESSAGES.CREATE,
       };
-      return await responses(successRes, STATUSCODE.SUCCESS);
+      return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
         message: ERROR_MESSAGES.errorLog,
       };
-      return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -110,7 +112,7 @@ export class DoctorService extends BaseService {
         const errorRes = {
           message: ERROR_MESSAGES.NOTEXIST,
         };
-        return await errorResponses(errorRes, STATUSCODE.NOTFOUND);
+        return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
       //updating Doctor details
       const updateDoctor = await this.doctorRepository.preload({
@@ -123,12 +125,13 @@ export class DoctorService extends BaseService {
         updatedDoctor,
         message: SUCCESS_MESSAGES.UPDATE,
       };
-      return await responses(successRes, STATUSCODE.SUCCESS);
+      return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
+        error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -148,7 +151,7 @@ export class DoctorService extends BaseService {
         const errorRes = {
           message: ERROR_MESSAGES.NOTEXIST,
         };
-        return await errorResponses(errorRes, STATUSCODE.NOTFOUND);
+        return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
       //deleting the Doctor
       const deletedDoctor = await this.doctorRepository.delete(id);
@@ -156,13 +159,58 @@ export class DoctorService extends BaseService {
         deletedDoctor,
         message: SUCCESS_MESSAGES.DELETE,
       };
-      return await responses(successRes, STATUSCODE.SUCCESS);
+      return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
+        error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
     }
   }
 
+  /**get listing of all doctor
+   *@description function to get all doctor
+   *@param data
+   */
+  async getAll(data: FindDoctorDto) {
+    try {
+      debugger;
+      const qr = this.doctorRepository.createQueryBuilder('doctor');
+      qr.select([
+        'doctor.id',
+        'doctor.emailVerified',
+        'doctor.image',
+        'doctor.email',
+        'doctor.specialzation',
+        'doctor.role',
+        'doctor.phoneNumber',
+        'doctor.name',
+      ]);
+      if (data.sort) {
+        const param = this.buildSortParams<{
+          name: string;
+        }>(data.sort);
+        if (allowedFieldsToSortForDoctors.includes(param[0])) {
+          const KEYS = {
+            name: `doctor.${param[0]}`,
+          };
+          // Order by key and parameter
+          qr.orderBy(KEYS[param[0]], param[1]);
+        }
+      } else {
+        qr.orderBy(`doctor.updatedAt`, 'DESC');
+      }
+      return await this._paginate<IHealthCareWorker>(qr, {
+        limit: data.limit || 10,
+        page: data.page || 1,
+      });
+    } catch (error) {
+      const errorRes = {
+        error,
+        message: ERROR_MESSAGES.errorLog,
+      };
+      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+    }
+  }
 }

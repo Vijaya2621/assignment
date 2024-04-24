@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { DoctorController } from './doctor.controller';
 import { DoctorService } from './doctor.service';
-import { Doctor } from './doctor.entity';
+import { HealthCareWorker } from './doctor.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 @Module({
@@ -9,7 +9,7 @@ import { ConfigModule } from '@nestjs/config';
     ConfigModule.forRoot({
       envFilePath: ['.env'],
     }),
-    TypeOrmModule.forFeature([Doctor]),
+    TypeOrmModule.forFeature([HealthCareWorker]),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -17,7 +17,7 @@ import { ConfigModule } from '@nestjs/config';
       username: 'dits',
       password: 'password',
       database: 'hospital_management',
-      entities: ['Doctor'],
+      entities: [HealthCareWorker],
       synchronize: true,
     }),
   ],
