@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
 import { PaginationDto } from 'apps/common/dtos/pagination.dto';
+import { ROLES } from 'apps/utils/entities';
 
 export class HospitalDto {
   @ApiProperty({ description: 'name' })
@@ -66,6 +67,10 @@ export class FindHospitalDto extends PaginationDto {
   })
   @IsString()
   password?: string;
+
+  @ApiProperty({ description: 'role' })
+  @IsString()
+  role: ROLES;
 
   @ApiProperty({
     description: 'State',

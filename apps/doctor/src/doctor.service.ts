@@ -11,7 +11,7 @@ import {
 } from 'apps/utils/message';
 import * as bcrypt from 'bcrypt';
 import { allowedFieldsToSortForDoctors } from 'apps/hospital/src/hospital.common';
-import { IHealthCareWorker } from 'apps/utils/entities';
+import { IHealthCareWorker, ROLES } from 'apps/utils/entities';
 
 @Injectable()
 export class DoctorService extends BaseService {
@@ -29,9 +29,18 @@ export class DoctorService extends BaseService {
    *@param data
    *@description this function is used to create a doctor
    */
-  async createDoctor(data: DoctorDto) {
+  async createDoctor(data: DoctorDto, userRole) {
     debugger;
     try {
+      // Check if the user has permission to create a healthcareworker
+      if (userRole !== ROLES.SUPER_ADMIN && userRole !== ROLES.ADMIN) {
+        // If not, return an error indicating insufficient permissions
+        const errorRes = {
+          message:
+            ERROR_MESSAGES.PERMISSION_DENIED_TO_CREATE_HEALTH_CARE_WORKER,
+        };
+        return this.errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
+      }
       //  checking if the doctor already exist or not with there email
 
       const existingDoctor = await this.doctorRepository.findOne({
@@ -68,8 +77,16 @@ export class DoctorService extends BaseService {
    *@param id DoctorId
    */
 
-  async findDoctorById(id: string) {
+  async findDoctorById(id: string, userRole) {
     try {
+      // Check if the user has permission to find a healthcareworker
+      if (userRole !== ROLES.SUPER_ADMIN && userRole !== ROLES.ADMIN) {
+        // If not, return an error indicating insufficient permissions
+        const errorRes = {
+          message: ERROR_MESSAGES.PERMISSION_DENIED_TO_GET_HEALTH_CARE_WORKER,
+        };
+        return this.errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
+      }
       //check if the Doctor with the given id exist or not
       const foundDoctor = await this.doctorRepository.findOne({
         where: { id },
@@ -101,8 +118,17 @@ export class DoctorService extends BaseService {
    *@param data
    */
 
-  async updateDoctor(data: DoctorDto, id: string) {
+  async updateDoctor(data: DoctorDto, id: string, userRole) {
     try {
+      // Check if the user has permission to update a healthcareworker
+      if (userRole !== ROLES.ADMIN && userRole !== ROLES.SUPER_ADMIN) {
+        // If not, return an error indicating insufficient permissions
+        const errorRes = {
+          message:
+            ERROR_MESSAGES.PERMISSION_DENIED_TO_UPDATE_HEALTH_CARE_WORKER,
+        };
+        return this.errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
+      }
       //check if the Doctor exist or not of given id
       const foundDoctor = await this.doctorRepository.findOne({
         where: { id },
@@ -140,8 +166,16 @@ export class DoctorService extends BaseService {
    *@param id DoctorId
    */
 
-  async deleteDoctor(id: string) {
+  async deleteDoctor(id: string, userRole) {
     try {
+      // Check if the user has permission to delete a healthcareworker
+      if (userRole !== ROLES.ADMIN && userRole !== ROLES.SUPER_ADMIN) {
+        // If not, return an error indicating insufficient permissions
+        const errorRes = {
+          message: ERROR_MESSAGES.PERMISSION_DENIED_TO_DELETE_HOSPITAL,
+        };
+        return this.errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
+      }
       //check if the Doctor exist or not of given id
       const foundDoctor = await this.doctorRepository.findOne({
         where: { id },
@@ -173,9 +207,16 @@ export class DoctorService extends BaseService {
    *@description function to get all doctor
    *@param data
    */
-  async getAll(data: FindDoctorDto) {
+  async getAll(data: FindDoctorDto, userRole) {
     try {
-      debugger;
+      // Check if the user has permission to get a hospital
+      if (userRole !== ROLES.SUPER_ADMIN) {
+        // If not, return an error indicating insufficient permissions
+        const errorRes = {
+          message: ERROR_MESSAGES.PERMISSION_DENIED_TO_GET_HOSPITAL,
+        };
+        return this.errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
+      }
       const qr = this.doctorRepository.createQueryBuilder('doctor');
       qr.select([
         'doctor.id',

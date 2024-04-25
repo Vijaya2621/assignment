@@ -4,11 +4,17 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Hospitals } from './hospital.entity';
 import { HospitalController } from './hospital.controller';
 import { ConfigModule } from '@nestjs/config';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       envFilePath: ['.env'],
+    }),
+    JwtModule.register({
+      global: true,
+      secret: process.env.SECRET_KEY,
+      signOptions: { expiresIn: '60s' },
     }),
     TypeOrmModule.forFeature([Hospitals]),
     TypeOrmModule.forRoot({
@@ -18,7 +24,7 @@ import { ConfigModule } from '@nestjs/config';
       username: 'dits',
       password: 'password',
       database: 'hospital_management',
-      entities: [Hospitals],
+      entities: [],
       synchronize: true,
     }),
   ],

@@ -1,6 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { BaseEntityWithMeta } from 'apps/abstracts';
-import { Column, Entity, Index } from 'typeorm';
+import { HealthCareWorker } from 'apps/doctor/src/doctor.entity';
+import { ROLES } from 'apps/utils/entities';
+import { Column, Entity, Index, OneToMany } from 'typeorm';
 
 @Entity()
 export class Hospitals extends BaseEntityWithMeta {
@@ -12,6 +14,10 @@ export class Hospitals extends BaseEntityWithMeta {
   @Index()
   @Column({ type: 'varchar', length: 50, nullable: true })
   name: string;
+
+  @ApiProperty({ description: 'role' })
+  @Column({ type: 'varchar', length: 100 })
+  role: ROLES;
 
   @ApiProperty({ description: 'email' })
   @Index()
@@ -42,4 +48,11 @@ export class Hospitals extends BaseEntityWithMeta {
   @ApiProperty({ description: 'phoneNumber' })
   @Column({ type: 'varchar', length: 50, nullable: true })
   phoneNumber: string;
+
+  @ApiProperty({ description: 'healthcareWorkers' })
+  @OneToMany(
+    () => HealthCareWorker,
+    (healthCareWorker) => healthCareWorker.hospital,
+  )
+  healthCareWorker: HealthCareWorker[];
 }

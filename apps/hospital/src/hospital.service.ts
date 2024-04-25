@@ -9,7 +9,7 @@ import {
   STATUSCODE,
 } from '../../utils/message';
 import { BaseService } from 'apps/abstracts';
-import { IHospital } from 'apps/utils/entities';
+import { IHospital, ROLES } from 'apps/utils/entities';
 import { allowedFieldsToSortForHospitals } from './hospital.common';
 import * as jwt from 'jsonwebtoken';
 import { ConfigService } from '@nestjs/config';
@@ -22,36 +22,48 @@ export class HospitalService extends BaseService {
     private readonly hospitalRepository: Repository<Hospitals>,
   ) {
     super();
-  } 
+  }
 
   /**create hospital
    *@param data
    *@description this function is used to create a hospital
    */
-  async createHospital(data: HospitalDto) {
+  async createHospital(data: HospitalDto, userRole: ROLES) {
     try {
-      debugger;
-      //  checking if the hospital already exist or not with there hospitalId and email
+      // Check if the user has permission to create a hospital
+      if (userRole !== ROLES.ADMIN && userRole !== ROLES.SUPER_ADMIN) {
+        // If not, return an error indicating insufficient permissions
+        const errorRes = {
+          message: ERROR_MESSAGES.PERMISSION_DENIED_TO_CREATE_HOSPITAL,
+        };
+        return this.errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
+      }
 
+      //  checking if the hospital already exist or not with there hospitalId and email
       const existingHospital = await this.hospitalRepository.findOne({
         where: { hospitalId: data.hospitalId, email: data.email },
       });
       if (existingHospital) {
         return this._getBadRequestError(ERROR_MESSAGES.ALREADYEXIST(data.name));
       }
+
       //Hash the password before creating the user
       const hashedPassword = await bcrypt.hash(data.password, 15);
       data.password = hashedPassword;
+
       //    if not then create the new hospital
       const created = this.hospitalRepository.create(data);
+
       // save the created hospital
       const saved = await this.hospitalRepository.save(created);
+
       //  if saved then return success response
       const successRes = {
         saved,
         message: SUCCESS_MESSAGES.CREATE,
       };
-      return this.responses(successRes, STATUSCODE.SUCCESS); 
+      return this.responses(successRes, STATUSCODE.SUCCESS);
+
       //   if not saved then return error response
     } catch (error) {
       const errorRes = {
@@ -68,7 +80,6 @@ export class HospitalService extends BaseService {
    */
   async loginHospital(req) {
     try {
-      debugger
       const { password } = req;
       //checking if the user is registered or not
       const hospital = await this.hospitalRepository.findOne({
@@ -105,10 +116,11 @@ export class HospitalService extends BaseService {
           {
             id: hospital.id,
             email: hospital.email,
+            role: hospital.role,
           },
           myToken,
-          { expiresIn: '1h' },
-        )
+          { expiresIn: process.env.EXPIRESIN },
+        );
         const successRes = {
           generatedToken: token,
           message: SUCCESS_MESSAGES.CREATE,
@@ -133,8 +145,16 @@ export class HospitalService extends BaseService {
    *@param id hospitalId
    */
 
-  async findHospitalById(id: string) {
+  async findHospitalById(id: string, userRole: ROLES) {
     try {
+      // Check if the user has permission to get a hospital
+      if (userRole !== ROLES.ADMIN && userRole !== ROLES.SUPER_ADMIN) {
+        // If not, return an error indicating insufficient permissions
+        const errorRes = {
+          message: ERROR_MESSAGES.PERMISSION_DENIED_TO_GET_HOSPITAL,
+        };
+        return this.errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
+      }
       //check if the hospital with the given id exist or not
       const foundHospital = await this.hospitalRepository.findOne({
         where: { id },
@@ -165,9 +185,16 @@ export class HospitalService extends BaseService {
    *@param data
    */
 
-  async updateHospital(data: HospitalDto, id: string) {
-    debugger
+  async updateHospital(data: HospitalDto, id: string, userRole) {
     try {
+      // Check if the user has permission to update a hospital
+      if (userRole !== ROLES.ADMIN && userRole !== ROLES.SUPER_ADMIN) {
+        // If not, return an error indicating insufficient permissions
+        const errorRes = {
+          message: ERROR_MESSAGES.PERMISSION_DENIED_TO_UPDATE_HOSPITAL,
+        };
+        return this.errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
+      }
       //check if the hospital exist or not of given id
       const foundHospital = await this.hospitalRepository.findOne({
         where: { id },
@@ -205,8 +232,16 @@ export class HospitalService extends BaseService {
    *@param id hospitalId
    */
 
-  async deleteHospital(id: string) {
+  async deleteHospital(id: string, userRole) {
     try {
+      // Check if the user has permission to delete a hospital
+      if (userRole !== ROLES.ADMIN && userRole !== ROLES.SUPER_ADMIN) {
+        // If not, return an error indicating insufficient permissions
+        const errorRes = {
+          message: ERROR_MESSAGES.PERMISSION_DENIED_TO_DELETE_HOSPITAL,
+        };
+        return this.errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
+      }
       //check if the hospital exist or not of given id
       const foundHospital = await this.hospitalRepository.findOne({
         where: { id },
@@ -237,9 +272,19 @@ export class HospitalService extends BaseService {
    *@description function to get all hospital
    *@param data
    */
-  async getAll(data: FindHospitalDto) {
+  async getAll(data: FindHospitalDto, userRole) {
     try {
+      debugger;
+      // Check if the user has permission to get hospitals
+      if (userRole !== ROLES.SUPER_ADMIN) {
+        // If not, return an error indicating insufficient permissions
+        const errorRes = {
+          message: ERROR_MESSAGES.PERMISSION_DENIED_TO_GET_HOSPITAL,
+        };
+        return this.errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
+      }
       const qr = this.hospitalRepository.createQueryBuilder('hospital');
+      qr.leftJoinAndSelect('hospital.healthCareWorker', 'healthCareWorker');
       qr.select([
         'hospital.id',
         'hospital.name',
@@ -247,7 +292,10 @@ export class HospitalService extends BaseService {
         'hospital.city',
         'hospital.state',
         'hospital.address',
+        'hospital.role',
         'hospital.phoneNumber',
+        'hospital.updatedAt',
+        'healthCareWorker',
       ]);
       if (data.sort) {
         const param = this.buildSortParams<{

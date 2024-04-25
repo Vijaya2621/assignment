@@ -2,11 +2,13 @@ import {
   Body,
   Controller,
   Delete,
+  Request,
   Get,
   Param,
   Patch,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { HospitalService } from './hospital.service';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
@@ -19,6 +21,7 @@ import {
 import { Hospitals } from './hospital.entity';
 import { YupValidationPipe } from 'apps/utils/validation';
 import { HospitalSchema } from './hospital.schema';
+import { AuthGuard } from 'apps/common/guards/auth.guard.services';
 
 @Controller('hospital')
 export class HospitalController {
@@ -27,6 +30,7 @@ export class HospitalController {
   /**
    * controller to create hospital
    */
+
   @Post()
   @ApiOperation({ summary: SUCCESS_MESSAGES.CREATE('Hospital') })
   @ApiResponse({
@@ -43,10 +47,14 @@ export class HospitalController {
     description: ERROR_MESSAGES.VALIDATION_ERROR,
   })
   create(
-    @Body(new YupValidationPipe(HospitalSchema))
-    data: HospitalDto,
-  ) {
-    return this.hospitalService.createHospital(data);
+    @Body(new YupValidationPipe(HospitalSchema)) data: HospitalDto,
+    @Request() req,
+  ): Promise<any> {
+    debugger;
+    // Extract the user's role from the request object
+    const userRole = req?.body?.role;
+
+    return this.hospitalService.createHospital(data, userRole);
   }
 
   @Post('/logIn')
@@ -75,6 +83,7 @@ export class HospitalController {
    * controller to find a particular hospital by id
    */
   @Get('/:id')
+  @UseGuards(AuthGuard)
   @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH('hospital') })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
@@ -92,14 +101,18 @@ export class HospitalController {
   async findHospitalById(
     @Param('id')
     id: string,
+    @Request() req,
   ) {
-    return await this.hospitalService.findHospitalById(id);
+    // Extract the user's role from the request object
+    const userRole = req?.user?.role;
+    return await this.hospitalService.findHospitalById(id, userRole);
   }
 
   /**
    * controller to find  hospital
    */
   @Get()
+  @UseGuards(AuthGuard)
   @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH('hospital') })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
@@ -114,14 +127,16 @@ export class HospitalController {
     status: STATUSCODE.BADREQUEST,
     description: ERROR_MESSAGES.VALIDATION_ERROR,
   })
-  async findAllHospital(@Query() data: FindHospitalDto) {
-    return await this.hospitalService.getAll(data);
+  async findAllHospital(@Query() data: FindHospitalDto, @Request() req) {
+    const userRole = req?.user?.role;
+    return await this.hospitalService.getAll(data, userRole);
   }
 
   /**
    * controller to update a particular hospital by id
    */
   @Patch('/:id')
+  @UseGuards(AuthGuard)
   @ApiOperation({ summary: SUCCESS_MESSAGES.UPDATE('hospital') })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
@@ -142,14 +157,17 @@ export class HospitalController {
     id: string,
     @Body()
     data: HospitalDto,
+    @Request() req,
   ) {
-    return await this.hospitalService.updateHospital(data, id);
+    const userRole = req.user.role;
+    return await this.hospitalService.updateHospital(data, id, userRole);
   }
 
   /**
    * controller to delete a particular hospital by id
    */
   @Delete('/:id')
+  @UseGuards(AuthGuard)
   @ApiOperation({ summary: SUCCESS_MESSAGES.UPDATE('hospital') })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
@@ -168,7 +186,9 @@ export class HospitalController {
   async deleteHospital(
     @Param('id')
     id: string,
+    @Request() req,
   ) {
-    return await this.hospitalService.deleteHospital(id);
+    const userRole = req?.user?.role;
+    return await this.hospitalService.deleteHospital(id, userRole);
   }
 }

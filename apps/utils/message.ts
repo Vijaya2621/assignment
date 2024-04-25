@@ -30,6 +30,21 @@ export const ERROR_MESSAGES = {
   VALIDATION_ERROR: 'Validation error',
   UNAUTHORIZED_USER: 'Unauthorized user',
   INVALIDLOGIN: 'Invalid login request. Please check and try again.',
+  PERMISSION_DENIED_TO_CREATE_HOSPITAL:
+    'Insufficient permissions to create hospital',
+  PERMISSION_DENIED_TO_CREATE_HEALTH_CARE_WORKER:
+    'Insufficient permissions to create healthcareworker',
+  PERMISSION_DENIED_TO_GET_HOSPITAL: 'Insufficient permissions to get hospital',
+  PERMISSION_DENIED_TO_GET_HEALTH_CARE_WORKER:
+    'Insufficient permissions to get healthcareworker',
+  PERMISSION_DENIED_TO_DELETE_HOSPITAL:
+    'Insufficient permissions to delete hospital',
+  PERMISSION_DENIED_TO_DELETE_HEALTH_CARE_WORKER:
+    'Insufficient permissions to delete healthcareworker',
+  PERMISSION_DENIED_TO_UPDATE_HOSPITAL:
+    'Insufficient permissions to update hospital',
+  PERMISSION_DENIED_TO_UPDATE_HEALTH_CARE_WORKER:
+    'Insufficient permissions to update healthcareworker',
   NOTEXIST: (value: string) => {
     return `${value} not exist.`;
   },

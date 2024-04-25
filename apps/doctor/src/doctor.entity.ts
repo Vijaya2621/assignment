@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { BaseEntityWithMeta } from '../../abstracts';
 import { ROLES } from '../../utils/entities';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Hospitals } from 'apps/hospital/src/hospital.entity';
 
 @Entity()
 export class HealthCareWorker extends BaseEntityWithMeta {
@@ -19,7 +20,7 @@ export class HealthCareWorker extends BaseEntityWithMeta {
 
   @ApiProperty({ description: 'role' })
   @Column({ type: 'varchar', length: 100, default: ROLES.ADMIN })
-  role?: ROLES;
+  role: ROLES;
 
   @ApiProperty({ description: 'email' })
   @Column({ type: 'varchar', length: 50, nullable: true, unique: true })
@@ -44,4 +45,9 @@ export class HealthCareWorker extends BaseEntityWithMeta {
   @ApiProperty({ description: 'phoneNumber' })
   @Column({ type: 'varchar', nullable: true })
   phoneNumber: string;
+
+  @ApiProperty({ description: 'hospital' })
+  @ManyToOne(() => Hospitals, (hospital: Hospitals) => hospital.id)
+  @JoinColumn({ name: 'hospitalId' })
+  hospital: string;
 }

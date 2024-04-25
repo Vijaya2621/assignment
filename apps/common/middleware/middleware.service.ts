@@ -1,19 +1,21 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ERROR_MESSAGES, STATUSCODE } from 'apps/utils/message';
-import { errorResponses } from 'apps/utils/response';
+import { BaseService } from 'apps/abstracts/base.service';
 import { verify } from 'jsonwebtoken';
 
 @Injectable()
-export class AuthMiddleware implements NestMiddleware {
-  constructor(private readonly jwtService: JwtService) {}
+export class AuthMiddleware extends BaseService implements NestMiddleware {
+  constructor(private readonly jwtService: JwtService) {
+    super();
+  }
 
   async use(req: any) {
     if (!req.headers.authorization) {
       const errorRes = {
         message: ERROR_MESSAGES.UNAUTHORIZED_USER,
       };
-      return await errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
+      return this.errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
     }
 
     const authHeader = req.headers.authorization;
@@ -23,7 +25,7 @@ export class AuthMiddleware implements NestMiddleware {
       const errorRes = {
         message: ERROR_MESSAGES.UNAUTHORIZED_USER,
       };
-      return await errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
+      return this.errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
     }
 
     const token = bearerToken[1];
@@ -35,7 +37,7 @@ export class AuthMiddleware implements NestMiddleware {
       const errorRes = {
         message: ERROR_MESSAGES.errorLog,
       };
-      return await errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
     }
   }
 }

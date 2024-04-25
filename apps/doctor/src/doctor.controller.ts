@@ -7,6 +7,8 @@ import {
   Patch,
   Post,
   Query,
+  Request,
+  UseGuards,
 } from '@nestjs/common';
 import { DoctorService } from './doctor.service';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
@@ -19,6 +21,7 @@ import { DoctorDto, FindDoctorDto } from './doctor.dto';
 import { HealthCareWorker } from './doctor.entity';
 import { DoctorSchema } from './doctor.schema';
 import { YupValidationPipe } from 'apps/utils/validation';
+import { AuthGuard } from 'apps/common/guards/auth.guard.services';
 
 @Controller('doctor')
 export class DoctorController {
@@ -28,6 +31,7 @@ export class DoctorController {
    * controller to find  Doctor
    */
   @Get('/all')
+  @UseGuards(AuthGuard)
   @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH('Doctor') })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
@@ -42,8 +46,9 @@ export class DoctorController {
     status: STATUSCODE.BADREQUEST,
     description: ERROR_MESSAGES.VALIDATION_ERROR,
   })
-  async findAllDoctor(@Query() data: FindDoctorDto) {
-    return await this.doctorService.getAll(data);
+  async findAllDoctor(@Query() data: FindDoctorDto, @Request() req) {
+    const userRole = req?.user?.role;
+    return await this.doctorService.getAll(data, userRole);
   }
 
   @Get()
@@ -70,16 +75,20 @@ export class DoctorController {
     description: ERROR_MESSAGES.VALIDATION_ERROR,
   })
   create(
-    @Body(new YupValidationPipe(DoctorSchema))
-    data: DoctorDto,
-  ) {
-    return this.doctorService.createDoctor(data);
+    @Body(new YupValidationPipe(DoctorSchema)) data: DoctorDto,
+    @Request() req,
+  ): Promise<any> {
+    debugger;
+    // Extract the user's role from the request object
+    const userRole = req?.body?.role;
+    return this.doctorService.createDoctor(data, userRole);
   }
 
   /**
    * controller to find a particular doctor by id
    */
   @Get('/:id')
+  @UseGuards(AuthGuard)
   @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH('doctor') })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
@@ -97,14 +106,17 @@ export class DoctorController {
   async findDoctorById(
     @Param('id')
     id: string,
+    @Request() req,
   ) {
-    return await this.doctorService.findDoctorById(id);
+    const userRole = req?.user?.role;
+    return await this.doctorService.findDoctorById(id, userRole);
   }
 
   /**
    * controller to update a particular Doctor by id
    */
   @Patch('/:id')
+  @UseGuards(AuthGuard)
   @ApiOperation({ summary: SUCCESS_MESSAGES.UPDATE('Doctor') })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
@@ -125,14 +137,17 @@ export class DoctorController {
     id: string,
     @Body()
     data: DoctorDto,
+    @Request() req,
   ) {
-    return await this.doctorService.updateDoctor(data, id);
+    const userRole = req?.user?.role;
+    return await this.doctorService.updateDoctor(data, id, userRole);
   }
 
   /**
    * controller to delete a particular Doctor by id
    */
   @Delete('/:id')
+  @UseGuards(AuthGuard)
   @ApiOperation({ summary: SUCCESS_MESSAGES.UPDATE('Doctor') })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
@@ -151,7 +166,9 @@ export class DoctorController {
   async deleteDoctor(
     @Param('id')
     id: string,
+    @Request() req,
   ) {
-    return await this.doctorService.deleteDoctor(id);
+    const userRole = req?.user?.role;
+    return await this.doctorService.deleteDoctor(id, userRole);
   }
 }
