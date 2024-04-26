@@ -22,7 +22,6 @@ import { HealthCareWorker } from './doctor.entity';
 import { DoctorSchema } from './doctor.schema';
 import { YupValidationPipe } from 'apps/utils/validation';
 import { AuthGuard } from 'apps/common/guards/auth.guard.services';
-
 @Controller('doctor')
 export class DoctorController {
   constructor(private readonly doctorService: DoctorService) {}
@@ -113,6 +112,32 @@ export class DoctorController {
   }
 
   /**
+   * controller to find a particular doctor by email
+   */
+  @Get('/:email')
+  @UseGuards(AuthGuard)
+  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH('doctor') })
+  @ApiResponse({
+    status: STATUSCODE.SUCCESS,
+    description: SUCCESS_MESSAGES.FETCH('doctor'),
+    type: HealthCareWorker,
+  })
+  @ApiResponse({
+    status: STATUSCODE.INTERNALSERVERERROR,
+    description: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
+  })
+  @ApiResponse({
+    status: STATUSCODE.BADREQUEST,
+    description: ERROR_MESSAGES.VALIDATION_ERROR,
+  })
+  async findDoctorByEmial(
+    @Param('email')
+    email: string,
+  ) {
+    return await this.doctorService.findDoctorByEmail(email);
+  }
+
+  /**
    * controller to update a particular Doctor by id
    */
   @Patch('/:id')
@@ -170,5 +195,27 @@ export class DoctorController {
   ) {
     const userRole = req?.user?.role;
     return await this.doctorService.deleteDoctor(id, userRole);
+  }
+
+  @Post('/logIn')
+  @ApiOperation({ summary: SUCCESS_MESSAGES.CREATE('Doctor') })
+  @ApiResponse({
+    status: STATUSCODE.SUCCESS,
+    description: SUCCESS_MESSAGES.CREATE('Doctor'),
+    type: DoctorDto,
+  })
+  @ApiResponse({
+    status: STATUSCODE.INTERNALSERVERERROR,
+    description: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
+  })
+  @ApiResponse({
+    status: STATUSCODE.BADREQUEST,
+    description: ERROR_MESSAGES.VALIDATION_ERROR,
+  })
+  logIn(
+    @Body()
+    data: DoctorDto,
+  ) {
+    return this.doctorService.loginHealthCareWorker(data);
   }
 }

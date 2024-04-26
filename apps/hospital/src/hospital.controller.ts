@@ -57,28 +57,6 @@ export class HospitalController {
     return this.hospitalService.createHospital(data, userRole);
   }
 
-  @Post('/logIn')
-  @ApiOperation({ summary: SUCCESS_MESSAGES.CREATE('Hospital') })
-  @ApiResponse({
-    status: STATUSCODE.SUCCESS,
-    description: SUCCESS_MESSAGES.CREATE('Hospital'),
-    type: HospitalDto,
-  })
-  @ApiResponse({
-    status: STATUSCODE.INTERNALSERVERERROR,
-    description: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
-  })
-  @ApiResponse({
-    status: STATUSCODE.BADREQUEST,
-    description: ERROR_MESSAGES.VALIDATION_ERROR,
-  })
-  logIn(
-    @Body()
-    data: HospitalDto,
-  ) {
-    return this.hospitalService.loginHospital(data);
-  }
-
   /**
    * controller to find a particular hospital by id
    */
@@ -106,6 +84,32 @@ export class HospitalController {
     // Extract the user's role from the request object
     const userRole = req?.user?.role;
     return await this.hospitalService.findHospitalById(id, userRole);
+  }
+
+  /**
+   * controller to find a particular hospital by email
+   */
+  @Get('/:id')
+  @UseGuards(AuthGuard)
+  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH('hospital') })
+  @ApiResponse({
+    status: STATUSCODE.SUCCESS,
+    description: SUCCESS_MESSAGES.FETCH('hospital'),
+    type: Hospitals,
+  })
+  @ApiResponse({
+    status: STATUSCODE.INTERNALSERVERERROR,
+    description: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
+  })
+  @ApiResponse({
+    status: STATUSCODE.BADREQUEST,
+    description: ERROR_MESSAGES.VALIDATION_ERROR,
+  })
+  async findHospitalByEmail(
+    @Param('email')
+    email: string,
+  ) {
+    return await this.hospitalService.findHospitalByEmail(email);
   }
 
   /**

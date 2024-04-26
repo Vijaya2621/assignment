@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { BaseEntityWithMeta } from '../../abstracts';
 import { ROLES } from '../../utils/entities';
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, Timestamp } from 'typeorm';
 import { Hospitals } from 'apps/hospital/src/hospital.entity';
 
 @Entity()
@@ -50,4 +50,12 @@ export class HealthCareWorker extends BaseEntityWithMeta {
   @ManyToOne(() => Hospitals, (hospital: Hospitals) => hospital.id)
   @JoinColumn({ name: 'hospitalId' })
   hospital: string;
+
+  @ApiProperty({ description: 'resetToken' })
+  @Column({ type: 'varchar', nullable: true })
+  resetToken: string;
+
+  @ApiProperty({ description: 'resetTokenExpires' })
+  @Column({ type: 'varchar', nullable: true })
+  resetTokenExpires: Timestamp;
 }

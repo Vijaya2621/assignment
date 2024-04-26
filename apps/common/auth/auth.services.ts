@@ -3,7 +3,7 @@ import * as nodemailer from 'nodemailer';
 import * as mjml2html from 'mjml';
 
 @Injectable()
-export class EmailService {
+export class AuthService {
   private transporter: nodemailer.Transporter;
 
   constructor() {

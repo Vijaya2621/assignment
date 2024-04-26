@@ -11,9 +11,9 @@ import {
 import { BaseService } from 'apps/abstracts';
 import { IHospital, ROLES } from 'apps/utils/entities';
 import { allowedFieldsToSortForHospitals } from './hospital.common';
-import * as jwt from 'jsonwebtoken';
 import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcrypt';
+
 @Injectable()
 export class HospitalService extends BaseService {
   constructor(
@@ -25,7 +25,7 @@ export class HospitalService extends BaseService {
   }
 
   /**create hospital
-   *@param data
+   *@param data, userRole
    *@description this function is used to create a hospital
    */
   async createHospital(data: HospitalDto, userRole: ROLES) {
@@ -74,75 +74,10 @@ export class HospitalService extends BaseService {
     }
   }
 
-  /**login hospital
-   *@description function to login a hospital
-   *@param  hospitalId
-   */
-  async loginHospital(req) {
-    try {
-      const { password } = req;
-      //checking if the user is registered or not
-      const hospital = await this.hospitalRepository.findOne({
-        where: { email: req.email },
-      });
-
-      if (!hospital) {
-        const errorRes = {
-          message: ERROR_MESSAGES.INVALIDLOGIN,
-        };
-        return this.errorResponses(errorRes, STATUSCODE.FAILED);
-      }
-
-      //comparing password of user
-      const comparepassword = await bcrypt.compare(password, hospital.password);
-
-      if (!comparepassword) {
-        const errorRes = {
-          message: ERROR_MESSAGES.INVALIDLOGIN,
-        };
-        return this.errorResponses(errorRes, STATUSCODE.FAILED);
-      }
-
-      const myToken = process.env.SECRET_KEY;
-      if (!myToken) {
-        // Handle the case where SECRET_KEY is not defined
-        throw new Error('SECRET_KEY is not defined');
-      }
-
-      let token;
-      //checking if password is correct then generate token
-      if (comparepassword == true) {
-        token = jwt.sign(
-          {
-            id: hospital.id,
-            email: hospital.email,
-            role: hospital.role,
-          },
-          myToken,
-          { expiresIn: process.env.EXPIRESIN },
-        );
-        const successRes = {
-          generatedToken: token,
-          message: SUCCESS_MESSAGES.CREATE,
-        };
-        return this.responses(successRes, STATUSCODE.SUCCESS);
-      }
-      //otherwise return error
-      const errorRes = {
-        message: ERROR_MESSAGES.INVALIDLOGIN,
-      };
-      return this.errorResponses(errorRes, STATUSCODE.FAILED);
-    } catch (error) {
-      const errorRes = {
-        message: ERROR_MESSAGES.errorLog,
-      };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
-    }
-  }
-
   /**get task hospital
    *@description function to get hospital
    *@param id hospitalId
+   @param userRole
    */
 
   async findHospitalById(id: string, userRole: ROLES) {
@@ -182,7 +117,7 @@ export class HospitalService extends BaseService {
   /**update hospital
    *@description function to update the hospital
    *@param id hospitalId
-   *@param data
+   *@param data, userRole
    */
 
   async updateHospital(data: HospitalDto, id: string, userRole) {
@@ -230,6 +165,7 @@ export class HospitalService extends BaseService {
   /**delete  hospital
    *@description function to delete hospital
    *@param id hospitalId
+   @param userRole
    */
 
   async deleteHospital(id: string, userRole) {
@@ -270,7 +206,7 @@ export class HospitalService extends BaseService {
 
   /**get listing of all hospital
    *@description function to get all hospital
-   *@param data
+   *@param data, userRole
    */
   async getAll(data: FindHospitalDto, userRole) {
     try {
@@ -315,6 +251,34 @@ export class HospitalService extends BaseService {
         limit: data.limit || 10,
         page: data.page || 1,
       });
+    } catch (error) {
+      const errorRes = {
+        message: ERROR_MESSAGES.errorLog,
+      };
+      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+    }
+  }
+
+  //find by email
+  async findHospitalByEmail(email: string) {
+    try {
+      //check if the hospital with the given id exist or not
+      const foundHospital = await this.hospitalRepository.findOne({
+        where: { email },
+      });
+      //if not found then return error
+      if (!foundHospital) {
+        const errorRes = {
+          message: ERROR_MESSAGES.NOTEXIST,
+        };
+        return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
+      }
+      //if found then return hospital
+      const successRes = {
+        foundHospital,
+        message: SUCCESS_MESSAGES.CREATE,
+      };
+      return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
         message: ERROR_MESSAGES.errorLog,

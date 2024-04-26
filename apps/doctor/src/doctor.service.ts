@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable, forwardRef } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from 'apps/abstracts';
 import { HealthCareWorker } from './doctor.entity';
@@ -12,6 +12,7 @@ import {
 import * as bcrypt from 'bcrypt';
 import { allowedFieldsToSortForDoctors } from 'apps/hospital/src/hospital.common';
 import { IHealthCareWorker, ROLES } from 'apps/utils/entities';
+import * as jwt from 'jsonwebtoken';
 
 @Injectable()
 export class DoctorService extends BaseService {
@@ -26,7 +27,7 @@ export class DoctorService extends BaseService {
   }
 
   /**create doctor
-   *@param data
+   *@param data, userRole
    *@description this function is used to create a doctor
    */
   async createDoctor(data: DoctorDto, userRole) {
@@ -75,6 +76,7 @@ export class DoctorService extends BaseService {
   /**get task Doctor
    *@description function to get Doctor
    *@param id DoctorId
+   @param userRole
    */
 
   async findDoctorById(id: string, userRole) {
@@ -101,7 +103,7 @@ export class DoctorService extends BaseService {
       //if found then return Doctor
       const successRes = {
         foundDoctor,
-        message: SUCCESS_MESSAGES.CREATE,
+        message: SUCCESS_MESSAGES.FETCH,
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
@@ -115,7 +117,7 @@ export class DoctorService extends BaseService {
   /**update Doctor
    *@description function to update the Doctor
    *@param id DoctorId
-   *@param data
+   *@param data, userRole
    */
 
   async updateDoctor(data: DoctorDto, id: string, userRole) {
@@ -164,6 +166,7 @@ export class DoctorService extends BaseService {
   /**delete  Doctor
    *@description function to delete Doctor
    *@param id DoctorId
+   @param userRole
    */
 
   async deleteDoctor(id: string, userRole) {
@@ -205,7 +208,7 @@ export class DoctorService extends BaseService {
 
   /**get listing of all doctor
    *@description function to get all doctor
-   *@param data
+   *@param data, userRole
    */
   async getAll(data: FindDoctorDto, userRole) {
     try {
@@ -249,6 +252,102 @@ export class DoctorService extends BaseService {
     } catch (error) {
       const errorRes = {
         error,
+        message: ERROR_MESSAGES.errorLog,
+      };
+      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+    }
+  }
+
+  //find by email
+  async findDoctorByEmail(email: string) {
+    try {
+      //check if the hospital with the given id exist or not
+      const foundDoctor = await this.doctorRepository.findOne({
+        where: { email },
+      });
+      //if not found then return error
+      if (!foundDoctor) {
+        const errorRes = {
+          message: ERROR_MESSAGES.NOTEXIST,
+        };
+        return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
+      }
+      //if found then return hospital
+      const successRes = {
+        foundDoctor,
+        message: SUCCESS_MESSAGES.FETCH,
+      };
+      return this.responses(successRes, STATUSCODE.SUCCESS);
+    } catch (error) {
+      const errorRes = {
+        message: ERROR_MESSAGES.errorLog,
+      };
+      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+    }
+  }
+
+  /**login healtCareWorker
+   *@description function to login a healtCareWorker
+   *@param  req
+   */
+  async loginHealthCareWorker(req) {
+    try {
+      const { password } = req;
+      //checking if the user is registered or not
+      const healtCareWorker = await this.doctorRepository.findOne({
+        where: { email: req.email },
+      });
+      if (!healtCareWorker) {
+        const errorRes = {
+          message: ERROR_MESSAGES.INVALIDLOGIN,
+        };
+        return this.errorResponses(errorRes, STATUSCODE.FAILED);
+      }
+
+      //comparing password of user
+      const comparepassword = await bcrypt.compare(
+        password,
+        healtCareWorker.password,
+      );
+
+      if (!comparepassword) {
+        const errorRes = {
+          message: ERROR_MESSAGES.INVALIDLOGIN,
+        };
+        return this.errorResponses(errorRes, STATUSCODE.FAILED);
+      }
+
+      const myToken = process.env.SECRET_KEY;
+      if (!myToken) {
+        // Handle the case where SECRET_KEY is not defined
+        throw new Error('SECRET_KEY is not defined');
+      }
+
+      let token;
+      //checking if password is correct then generate token
+      if (comparepassword == true) {
+        token = jwt.sign(
+          {
+            id: healtCareWorker.id,
+            email: healtCareWorker.email,
+            role: healtCareWorker.role,
+          },
+          myToken,
+          { expiresIn: process.env.EXPIRESIN },
+        );
+        const successRes = {
+          generatedToken: token,
+          message: SUCCESS_MESSAGES.CREATE,
+        };
+        return this.responses(successRes, STATUSCODE.SUCCESS);
+      }
+      //otherwise return error
+      const errorRes = {
+        message: ERROR_MESSAGES.INVALIDLOGIN,
+      };
+      return this.errorResponses(errorRes, STATUSCODE.FAILED);
+    } catch (error) {
+      const errorRes = {
         message: ERROR_MESSAGES.errorLog,
       };
       return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
