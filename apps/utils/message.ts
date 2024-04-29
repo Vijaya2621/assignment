@@ -34,17 +34,24 @@ export const ERROR_MESSAGES = {
     'Insufficient permissions to create hospital',
   PERMISSION_DENIED_TO_CREATE_HEALTH_CARE_WORKER:
     'Insufficient permissions to create healthcareworker',
+  PERMISSION_DENIED_TO_CREATE_PATIENT:
+    'Insufficient permissions to create patient',
   PERMISSION_DENIED_TO_GET_HOSPITAL: 'Insufficient permissions to get hospital',
   PERMISSION_DENIED_TO_GET_HEALTH_CARE_WORKER:
     'Insufficient permissions to get healthcareworker',
+  PERMISSION_DENIED_TO_GET_PATIENT: 'Insufficient permissions to get patient',
   PERMISSION_DENIED_TO_DELETE_HOSPITAL:
     'Insufficient permissions to delete hospital',
   PERMISSION_DENIED_TO_DELETE_HEALTH_CARE_WORKER:
     'Insufficient permissions to delete healthcareworker',
+  PERMISSION_DENIED_TO_DELETE_PATIENT:
+    'Insufficient permissions to delete patient',
   PERMISSION_DENIED_TO_UPDATE_HOSPITAL:
     'Insufficient permissions to update hospital',
   PERMISSION_DENIED_TO_UPDATE_HEALTH_CARE_WORKER:
     'Insufficient permissions to update healthcareworker',
+  PERMISSION_DENIED_TO_UPDATE_PATIENT:
+    'Insufficient permissions to update patient',
   NOTEXIST: (value: string) => {
     return `${value} not exist.`;
   },

@@ -7,12 +7,21 @@ export enum ROLES {
   PATIENT = 'patient',
 }
 
+export enum GENDER {
+  MALE = 'male',
+  FEMALE = 'female',
+  OTHER = 'other',
+}
+
+export enum TYPE {
+  HOSPITAL = 'hospital',
+  HEALTHCARE_WORKER = 'healthcareworker',
+  PATIENT = 'patient',
+}
 //interface
 interface IBase {
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  createdAtUTC?: number;
-  updatedAtUTC?: number;
 }
 interface IBaseWithId extends IBase {
   id?: string;
@@ -42,4 +51,21 @@ export interface IHealthCareWorker extends IBaseWithMeta {
   image: string;
   active: boolean;
   phoneNumber: string;
+  role: ROLES;
+}
+
+export interface IPatient extends IBaseWithMeta {
+  condition: string;
+  name: string;
+  email: string;
+  dateOfBirth: string;
+  education: string;
+  enrolledDate: string;
+  height: number;
+  weight: number;
+  image: string;
+  active: boolean;
+  role: ROLES;
+  phoneNumber: string;
+  gender: GENDER;
 }

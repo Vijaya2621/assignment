@@ -1,15 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { BaseEntityWithMeta } from '../../abstracts';
-import { ROLES } from '../../utils/entities';
+import { GENDER, ROLES } from '../../utils/entities';
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { Hospitals } from 'apps/hospital/src/hospital.entity';
 
 @Entity()
-export class HealthCareWorker extends BaseEntityWithMeta {
-  @ApiProperty({ description: 'is email verified' })
-  @Column({ type: 'boolean', default: false })
-  emailVerified: boolean;
-
+export class Patient extends BaseEntityWithMeta {
   @ApiProperty({ description: 'image' })
   @Column({ type: 'varchar', default: null, nullable: true })
   image: string;
@@ -32,19 +28,39 @@ export class HealthCareWorker extends BaseEntityWithMeta {
 
   @ApiProperty({ description: 'specialzation' })
   @Column({ type: 'varchar', length: 100, nullable: true })
-  specialzation: string;
+  condition: string;
 
   @ApiProperty({ description: 'name' })
   @Column({ type: 'varchar', length: 50, nullable: true })
   name: string;
 
-  @ApiProperty({ description: 'licenseNumber' })
-  @Column({ type: 'varchar', length: 50, nullable: true })
-  licenseNumber: string;
-
   @ApiProperty({ description: 'phoneNumber' })
   @Column({ type: 'varchar', nullable: true })
   phoneNumber: string;
+
+  @ApiProperty({ description: 'dateOfBirth' })
+  @Column({ type: 'date', nullable: true })
+  dateOfBirth: string;
+
+  @ApiProperty({ description: 'education' })
+  @Column({ type: 'varchar', nullable: true })
+  education: string;
+
+  @ApiProperty({ description: 'enrolledDate' })
+  @Column({ type: 'varchar', nullable: true, default: null })
+  enrolledDate: string;
+
+  @ApiProperty({ description: 'height' })
+  @Column({ type: 'int', nullable: true, default: null })
+  height?: number;
+
+  @ApiProperty({ description: 'weight' })
+  @Column({ type: 'varchar', nullable: true, default: null })
+  weight?: string;
+
+  @ApiProperty({ description: 'gender' })
+  @Column({ type: 'varchar', nullable: true, default: null })
+  gender?: GENDER;
 
   @ApiProperty({ description: 'hospital' })
   @ManyToOne(() => Hospitals, (hospital: Hospitals) => hospital.id)

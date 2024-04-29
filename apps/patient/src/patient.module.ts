@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { DoctorController } from './doctor.controller';
-import { DoctorService } from './doctor.service';
-import { HealthCareWorker } from './doctor.entity';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { PatientController } from './patient.controller';
+import { PatientService } from './patient.service';
 import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Patient } from './patient.entity';
 import { JwtModule } from '@nestjs/jwt';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -15,7 +16,7 @@ import { JwtModule } from '@nestjs/jwt';
       secret: process.env.SECRET_KEY,
       signOptions: { expiresIn: '60s' },
     }),
-    TypeOrmModule.forFeature([HealthCareWorker]),
+    TypeOrmModule.forFeature([Patient]),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -27,8 +28,7 @@ import { JwtModule } from '@nestjs/jwt';
       synchronize: true,
     }),
   ],
-  controllers: [DoctorController],
-  providers: [DoctorService],
-  exports: [DoctorService],
+  controllers: [PatientController],
+  providers: [PatientService],
 })
-export class DoctorModule {}
+export class PatientModule {}

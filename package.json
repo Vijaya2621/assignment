@@ -13,6 +13,7 @@
     "dev-assignment": "nest start --watch assignment",
     "dev-doctor": "nest start --watch doctor",
     "dev-hospital": "nest start --watch hospital",
+    "dev-patient": "nest start --watch patient",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/apps/assignment/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",

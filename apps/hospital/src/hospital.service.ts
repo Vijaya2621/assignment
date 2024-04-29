@@ -27,6 +27,7 @@ export class HospitalService extends BaseService {
   /**create hospital
    *@param data, userRole
    *@description this function is used to create a hospital
+   *@developedBy Vijaya Kumari
    */
   async createHospital(data: HospitalDto, userRole: ROLES) {
     try {
@@ -51,7 +52,7 @@ export class HospitalService extends BaseService {
       const hashedPassword = await bcrypt.hash(data.password, 15);
       data.password = hashedPassword;
 
-      //    if not then create the new hospital
+      //   create the new hospital
       const created = this.hospitalRepository.create(data);
 
       // save the created hospital
@@ -74,10 +75,11 @@ export class HospitalService extends BaseService {
     }
   }
 
-  /**get task hospital
+  /**get hospital
    *@description function to get hospital
    *@param id hospitalId
-   @param userRole
+   *@param userRole
+   *@developedBy Vijaya Kumari
    */
 
   async findHospitalById(id: string, userRole: ROLES) {
@@ -118,6 +120,7 @@ export class HospitalService extends BaseService {
    *@description function to update the hospital
    *@param id hospitalId
    *@param data, userRole
+   *@developedBy Vijaya Kumari
    */
 
   async updateHospital(data: HospitalDto, id: string, userRole) {
@@ -165,7 +168,8 @@ export class HospitalService extends BaseService {
   /**delete  hospital
    *@description function to delete hospital
    *@param id hospitalId
-   @param userRole
+   *@param userRole
+   *@developedBy Vijaya Kumari
    */
 
   async deleteHospital(id: string, userRole) {
@@ -207,10 +211,10 @@ export class HospitalService extends BaseService {
   /**get listing of all hospital
    *@description function to get all hospital
    *@param data, userRole
+   *@developedBy Vijaya Kumari
    */
   async getAll(data: FindHospitalDto, userRole) {
     try {
-      debugger;
       // Check if the user has permission to get hospitals
       if (userRole !== ROLES.SUPER_ADMIN) {
         // If not, return an error indicating insufficient permissions
@@ -233,6 +237,7 @@ export class HospitalService extends BaseService {
         'hospital.updatedAt',
         'healthCareWorker',
       ]);
+      //sorting
       if (data.sort) {
         const param = this.buildSortParams<{
           name: string;
@@ -247,6 +252,7 @@ export class HospitalService extends BaseService {
       } else {
         qr.orderBy(`hospital.updatedAt`, 'DESC');
       }
+      //pagination
       return await this._paginate<IHospital>(qr, {
         limit: data.limit || 10,
         page: data.page || 1,
@@ -259,7 +265,11 @@ export class HospitalService extends BaseService {
     }
   }
 
-  //find by email
+  /**get hospital by email
+   *@description function to get hospital by email
+   *@param email
+   *@developedBy Vijaya Kumari
+   */
   async findHospitalByEmail(email: string) {
     try {
       //check if the hospital with the given id exist or not

@@ -22,6 +22,7 @@ import { Hospitals } from './hospital.entity';
 import { YupValidationPipe } from 'apps/utils/validation';
 import { HospitalSchema } from './hospital.schema';
 import { AuthGuard } from 'apps/common/guards/auth.guard.services';
+import { TYPE } from 'apps/utils/entities';
 
 @Controller('hospital')
 export class HospitalController {
@@ -30,7 +31,6 @@ export class HospitalController {
   /**
    * controller to create hospital
    */
-
   @Post()
   @ApiOperation({ summary: SUCCESS_MESSAGES.CREATE('Hospital') })
   @ApiResponse({
@@ -50,7 +50,6 @@ export class HospitalController {
     @Body(new YupValidationPipe(HospitalSchema)) data: HospitalDto,
     @Request() req,
   ): Promise<any> {
-    debugger;
     // Extract the user's role from the request object
     const userRole = req?.body?.role;
 
@@ -62,10 +61,10 @@ export class HospitalController {
    */
   @Get('/:id')
   @UseGuards(AuthGuard)
-  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH('hospital') })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH(TYPE.HOSPITAL) })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
-    description: SUCCESS_MESSAGES.FETCH('hospital'),
+    description: SUCCESS_MESSAGES.FETCH(TYPE.HOSPITAL),
     type: Hospitals,
   })
   @ApiResponse({
@@ -91,10 +90,10 @@ export class HospitalController {
    */
   @Get('/:id')
   @UseGuards(AuthGuard)
-  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH('hospital') })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH(TYPE.HOSPITAL) })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
-    description: SUCCESS_MESSAGES.FETCH('hospital'),
+    description: SUCCESS_MESSAGES.FETCH(TYPE.HOSPITAL),
     type: Hospitals,
   })
   @ApiResponse({
@@ -113,14 +112,14 @@ export class HospitalController {
   }
 
   /**
-   * controller to find  hospital
+   * controller to find  hospitals
    */
   @Get()
   @UseGuards(AuthGuard)
-  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH('hospital') })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH(TYPE.HOSPITAL) })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
-    description: SUCCESS_MESSAGES.FETCH('hospital'),
+    description: SUCCESS_MESSAGES.FETCH(TYPE.HOSPITAL),
     type: Hospitals,
   })
   @ApiResponse({
@@ -141,10 +140,10 @@ export class HospitalController {
    */
   @Patch('/:id')
   @UseGuards(AuthGuard)
-  @ApiOperation({ summary: SUCCESS_MESSAGES.UPDATE('hospital') })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.UPDATE(TYPE.HOSPITAL) })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
-    description: SUCCESS_MESSAGES.UPDATE('hospital'),
+    description: SUCCESS_MESSAGES.UPDATE(TYPE.HOSPITAL),
     isArray: true,
     type: HospitalDto,
   })
@@ -172,10 +171,10 @@ export class HospitalController {
    */
   @Delete('/:id')
   @UseGuards(AuthGuard)
-  @ApiOperation({ summary: SUCCESS_MESSAGES.UPDATE('hospital') })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.UPDATE(TYPE.HOSPITAL) })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
-    description: SUCCESS_MESSAGES.UPDATE('hospital'),
+    description: SUCCESS_MESSAGES.UPDATE(TYPE.HOSPITAL),
     isArray: true,
     type: HospitalDto,
   })

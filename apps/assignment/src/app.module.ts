@@ -10,6 +10,8 @@ import { HealthCareWorker } from 'apps/doctor/src/doctor.entity';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
 import { EmailModule } from 'apps/common/auth/auth.module';
+import { Patient } from 'apps/patient/src/patient.entity';
+import { PatientModule } from 'apps/patient/src/patient.module';
 
 @Module({
   imports: [
@@ -23,12 +25,13 @@ import { EmailModule } from 'apps/common/auth/auth.module';
       username: 'dits',
       password: 'password',
       database: 'hospital_management',
-      entities: [Hospitals, HealthCareWorker],
+      entities: [Hospitals, HealthCareWorker, Patient],
       synchronize: true,
     }),
     DoctorModule,
     HospitalModule,
     EmailModule,
+    PatientModule,
   ],
   controllers: [AppController],
   providers: [AppService],

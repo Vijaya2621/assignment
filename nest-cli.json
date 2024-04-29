@@ -45,6 +45,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/common/tsconfig.lib.json"
       }
+    },
+    "patient": {
+      "type": "application",
+      "root": "apps/patient",
+      "entryFile": "main",
+      "sourceRoot": "apps/patient/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/patient/tsconfig.app.json"
+      }
     }
   }
 }

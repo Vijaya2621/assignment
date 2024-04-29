@@ -1,4 +1,4 @@
-import { Inject, Injectable, forwardRef } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from 'apps/abstracts';
 import { HealthCareWorker } from './doctor.entity';
@@ -29,9 +29,9 @@ export class DoctorService extends BaseService {
   /**create doctor
    *@param data, userRole
    *@description this function is used to create a doctor
+   *@developedBy Vijaya Kumari
    */
   async createDoctor(data: DoctorDto, userRole) {
-    debugger;
     try {
       // Check if the user has permission to create a healthcareworker
       if (userRole !== ROLES.SUPER_ADMIN && userRole !== ROLES.ADMIN) {
@@ -73,10 +73,11 @@ export class DoctorService extends BaseService {
     }
   }
 
-  /**get task Doctor
-   *@description function to get Doctor
+  /**get Doctor by id
+   *@description function to get Doctor by their id
    *@param id DoctorId
    @param userRole
+   *@developedBy Vijaya Kumari
    */
 
   async findDoctorById(id: string, userRole) {
@@ -118,6 +119,7 @@ export class DoctorService extends BaseService {
    *@description function to update the Doctor
    *@param id DoctorId
    *@param data, userRole
+   *@developedBy Vijaya Kumari
    */
 
   async updateDoctor(data: DoctorDto, id: string, userRole) {
@@ -167,6 +169,7 @@ export class DoctorService extends BaseService {
    *@description function to delete Doctor
    *@param id DoctorId
    @param userRole
+   *@developedBy Vijaya Kumari
    */
 
   async deleteDoctor(id: string, userRole) {
@@ -231,6 +234,7 @@ export class DoctorService extends BaseService {
         'doctor.phoneNumber',
         'doctor.name',
       ]);
+      //sorting
       if (data.sort) {
         const param = this.buildSortParams<{
           name: string;
@@ -245,6 +249,7 @@ export class DoctorService extends BaseService {
       } else {
         qr.orderBy(`doctor.updatedAt`, 'DESC');
       }
+      //pagination
       return await this._paginate<IHealthCareWorker>(qr, {
         limit: data.limit || 10,
         page: data.page || 1,
@@ -258,7 +263,11 @@ export class DoctorService extends BaseService {
     }
   }
 
-  //find by email
+  /**get Doctor by email
+   *@description function to get Doctor by their email
+   *@param email
+   *@developedBy Vijaya Kumari
+   */
   async findDoctorByEmail(email: string) {
     try {
       //check if the hospital with the given id exist or not
@@ -289,6 +298,7 @@ export class DoctorService extends BaseService {
   /**login healtCareWorker
    *@description function to login a healtCareWorker
    *@param  req
+   *@developedBy Vijaya Kumari
    */
   async loginHealthCareWorker(req) {
     try {

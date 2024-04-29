@@ -22,6 +22,7 @@ import { HealthCareWorker } from './doctor.entity';
 import { DoctorSchema } from './doctor.schema';
 import { YupValidationPipe } from 'apps/utils/validation';
 import { AuthGuard } from 'apps/common/guards/auth.guard.services';
+import { TYPE } from 'apps/utils/entities';
 @Controller('doctor')
 export class DoctorController {
   constructor(private readonly doctorService: DoctorService) {}
@@ -31,10 +32,10 @@ export class DoctorController {
    */
   @Get('/all')
   @UseGuards(AuthGuard)
-  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH('Doctor') })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH(TYPE.HEALTHCARE_WORKER) })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
-    description: SUCCESS_MESSAGES.FETCH('Doctor'),
+    description: SUCCESS_MESSAGES.FETCH(TYPE.HEALTHCARE_WORKER),
     type: HealthCareWorker,
   })
   @ApiResponse({
@@ -59,10 +60,10 @@ export class DoctorController {
    * controller to create doctor
    */
   @Post()
-  @ApiOperation({ summary: SUCCESS_MESSAGES.CREATE('Doctor') })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.CREATE(TYPE.HEALTHCARE_WORKER) })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
-    description: SUCCESS_MESSAGES.CREATE('Doctor'),
+    description: SUCCESS_MESSAGES.CREATE(TYPE.HEALTHCARE_WORKER),
     type: DoctorDto,
   })
   @ApiResponse({
@@ -77,7 +78,6 @@ export class DoctorController {
     @Body(new YupValidationPipe(DoctorSchema)) data: DoctorDto,
     @Request() req,
   ): Promise<any> {
-    debugger;
     // Extract the user's role from the request object
     const userRole = req?.body?.role;
     return this.doctorService.createDoctor(data, userRole);
@@ -88,10 +88,10 @@ export class DoctorController {
    */
   @Get('/:id')
   @UseGuards(AuthGuard)
-  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH('doctor') })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH(TYPE.HEALTHCARE_WORKER) })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
-    description: SUCCESS_MESSAGES.FETCH('doctor'),
+    description: SUCCESS_MESSAGES.FETCH(TYPE.HEALTHCARE_WORKER),
     type: HealthCareWorker,
   })
   @ApiResponse({
@@ -116,10 +116,10 @@ export class DoctorController {
    */
   @Get('/:email')
   @UseGuards(AuthGuard)
-  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH('doctor') })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH(TYPE.HEALTHCARE_WORKER) })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
-    description: SUCCESS_MESSAGES.FETCH('doctor'),
+    description: SUCCESS_MESSAGES.FETCH(TYPE.HEALTHCARE_WORKER),
     type: HealthCareWorker,
   })
   @ApiResponse({
@@ -142,10 +142,10 @@ export class DoctorController {
    */
   @Patch('/:id')
   @UseGuards(AuthGuard)
-  @ApiOperation({ summary: SUCCESS_MESSAGES.UPDATE('Doctor') })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.UPDATE(TYPE.HEALTHCARE_WORKER) })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
-    description: SUCCESS_MESSAGES.UPDATE('Doctor'),
+    description: SUCCESS_MESSAGES.UPDATE(TYPE.HEALTHCARE_WORKER),
     isArray: true,
     type: DoctorDto,
   })
@@ -173,10 +173,10 @@ export class DoctorController {
    */
   @Delete('/:id')
   @UseGuards(AuthGuard)
-  @ApiOperation({ summary: SUCCESS_MESSAGES.UPDATE('Doctor') })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.UPDATE(TYPE.HEALTHCARE_WORKER) })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
-    description: SUCCESS_MESSAGES.UPDATE('Doctor'),
+    description: SUCCESS_MESSAGES.UPDATE(TYPE.HEALTHCARE_WORKER),
     isArray: true,
     type: DoctorDto,
   })
@@ -198,10 +198,10 @@ export class DoctorController {
   }
 
   @Post('/logIn')
-  @ApiOperation({ summary: SUCCESS_MESSAGES.CREATE('Doctor') })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.CREATE(TYPE.HEALTHCARE_WORKER) })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
-    description: SUCCESS_MESSAGES.CREATE('Doctor'),
+    description: SUCCESS_MESSAGES.CREATE(TYPE.HEALTHCARE_WORKER),
     type: DoctorDto,
   })
   @ApiResponse({
