@@ -1,4 +1,4 @@
-// export const sqlConfig: any = () =>{
+// export const sqlConfig: any = () => {
 //   local: {
 //     host: process.env.DB_HOST;
 //     userName: process.env.DB_USERNAME;

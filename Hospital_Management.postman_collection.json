@@ -1,0 +1,1326 @@
+{
+	"info": {
+		"_postman_id": "210eb241-d51a-4868-9dfe-d0e0728bf284",
+		"name": "Hospital_Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31942548"
+	},
+	"item": [
+		{
+			"name": "hospital",
+			"item": [
+				{
+					"name": "create hospital",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"wertyu234io@123gmail.com\",\n    \"password\":\"1234567890\",\n    \"hospitalId\":\"123456wes7890\",\n    \"address\":\"wsedrfgthjkhgcfvgbnvgcfxdxcv\",\n    \"city\":\"aesrdtfgyuhjio\",\n    \"state\":\"waesrdtfyghu\",\n    \"zipCode\":\"234567890\",\n    \"phoneNumber\":\"2345678\",\n    \"name\":\"sdgfhj\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/hospital",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"hospital"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "error response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"wertyuio@123gmail.com\",\n    \"password\":\"1234567890\",\n    \"hospitalId\":\"123456s7890\",\n    \"address\":\"wsedrfgthjkhgcfvgbnvgcfxdxcv\",\n    \"city\":\"aesrdtfgyuhjio\",\n    \"state\":\"waesrdtfyghu\",\n    \"zipCode\":\"234567890\",\n    \"phoneNumber\":\"2345678\",\n    \"name\":\"sdgfhj\"\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3002/hospital",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"hospital"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "191"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bf-bSRIPaDNHIPq9SwK3NLjG8ocKgs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Apr 2024 05:15:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"error\": {\n            \"response\": {\n                \"message\": \"sdgfhj already exist.\"\n            },\n            \"status\": 400,\n            \"options\": {},\n            \"message\": \"sdgfhj already exist.\",\n            \"name\": \"BadRequestException\"\n        }\n    },\n    \"statusCode\": 400,\n    \"message\": \"Fail\"\n}"
+						},
+						{
+							"name": "success response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"wertyu234io@123gmail.com\",\n    \"password\":\"1234567890\",\n    \"hospitalId\":\"123456wes7890\",\n    \"address\":\"wsedrfgthjkhgcfvgbnvgcfxdxcv\",\n    \"city\":\"aesrdtfgyuhjio\",\n    \"state\":\"waesrdtfyghu\",\n    \"zipCode\":\"234567890\",\n    \"phoneNumber\":\"2345678\",\n    \"name\":\"sdgfhj\"\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3002/hospital",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"hospital"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "505"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1f9-LpeZwPMk84FBckzEoHuR5QDCoOg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Apr 2024 05:17:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"response\": {\n        \"saved\": {\n            \"hospitalId\": \"123456wes7890\",\n            \"name\": \"sdgfhj\",\n            \"email\": \"wertyu234io@123gmail.com\",\n            \"password\": \"$2b$15$/iw3SgieqNr7qNRFd0l7DuyldwVYUMm3XDfV4NF0ou5siupKt/ZeW\",\n            \"address\": \"wsedrfgthjkhgcfvgbnvgcfxdxcv\",\n            \"city\": \"aesrdtfgyuhjio\",\n            \"state\": \"waesrdtfyghu\",\n            \"zipCode\": \"234567890\",\n            \"phoneNumber\": \"2345678\",\n            \"createdAt\": \"2024-04-24T05:17:07.915Z\",\n            \"updatedAt\": \"2024-04-24T05:17:07.915Z\",\n            \"createdBy\": null,\n            \"updatedBy\": null,\n            \"id\": \"41141dff-a576-4285-a674-11d8e324a269\"\n        }\n    },\n    \"message\": \"Success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all hospitals",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRiMGE0ZDMwLTkzMjAtNDhmNS05YTQ4LWJlZWU3Njg2N2IzZiIsImVtYWlsIjoiaG9zcGl0YWw0QHlvcG1haWwuY29tIiwicm9sZSI6InN1cGVyQWRtaW4iLCJpYXQiOjE3MTQwNDU5OTIsImV4cCI6MTcxNDA0OTU5Mn0.EdKhbkc2g_qBspqKkbCSrpmWf2WkIvr15bbeekjyoyE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/hospital",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"hospital"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3002/hospital",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"hospital"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1906"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"772-BLoAFkEGWi1iJsRvWwfJRCeVtVw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 25 Apr 2024 06:27:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"createdAt\": \"2024-04-25T06:17:51.556Z\",\n            \"updatedAt\": \"2024-04-25T06:17:51.556Z\",\n            \"id\": \"9173591c-79aa-4b89-b97d-e0199e8abf91\",\n            \"createdBy\": null,\n            \"updatedBy\": null,\n            \"hospitalId\": \"123\",\n            \"name\": \"hospital3\",\n            \"email\": \"hospital3@yopmail.com\",\n            \"password\": \"$2b$15$cZ5jWF7HAhuYQdkUL6cvGOfTgJYr7AsFesIgPFkx57o8LgX1mxTCy\",\n            \"address\": \"wsedrfgthjkhgcfvgbnvgcfxdxcv\",\n            \"city\": \"aesrdtfgyuhjio\",\n            \"state\": \"waesrdtfyghu\",\n            \"zipCode\": \"234567890\",\n            \"phoneNumber\": \"2345678\",\n            \"healthCareWorker\": []\n        },\n        {\n            \"createdAt\": \"2024-04-25T06:17:35.573Z\",\n            \"updatedAt\": \"2024-04-25T06:17:35.573Z\",\n            \"id\": \"0d02d8e8-bab9-402d-8e86-949d46434ae1\",\n            \"createdBy\": null,\n            \"updatedBy\": null,\n            \"hospitalId\": \"12\",\n            \"name\": \"hospital2\",\n            \"email\": \"hospital2@yopmail.com\",\n            \"password\": \"$2b$15$I8VxEFuggLm4RD2qeF2kFu00VkFSJjPABDHngrViXuJaG1zGRrUY2\",\n            \"address\": \"wsedrfgthjkhgcfvgbnvgcfxdxcv\",\n            \"city\": \"aesrdtfgyuhjio\",\n            \"state\": \"waesrdtfyghu\",\n            \"zipCode\": \"234567890\",\n            \"phoneNumber\": \"2345678\",\n            \"healthCareWorker\": []\n        },\n        {\n            \"createdAt\": \"2024-04-25T06:17:03.563Z\",\n            \"updatedAt\": \"2024-04-25T06:17:03.563Z\",\n            \"id\": \"a91c8f24-43c4-4086-81db-201b5e6cff71\",\n            \"createdBy\": null,\n            \"updatedBy\": null,\n            \"hospitalId\": \"1234567890\",\n            \"name\": \"hospital1\",\n            \"email\": \"hospital1@yopmail.com\",\n            \"password\": \"$2b$15$DiCH0/vAlAvllHGLVc.GG.eKx4Mu0bn5X2530bCqG04iHfCRSwVp2\",\n            \"address\": \"wsedrfgthjkhgcfvgbnvgcfxdxcv\",\n            \"city\": \"aesrdtfgyuhjio\",\n            \"state\": \"waesrdtfyghu\",\n            \"zipCode\": \"234567890\",\n            \"phoneNumber\": \"2345678\",\n            \"healthCareWorker\": [\n                {\n                    \"createdAt\": \"2024-04-25T06:19:33.000Z\",\n                    \"updatedAt\": \"2024-04-25T06:19:33.000Z\",\n                    \"id\": \"ae5981a2-ab65-47f6-a9fc-64dd38bb8a4c\",\n                    \"createdBy\": null,\n                    \"updatedBy\": null,\n                    \"emailVerified\": true,\n                    \"image\": \"image\",\n                    \"active\": true,\n                    \"role\": \"superAdmin\",\n                    \"email\": \"doctor1@gmail.com\",\n                    \"password\": \"$2b$15$q.1Vi0FGP3B094t5YhYPyO7G.u.nhZqKQjSE/owooCpuLH3WSUmYq\",\n                    \"specialzation\": \"heart\",\n                    \"name\": \"doctor1\",\n                    \"licenseNumber\": \"0987654321\",\n                    \"phoneNumber\": \"23456782345\"\n                }\n            ]\n        }\n    ],\n    \"meta\": {\n        \"currentPage\": 1,\n        \"itemCount\": 3,\n        \"itemsPerPage\": 10,\n        \"totalItems\": 3,\n        \"totalPages\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get hospital by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkxNzM1OTFjLTc5YWEtNGI4OS1iOTdkLWUwMTk5ZThhYmY5MSIsImVtYWlsIjoiaG9zcGl0YWwzQHlvcG1haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE0MDQwNjM1LCJleHAiOjE3MTQwNDQyMzV9.zd5ZtQBqsavhCtEWN4VstcalcUvq4bPj0rc4W0DdfVw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/hospital/9173591c-79aa-4b89-b97d-e0199e8abf91",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"hospital",
+								"9173591c-79aa-4b89-b97d-e0199e8abf91"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3002/hospital/41141dff-a576-4285-a674-11d8e324a269",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"hospital",
+										"41141dff-a576-4285-a674-11d8e324a269"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "513"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"201-8l1QcVM1BKcZFHgMjRFb0VIHh8s\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Apr 2024 05:19:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"response\": {\n        \"foundHospital\": {\n            \"createdAt\": \"2024-04-24T05:17:07.915Z\",\n            \"updatedAt\": \"2024-04-24T05:17:07.915Z\",\n            \"id\": \"41141dff-a576-4285-a674-11d8e324a269\",\n            \"createdBy\": null,\n            \"updatedBy\": null,\n            \"hospitalId\": \"123456wes7890\",\n            \"name\": \"sdgfhj\",\n            \"email\": \"wertyu234io@123gmail.com\",\n            \"password\": \"$2b$15$/iw3SgieqNr7qNRFd0l7DuyldwVYUMm3XDfV4NF0ou5siupKt/ZeW\",\n            \"address\": \"wsedrfgthjkhgcfvgbnvgcfxdxcv\",\n            \"city\": \"aesrdtfgyuhjio\",\n            \"state\": \"waesrdtfyghu\",\n            \"zipCode\": \"234567890\",\n            \"phoneNumber\": \"2345678\"\n        }\n    },\n    \"message\": \"Success\"\n}"
+						},
+						{
+							"name": "get hospital by id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3002/hospital/41141dff-a576-4285-a674-11d8e324ac269",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"hospital",
+										"41141dff-a576-4285-a674-11d8e324ac269"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-CcFR9ISmGyoQnBlJZqjAPMqnILk\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Apr 2024 06:09:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorRes\": {},\n    \"statusCode\": 204,\n    \"message\": \"Fail\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update hospital",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"wertyu234io@123gmail.com\",\n    \"password\":\"1234567890\",\n    \"hospitalId\":\"123456wes7890\",\n    \"address\":\"wsedrfgthjkhgcfvgbnvgcfxdxcv\",\n    \"city\":\"aesrdtfgyuhjio\",\n    \"state\":\"waesrdtfyghu\",\n    \"zipCode\":\"234567890\",\n    \"phoneNumber\":\"2345678\",\n    \"name\":\"sdgsedfghjkdsfgwedrfddfhj\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/hospital/41141dff-a576-4285-a674-11d8e324a269s",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"hospital",
+								"41141dff-a576-4285-a674-11d8e324a269s"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success response",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"wertyu234io@123gmail.com\",\n    \"password\":\"1234567890\",\n    \"hospitalId\":\"123456wes7890\",\n    \"address\":\"wsedrfgthjkhgcfvgbnvgcfxdxcv\",\n    \"city\":\"aesrdtfgyuhjio\",\n    \"state\":\"waesrdtfyghu\",\n    \"zipCode\":\"234567890\",\n    \"phoneNumber\":\"2345678\",\n    \"name\":\"sdgsedfghjkdsfgwedrfddfhj\"\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3002/hospital/41141dff-a576-4285-a674-11d8e324a269",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"hospital",
+										"41141dff-a576-4285-a674-11d8e324a269"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "480"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e0-PT64ydDLAt4YD8SLlwOF2sZ2yhA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Apr 2024 06:11:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"updatedHospital\": {\n            \"createdAt\": \"2024-04-24T05:17:07.915Z\",\n            \"updatedAt\": \"2024-04-24T06:11:29.000Z\",\n            \"id\": \"41141dff-a576-4285-a674-11d8e324a269\",\n            \"createdBy\": null,\n            \"updatedBy\": null,\n            \"hospitalId\": \"123456wes7890\",\n            \"name\": \"sdgsedfghjkdsfgwedrfddfhj\",\n            \"email\": \"wertyu234io@123gmail.com\",\n            \"password\": \"1234567890\",\n            \"address\": \"wsedrfgthjkhgcfvgbnvgcfxdxcv\",\n            \"city\": \"aesrdtfgyuhjio\",\n            \"state\": \"waesrdtfyghu\",\n            \"zipCode\": \"234567890\",\n            \"phoneNumber\": \"2345678\"\n        }\n    },\n    \"message\": \"Success\"\n}"
+						},
+						{
+							"name": "errors response",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"wertyu234io@123gmail.com\",\n    \"password\":\"1234567890\",\n    \"hospitalId\":\"123456wes7890\",\n    \"address\":\"wsedrfgthjkhgcfvgbnvgcfxdxcv\",\n    \"city\":\"aesrdtfgyuhjio\",\n    \"state\":\"waesrdtfyghu\",\n    \"zipCode\":\"234567890\",\n    \"phoneNumber\":\"2345678\",\n    \"name\":\"sdgsedfghjkdsfgwedrfddfhj\"\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3002/hospital/41141dff-a576-4285-a674-11d8e324a269s",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"hospital",
+										"41141dff-a576-4285-a674-11d8e324a269s"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-CcFR9ISmGyoQnBlJZqjAPMqnILk\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Apr 2024 06:13:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorRes\": {},\n    \"statusCode\": 204,\n    \"message\": \"Fail\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Doctor",
+			"item": [
+				{
+					"name": "create doctor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"emailVerified\":true,\n    \"password\":\"1234567890\",\n    \"image\":\"image\",\n    \"licenseNumber\":\"0987654321\",\n    \"email\":\"doctor1@gmail.com\",\n    \"specialzation\":\"heart\",\n    \"role\":\"superAdmin\",\n    \"phoneNumber\":\"23456782345\",\n    \"name\":\"doctor1\",\n    \"active\":true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/doctor",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"doctor"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"emailVerified\":true,\n    \"password\":\"1234567890\",\n    \"image\":\"image\",\n    \"licenseNumber\":\"0987654321\",\n    \"email\":\"doctor1@gmail.com\",\n    \"specialzation\":\"heart\",\n    \"role\":\"superAdmin\",\n    \"phoneNumber\":\"23456782345\",\n    \"name\":\"doctor1\",\n    \"active\":true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3002/doctor",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"doctor"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "484"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e4-nUYm5EC6pzxqLp6TrKfL16yWu1I\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Apr 2024 06:30:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"saved\": {\n            \"emailVerified\": true,\n            \"image\": \"image\",\n            \"active\": true,\n            \"role\": \"superAdmin\",\n            \"email\": \"doctor1@gmail.com\",\n            \"password\": \"$2b$15$cKHGGQdrNGUt3NJzWPms9.iF410B8eoxPupuqFHdUMK1IkQt0272O\",\n            \"specialzation\": \"heart\",\n            \"name\": \"doctor1\",\n            \"licenseNumber\": \"0987654321\",\n            \"phoneNumber\": \"23456782345\",\n            \"createdAt\": \"2024-04-24T06:29:59.356Z\",\n            \"updatedAt\": \"2024-04-24T06:29:59.356Z\",\n            \"createdBy\": null,\n            \"updatedBy\": null,\n            \"id\": \"1bef339e-b8ec-45a9-8c03-40c3e8858a0e\"\n        }\n    },\n    \"message\": \"Success\"\n}"
+						},
+						{
+							"name": "error response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"emailVerified\":true,\n    \"password\":\"1234567890\",\n    \"image\":\"image\",\n    \"licenseNumber\":\"0987654321\",\n    \"email\":\"doctor1@gmail.com\",\n    \"specialzation\":\"heart\",\n    \"role\":\"superAdmin\",\n    \"phoneNumber\":\"23456782345\",\n    \"name\":\"doctor1\",\n    \"active\":true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3002/doctor",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"doctor"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "196"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c4-7NUSHr1CPWw/xb4lMXAPRr893ec\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Apr 2024 06:30:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorRes\": {\n        \"error\": {\n            \"response\": {\n                \"message\": \"doctor1 already exist.\"\n            },\n            \"status\": 400,\n            \"options\": {},\n            \"message\": \"doctor1 already exist.\",\n            \"name\": \"BadRequestException\"\n        }\n    },\n    \"statusCode\": 400,\n    \"message\": \"Fail\"\n}"
+						},
+						{
+							"name": "create doctor",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"emailVerified\": true,\n    \"password\": \"1234567890\",\n    \"image\": \"image\",\n    \"licenseNumber\": \"0987654321\",\n    \"email\": \"doctor2@gmail.com\",\n    \"specialzation\": \"heart\",\n    \"role\": \"superAdmin\",\n    \"phoneNumber\": \"23456782345\",\n    \"name\": \"doctor2\",\n    \"active\": true,\n    \"hospital\":\"a91c8f24-43c4-4086-81db-201b5e6cff71\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3002/doctor",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"doctor"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "534"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"216-tYrv9b37TpHfGRGRk86FsFXzUyQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 26 Apr 2024 07:20:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"saved\": {\n            \"emailVerified\": true,\n            \"image\": \"image\",\n            \"active\": true,\n            \"role\": \"superAdmin\",\n            \"email\": \"doctor2@gmail.com\",\n            \"password\": \"$2b$15$/XHqtBU7KXRbTjHWfiAGd.MgFE5gizIlBenPMBC1p7tA/aNF0H7EO\",\n            \"specialzation\": \"heart\",\n            \"name\": \"doctor2\",\n            \"licenseNumber\": \"0987654321\",\n            \"phoneNumber\": \"23456782345\",\n            \"hospital\": \"a91c8f24-43c4-4086-81db-201b5e6cff71\",\n            \"createdAt\": \"2024-04-26T07:20:20.023Z\",\n            \"updatedAt\": \"2024-04-26T07:20:20.023Z\",\n            \"createdBy\": null,\n            \"updatedBy\": null,\n            \"id\": \"b16f2a92-f753-4de6-80e1-1241af2575cc\"\n        }\n    },\n    \"message\": \"Success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get doctor by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/doctor/1bef339e-b8ec-45a9-8c03-40c3e8858a0e",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"doctor",
+								"1bef339e-b8ec-45a9-8c03-40c3e8858a0e"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3002/doctor/1bef339e-b8ec-45a9-8c03-40c3e8858a0e",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"doctor",
+										"1bef339e-b8ec-45a9-8c03-40c3e8858a0e"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "490"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1ea-CmPioTf8usyhCqOmOUK7oJArCDY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Apr 2024 06:32:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"foundDoctor\": {\n            \"createdAt\": \"2024-04-24T06:29:59.356Z\",\n            \"updatedAt\": \"2024-04-24T06:29:59.356Z\",\n            \"id\": \"1bef339e-b8ec-45a9-8c03-40c3e8858a0e\",\n            \"createdBy\": null,\n            \"updatedBy\": null,\n            \"emailVerified\": true,\n            \"image\": \"image\",\n            \"active\": true,\n            \"role\": \"superAdmin\",\n            \"email\": \"doctor1@gmail.com\",\n            \"password\": \"$2b$15$cKHGGQdrNGUt3NJzWPms9.iF410B8eoxPupuqFHdUMK1IkQt0272O\",\n            \"specialzation\": \"heart\",\n            \"name\": \"doctor1\",\n            \"licenseNumber\": \"0987654321\",\n            \"phoneNumber\": \"23456782345\"\n        }\n    },\n    \"message\": \"Success\"\n}"
+						},
+						{
+							"name": "error message",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3002/doctor/1bef339e-b8ec-45a9-8c03-40c3e8858d0e",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"doctor",
+										"1bef339e-b8ec-45a9-8c03-40c3e8858d0e"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-CcFR9ISmGyoQnBlJZqjAPMqnILk\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Apr 2024 06:32:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorRes\": {},\n    \"statusCode\": 204,\n    \"message\": \"Fail\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update doctor",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"emailVerified\":true,\n    \"password\":\"1234567890\",\n    \"image\":\"image\",\n    \"licenseNumber\":\"0987654321\",\n    \"email\":\"updateddoctor1@gmail.com\",\n    \"specialzation\":\"heart\",\n    \"role\":\"superAdmin\",\n    \"phoneNumber\":\"23456782345\",\n    \"name\":\"upfateddoctor1\",\n    \"active\":true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/doctor/1bef339e-b8ec-45a9-8c03-40c3e8858a0e",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"doctor",
+								"1bef339e-b8ec-45a9-8c03-40c3e8858a0e"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success response",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"emailVerified\":true,\n    \"password\":\"1234567890\",\n    \"image\":\"image\",\n    \"licenseNumber\":\"0987654321\",\n    \"email\":\"updateddoctor1@gmail.com\",\n    \"specialzation\":\"heart\",\n    \"role\":\"superAdmin\",\n    \"phoneNumber\":\"23456782345\",\n    \"name\":\"upfateddoctor1\",\n    \"active\":true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3002/doctor/1bef339e-b8ec-45a9-8c03-40c3e8858a0e",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"doctor",
+										"1bef339e-b8ec-45a9-8c03-40c3e8858a0e"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "456"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1c8-pzAZa9DkVldaxxdMp3YxUl6bmM4\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Apr 2024 06:34:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"updatedDoctor\": {\n            \"createdAt\": \"2024-04-24T06:29:59.356Z\",\n            \"updatedAt\": \"2024-04-24T06:34:22.000Z\",\n            \"id\": \"1bef339e-b8ec-45a9-8c03-40c3e8858a0e\",\n            \"createdBy\": null,\n            \"updatedBy\": null,\n            \"emailVerified\": true,\n            \"image\": \"image\",\n            \"active\": true,\n            \"role\": \"superAdmin\",\n            \"email\": \"updateddoctor1@gmail.com\",\n            \"password\": \"1234567890\",\n            \"specialzation\": \"heart\",\n            \"name\": \"upfateddoctor1\",\n            \"licenseNumber\": \"0987654321\",\n            \"phoneNumber\": \"23456782345\"\n        }\n    },\n    \"message\": \"Success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get all doctor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/doctor/all",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"doctor",
+								"all"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3002/doctor/all",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"doctor",
+										"all"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "512"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"200-hI2EKnrhGFMQXJ/ZHPDArv08j4k\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Apr 2024 08:30:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"id\": \"a65e050c-f161-4bcd-ba10-dbdfd09a5293\",\n            \"emailVerified\": true,\n            \"image\": \"image\",\n            \"role\": \"superAdmin\",\n            \"email\": \"doctor1@gmail.com\",\n            \"specialzation\": \"heart\",\n            \"name\": \"doctor1\",\n            \"phoneNumber\": \"23456782345\"\n        },\n        {\n            \"id\": \"1bef339e-b8ec-45a9-8c03-40c3e8858a0e\",\n            \"emailVerified\": true,\n            \"image\": \"image\",\n            \"role\": \"superAdmin\",\n            \"email\": \"updateddoctor1@gmail.com\",\n            \"specialzation\": \"heart\",\n            \"name\": \"upfateddoctor1\",\n            \"phoneNumber\": \"23456782345\"\n        }\n    ],\n    \"meta\": {\n        \"currentPage\": 1,\n        \"itemCount\": 2,\n        \"itemsPerPage\": 10,\n        \"totalItems\": 2,\n        \"totalPages\": 1\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "patient",
+			"item": [
+				{
+					"name": "create patient ",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"image\":\"image1\",\n    \"active\":true,\n    \"role\": \"Patient\",\n    \"email\": \"patient1@yopmail.com\",\n    \"password\": \"1234567890\",\n    \"condition\": \"condition1\",\n    \"name\": \"patient1\",\n    \"phoneNumber\":\"1234567890\",\n    \"dateOfBirth\": \"2001-11-17\",\n    \"education\": \"Graduation\",\n    \"enrolledDate\": \"2023-11-17\",\n    \"height\": \"177\",\n    \"weight\": \"59\",\n    \"gender\": \"female\",\n    \"hospital\": \"0d02d8e8-bab9-402d-8e86-949d46434ae1\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/patient",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "error response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"image\":\"image1\",\n    \"active\":true,\n    \"role\": \"Patient\",\n    \"email\": \"patient1@yopmail.com\",\n    \"password\": \"1234567890\",\n    \"condition\": \"condition1\",\n    \"name\": \"patient1\",\n    \"phoneNumber\":\"1234567890\",\n    \"dateOfBirth\": \"2001-11-17\",\n    \"education\": \"Graduation\",\n    \"enrolledDate\": \"2023-11-17\",\n    \"height\": \"177\",\n    \"weight\": \"59\",\n    \"gender\": \"female\",\n    \"hospital\": \"0d02d8e8-bab9-402d-8e86-949d46434ae1\"\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3002/patient",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"patient"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "198"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c6-8OTtm/nZJq3Fb9TDedDyKQdcQJ4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 29 Apr 2024 12:59:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorRes\": {\n        \"error\": {\n            \"response\": {\n                \"message\": \"patient1 already exist.\"\n            },\n            \"status\": 400,\n            \"options\": {},\n            \"message\": \"patient1 already exist.\",\n            \"name\": \"BadRequestException\"\n        }\n    },\n    \"statusCode\": 400,\n    \"message\": \"Fail\"\n}"
+						},
+						{
+							"name": "success response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"image\":\"image1\",\n    \"active\":true,\n    \"role\": \"atient\",\n    \"email\": \"patient21@yopmail.com\",\n    \"password\": \"1234567890\",\n    \"condition\": \"condition2\",\n    \"name\": \"patient2\",\n    \"phoneNumber\":\"1234567890\",\n    \"dateOfBirth\": \"2001-11-17\",\n    \"education\": \"Graduation\",\n    \"enrolledDate\": \"2023-11-17\",\n    \"height\": \"177\",\n    \"weight\": \"59\",\n    \"gender\": \"female\",\n    \"hospital\": \"0d02d8e8-bab9-402d-8e86-949d46434ae1\"\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3002/patient",
+									"host": [
+										"localhost"
+									],
+									"port": "3002",
+									"path": [
+										"patient"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "618"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26a-aoGtQ9iFzLBOldXl4fqY8qbWtT8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 29 Apr 2024 13:01:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"savedPatient\": {\n            \"image\": \"image1\",\n            \"active\": true,\n            \"role\": \"atient\",\n            \"email\": \"patient21@yopmail.com\",\n            \"password\": \"$2b$10$t3WkJnAgzlC62Pz9bLl/B.HEEyZELumYeQnPhxFyCbPlJBiiheXOO\",\n            \"condition\": \"condition2\",\n            \"name\": \"patient2\",\n            \"phoneNumber\": \"1234567890\",\n            \"dateOfBirth\": \"2001-11-17\",\n            \"education\": \"Graduation\",\n            \"enrolledDate\": \"2023-11-17\",\n            \"height\": 177,\n            \"weight\": \"59\",\n            \"gender\": \"female\",\n            \"hospital\": \"0d02d8e8-bab9-402d-8e86-949d46434ae1\",\n            \"createdAt\": \"2024-04-29T13:01:05.896Z\",\n            \"updatedAt\": \"2024-04-29T13:01:05.896Z\",\n            \"createdBy\": null,\n            \"updatedBy\": null,\n            \"id\": \"8f38f7d5-cff0-4a99-8b7c-5bde6b1d28ec\"\n        }\n    },\n    \"message\": \"Success\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "logIn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"wertyu234io@123gmail.com\",\n    \"password\":\"1234567890\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3002/hospital/logIn",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"hospital",
+						"logIn"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "success response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"wertyu234io@123gmail.com\",\n    \"password\":\"1234567890\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/hospital/logIn",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"hospital",
+								"logIn"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "300"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"12c-L+Ne/sK9qmht0x/B2JH80F1NzmQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 24 Apr 2024 07:02:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"generatedToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQxMTQxZGZmLWE1NzYtNDI4NS1hNjc0LTExZDhlMzI0YTI2OSIsImVtYWlsIjoid2VydHl1MjM0aW9AMTIzZ21haWwuY29tIiwiaWF0IjoxNzEzOTQyMTQ4LCJleHAiOjE3MTM5NDU3NDh9.11zZlJtM5tPwUIwe8JC7ZiHLGFLTzFBP3QXCXuPI15s\"\n    },\n    \"message\": \"Success\"\n}"
+				}
+			]
+		},
+		{
+			"name": "send email",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"from\":\"qwerty@gmail.com\",\n    \"to\": \"string@yopmail.com\",\n    \"subject\": \"string\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3002/email",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"email"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
