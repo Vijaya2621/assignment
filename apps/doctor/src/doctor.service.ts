@@ -224,6 +224,7 @@ export class DoctorService extends BaseService {
         return this.errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
       }
       const qr = this.doctorRepository.createQueryBuilder('doctor');
+      qr.leftJoinAndSelect('doctor.patient', 'patient');
       qr.select([
         'doctor.id',
         'doctor.emailVerified',
@@ -233,6 +234,8 @@ export class DoctorService extends BaseService {
         'doctor.role',
         'doctor.phoneNumber',
         'doctor.name',
+        'doctor.updatedAt',
+        'patient',
       ]);
       //sorting
       if (data.sort) {

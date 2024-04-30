@@ -3,6 +3,7 @@ import { BaseEntityWithMeta } from '../../abstracts';
 import { GENDER, ROLES } from '../../utils/entities';
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { Hospitals } from 'apps/hospital/src/hospital.entity';
+import { HealthCareWorker } from 'apps/doctor/src/doctor.entity';
 
 @Entity()
 export class Patient extends BaseEntityWithMeta {
@@ -66,4 +67,12 @@ export class Patient extends BaseEntityWithMeta {
   @ManyToOne(() => Hospitals, (hospital: Hospitals) => hospital.id)
   @JoinColumn({ name: 'hospitalId' })
   hospital: string;
+
+  @ApiProperty({ description: 'healthCareWorker' })
+  @ManyToOne(
+    () => HealthCareWorker,
+    (healthCareWorker: HealthCareWorker) => healthCareWorker.id,
+  )
+  @JoinColumn({ name: 'healthCareWorkerId' })
+  healthCareWorker: string;
 }

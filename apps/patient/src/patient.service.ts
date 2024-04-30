@@ -32,6 +32,7 @@ export class PatientService extends BaseService {
    */
   async createPatient(data: PatientDto, userRole: ROLES) {
     try {
+      debugger;
       // Check if the user has permission to create a patient
       if (userRole == ROLES.HEALTHCARE_WORKER || userRole == ROLES.PATIENT) {
         // If not, return an error indicating insufficient permissions
@@ -125,6 +126,7 @@ export class PatientService extends BaseService {
 
   async updatePatient(data: PatientDto, id: string, userRole) {
     try {
+      debugger;
       // Check if the user has permission to update a patient
       if (userRole == ROLES.HEALTHCARE_WORKER || userRole == ROLES.PATIENT) {
         // If not, return an error indicating insufficient permissions

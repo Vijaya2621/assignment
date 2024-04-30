@@ -1,8 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { BaseEntityWithMeta } from '../../abstracts';
 import { ROLES } from '../../utils/entities';
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { Hospitals } from 'apps/hospital/src/hospital.entity';
+import { Patient } from 'apps/patient/src/patient.entity';
 
 @Entity()
 export class HealthCareWorker extends BaseEntityWithMeta {
@@ -50,4 +51,8 @@ export class HealthCareWorker extends BaseEntityWithMeta {
   @ManyToOne(() => Hospitals, (hospital: Hospitals) => hospital.id)
   @JoinColumn({ name: 'hospitalId' })
   hospital: string;
+
+  @ApiProperty({ description: 'patient' })
+  @OneToMany(() => Patient, (patient) => patient.healthCareWorker)
+  patient: Patient[];
 }
