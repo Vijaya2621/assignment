@@ -54,6 +54,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/patient/tsconfig.app.json"
       }
+    },
+    "notes": {
+      "type": "application",
+      "root": "apps/notes",
+      "entryFile": "main",
+      "sourceRoot": "apps/notes/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/notes/tsconfig.app.json"
+      }
     }
   }
 }

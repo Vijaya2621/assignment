@@ -17,6 +17,7 @@ export enum TYPE {
   HOSPITAL = 'hospital',
   HEALTHCARE_WORKER = 'healthcareworker',
   PATIENT = 'patient',
+  NOTES = 'notes',
 }
 //interface
 interface IBase {

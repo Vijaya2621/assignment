@@ -32,10 +32,10 @@ export class HospitalController {
    * controller to create hospital
    */
   @Post()
-  @ApiOperation({ summary: SUCCESS_MESSAGES.CREATE('Hospital') })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.CREATE(TYPE.HOSPITAL) })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
-    description: SUCCESS_MESSAGES.CREATE('Hospital'),
+    description: SUCCESS_MESSAGES.CREATE(TYPE.HOSPITAL),
     type: HospitalDto,
   })
   @ApiResponse({

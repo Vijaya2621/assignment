@@ -4,6 +4,7 @@ import { ROLES } from '../../utils/entities';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { Hospitals } from 'apps/hospital/src/hospital.entity';
 import { Patient } from 'apps/patient/src/patient.entity';
+import { Notes } from 'apps/notes/src/notes.entity';
 
 @Entity()
 export class HealthCareWorker extends BaseEntityWithMeta {
@@ -55,4 +56,8 @@ export class HealthCareWorker extends BaseEntityWithMeta {
   @ApiProperty({ description: 'patient' })
   @OneToMany(() => Patient, (patient) => patient.healthCareWorker)
   patient: Patient[];
+
+  @ApiProperty({ description: 'patient' })
+  @OneToMany(() => Notes, (notes) => notes.healthCareWorker)
+  notes: Notes[];
 }

@@ -12,6 +12,8 @@ import { AppController } from './app.controller';
 import { EmailModule } from 'apps/common/auth/auth.module';
 import { Patient } from 'apps/patient/src/patient.entity';
 import { PatientModule } from 'apps/patient/src/patient.module';
+import { NotesModule } from 'apps/notes/src/notes.module';
+import { Notes } from 'apps/notes/src/notes.entity';
 
 @Module({
   imports: [
@@ -25,13 +27,14 @@ import { PatientModule } from 'apps/patient/src/patient.module';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DATABASE,
-      entities: [Hospitals, HealthCareWorker, Patient],
+      entities: [Hospitals, HealthCareWorker, Patient, Notes],
       synchronize: true,
     }),
     DoctorModule,
     HospitalModule,
     EmailModule,
     PatientModule,
+    NotesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

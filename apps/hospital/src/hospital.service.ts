@@ -106,7 +106,7 @@ export class HospitalService extends BaseService {
       //if found then return hospital
       const successRes = {
         foundHospital,
-        message: SUCCESS_MESSAGES.CREATE,
+        message: SUCCESS_MESSAGES.FETCH,
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {

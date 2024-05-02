@@ -76,7 +76,7 @@ export class DoctorService extends BaseService {
   /**get Doctor by id
    *@description function to get Doctor by their id
    *@param id DoctorId
-   @param userRole
+   *@param userRole
    *@developedBy Vijaya Kumari
    */
 
@@ -298,8 +298,8 @@ export class DoctorService extends BaseService {
     }
   }
 
-  /**login healtCareWorker
-   *@description function to login a healtCareWorker
+  /**login healthCareWorker
+   *@description function to login a healthCareWorker
    *@param  req
    *@developedBy Vijaya Kumari
    */
@@ -307,10 +307,10 @@ export class DoctorService extends BaseService {
     try {
       const { password } = req;
       //checking if the user is registered or not
-      const healtCareWorker = await this.doctorRepository.findOne({
+      const healthCareWorker = await this.doctorRepository.findOne({
         where: { email: req.email },
       });
-      if (!healtCareWorker) {
+      if (!healthCareWorker) {
         const errorRes = {
           message: ERROR_MESSAGES.INVALIDLOGIN,
         };
@@ -320,7 +320,7 @@ export class DoctorService extends BaseService {
       //comparing password of user
       const comparepassword = await bcrypt.compare(
         password,
-        healtCareWorker.password,
+        healthCareWorker.password,
       );
 
       if (!comparepassword) {
@@ -341,9 +341,9 @@ export class DoctorService extends BaseService {
       if (comparepassword == true) {
         token = jwt.sign(
           {
-            id: healtCareWorker.id,
-            email: healtCareWorker.email,
-            role: healtCareWorker.role,
+            id: healthCareWorker.id,
+            email: healthCareWorker.email,
+            role: healthCareWorker.role,
           },
           myToken,
           { expiresIn: process.env.EXPIRESIN },
