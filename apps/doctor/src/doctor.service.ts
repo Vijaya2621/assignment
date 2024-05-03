@@ -10,7 +10,7 @@ import {
   SUCCESS_MESSAGES,
 } from 'apps/utils/message';
 import * as bcrypt from 'bcrypt';
-import { allowedFieldsToSortForDoctors } from 'apps/hospital/src/hospital.common';
+import { allowedFieldsToSortForDoctors } from '../../utils/common';
 import { IHealthCareWorker, ROLES } from 'apps/utils/entities';
 import * as jwt from 'jsonwebtoken';
 

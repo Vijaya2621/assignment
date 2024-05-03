@@ -12,7 +12,7 @@ export class NotesDto {
   description: string;
 }
 
-//find  for patient module
+//find  for note module
 export class FindNotesDto extends PaginationDto {
   @ApiProperty({ description: 'sort', required: false })
   @IsString()

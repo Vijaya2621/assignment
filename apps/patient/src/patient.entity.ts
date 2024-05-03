@@ -28,7 +28,7 @@ export class Patient extends BaseEntityWithMeta {
   @Column({ type: 'varchar', length: 100, nullable: true, unique: true })
   password: string;
 
-  @ApiProperty({ description: 'specialzation' })
+  @ApiProperty({ description: 'condition' })
   @Column({ type: 'varchar', length: 100, nullable: true })
   condition: string;
 
@@ -58,7 +58,7 @@ export class Patient extends BaseEntityWithMeta {
 
   @ApiProperty({ description: 'weight' })
   @Column({ type: 'varchar', nullable: true, default: null })
-  weight?: string;
+  weight?: number;
 
   @ApiProperty({ description: 'gender' })
   @Column({ type: 'varchar', nullable: true, default: null })

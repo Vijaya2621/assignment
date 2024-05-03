@@ -3,14 +3,15 @@ import { Repository } from 'typeorm';
 import { Patient } from './patient.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from 'apps/abstracts';
-import { PatientDto } from './patient.dto';
-import { ROLES } from 'apps/utils/entities';
+import { FindPatientDto, PatientDto } from './patient.dto';
+import { IPatient, ROLES } from 'apps/utils/entities';
 import {
   ERROR_MESSAGES,
   STATUSCODE,
   SUCCESS_MESSAGES,
 } from 'apps/utils/message';
 import * as bcrypt from 'bcrypt';
+import { allowedFieldsToSortForPatients } from 'apps/utils/common';
 
 @Injectable()
 export class PatientService extends BaseService {
@@ -41,7 +42,7 @@ export class PatientService extends BaseService {
         return this.errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
       }
 
-      //checking if the patient already exixt or not with there email
+      //checking if the patient already exist or not with there email
       const existingPatient = await this.patientRepository.findOne({
         where: { email: data.email },
       });
@@ -199,6 +200,76 @@ export class PatientService extends BaseService {
         message: SUCCESS_MESSAGES.DELETE,
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
+    } catch (error) {
+      const errorRes = {
+        message: ERROR_MESSAGES.errorLog,
+      };
+      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+    }
+  }
+
+  /**get listing of all patient
+   *@description function to get all patient
+   *@param data, userRole
+   *@developedBy Vijaya Kumari
+   */
+  async getAll(data: FindPatientDto, userRole) {
+    try {
+      debugger;
+      // Check if the user has permission to get patients
+      if (userRole == ROLES.PATIENT) {
+        // If not, return an error indicating insufficient permissions
+        const errorRes = {
+          message: ERROR_MESSAGES.PERMISSION_DENIED_TO_GET_PATIENT,
+        };
+        return this.errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
+      }
+      const qr = this.patientRepository.createQueryBuilder('patient');
+      qr.leftJoinAndSelect('patient.healthCareWorker', 'healthCareWorker');
+      qr.leftJoinAndSelect('patient.notes', 'notes');
+      qr.select([
+        'patient.id',
+        'patient.image',
+        'patient.active',
+        'patient.role',
+        'patient.email',
+        'patient.condition',
+        'patient.name',
+        'patient.phoneNumber',
+        'patient.dateOfBirth',
+        'patient.education',
+        'patient.enrolledDate',
+        'patient.height',
+        'patient.weight',
+        'patient.gender',
+        'patient.updatedAt',
+        'notes',
+        'healthCareWorker.id',
+        'healthCareWorker.name',
+        'healthCareWorker.specialization',
+        'healthCareWorker.email',
+        'healthCareWorker.phoneNumber',
+      ]);
+      //sorting
+      if (data.sort) {
+        const param = this.buildSortParams<{
+          name: string;
+        }>(data.sort);
+        if (allowedFieldsToSortForPatients.includes(param[0])) {
+          const KEYS = {
+            name: `patient.${param[0]}`,
+          };
+          // Order by key and parameter
+          qr.orderBy(KEYS[param[0]], param[1]);
+        }
+      } else {
+        qr.orderBy(`patient.updatedAt`, 'DESC');
+      }
+      //pagination
+      return await this._paginate<IPatient>(qr, {
+        limit: data.limit || 10,
+        page: data.page || 1,
+      });
     } catch (error) {
       const errorRes = {
         message: ERROR_MESSAGES.errorLog,

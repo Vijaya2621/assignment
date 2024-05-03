@@ -11,6 +11,7 @@ export class PaginationDto {
   @IsNumber()
   @IsOptional()
   limit?: number;
+
   @ApiProperty({ description: 'offset' })
   @IsNumber()
   @IsOptional()

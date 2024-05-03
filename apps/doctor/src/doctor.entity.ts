@@ -32,9 +32,9 @@ export class HealthCareWorker extends BaseEntityWithMeta {
   @Column({ type: 'varchar', length: 100, nullable: true, unique: true })
   password: string;
 
-  @ApiProperty({ description: 'specialzation' })
+  @ApiProperty({ description: 'specialization' })
   @Column({ type: 'varchar', length: 100, nullable: true })
-  specialzation: string;
+  specialization: string;
 
   @ApiProperty({ description: 'name' })
   @Column({ type: 'varchar', length: 50, nullable: true })

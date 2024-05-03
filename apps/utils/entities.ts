@@ -43,6 +43,26 @@ export interface IHospital extends IBaseWithMeta {
   phoneNumber: string;
 }
 
+export interface INotes extends IBaseWithMeta {
+  title: string;
+  description: string;
+}
+export interface IPatient extends IBaseWithMeta {
+  image: string;
+  name: string;
+  email: string;
+  password: string;
+  condition: string;
+  dateOfBirth: string;
+  education: string;
+  enrolledDate: string;
+  height: number;
+  weight: number;
+  gender: GENDER;
+  phoneNumber: string;
+  active: boolean;
+  role: ROLES;
+}
 export interface IHealthCareWorker extends IBaseWithMeta {
   specialzation: string;
   name: string;

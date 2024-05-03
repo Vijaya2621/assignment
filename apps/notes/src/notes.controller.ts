@@ -8,6 +8,7 @@ import {
   Param,
   Patch,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { NotesService } from './notes.service';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
@@ -16,7 +17,7 @@ import {
   STATUSCODE,
   SUCCESS_MESSAGES,
 } from 'apps/utils/message';
-import { NotesDto } from './notes.dto';
+import { FindNotesDto, NotesDto } from './notes.dto';
 import { TYPE } from 'apps/utils/entities';
 import { YupValidationPipe } from 'apps/utils/validation';
 import { NotesSchema } from './notes.schema';
@@ -30,6 +31,29 @@ export class NotesController {
   @Get()
   getHello(): string {
     return this.notesService.getHello();
+  }
+  /**
+   * controller to find notes
+   */
+  @Get('/all')
+  @UseGuards(AuthGuard)
+  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH(TYPE.HOSPITAL) })
+  @ApiResponse({
+    status: STATUSCODE.SUCCESS,
+    description: SUCCESS_MESSAGES.FETCH(TYPE.HOSPITAL),
+    type: Notes,
+  })
+  @ApiResponse({
+    status: STATUSCODE.INTERNALSERVERERROR,
+    description: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
+  })
+  @ApiResponse({
+    status: STATUSCODE.BADREQUEST,
+    description: ERROR_MESSAGES.VALIDATION_ERROR,
+  })
+  async findAllPatient(@Query() data: FindNotesDto, @Request() req) {
+    const userRole = req?.user?.role;
+    return await this.notesService.getAll(data, userRole);
   }
 
   /**

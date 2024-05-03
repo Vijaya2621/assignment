@@ -3,13 +3,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from 'apps/abstracts';
 import { Notes } from './notes.entity';
 import { Repository } from 'typeorm';
-import { ROLES } from 'apps/utils/entities';
+import { INotes, ROLES } from 'apps/utils/entities';
 import {
   ERROR_MESSAGES,
   STATUSCODE,
   SUCCESS_MESSAGES,
 } from 'apps/utils/message';
-import { NotesDto } from './notes.dto';
+import { FindNotesDto, NotesDto } from './notes.dto';
+import { allowedFieldsToSortForNotes } from 'apps/utils/common';
 
 @Injectable()
 export class NotesService extends BaseService {
@@ -187,6 +188,70 @@ export class NotesService extends BaseService {
         message: SUCCESS_MESSAGES.DELETE,
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
+    } catch (error) {
+      const errorRes = {
+        message: ERROR_MESSAGES.errorLog,
+      };
+      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+    }
+  }
+
+  /**get listing of all notes
+   *@description function to get all notes
+   *@param data, userRole
+   *@developedBy Vijaya Kumari
+   */
+  async getAll(data: FindNotesDto, userRole) {
+    try {
+      debugger;
+      // Check if the user has permission to get notes
+      if (userRole == ROLES.PATIENT) {
+        // If not, return an error indicating insufficient permissions
+        const errorRes = {
+          message: ERROR_MESSAGES.PERMISSION_DENIED_TO_GET_NOTES,
+        };
+        return this.errorResponses(errorRes, STATUSCODE.UNAUTHORIZED);
+      }
+      const qr = this.notesRepository.createQueryBuilder('notes');
+      qr.leftJoinAndSelect('notes.healthCareWorker', 'healthCareWorker');
+      qr.leftJoinAndSelect('notes.patient', 'patient');
+      qr.select([
+        'patient.id',
+        'patient.active',
+        'patient.role',
+        'patient.email',
+        'patient.condition',
+        'patient.name',
+        'notes.id',
+        'notes.title',
+        'notes.updatedAt',
+        'notes.description',
+        'healthCareWorker.id',
+        'healthCareWorker.name',
+        'healthCareWorker.specialization',
+        'healthCareWorker.email',
+        'healthCareWorker.phoneNumber',
+      ]);
+      //sorting
+      if (data.sort) {
+        const param = this.buildSortParams<{
+          name: string;
+        }>(data.sort);
+        if (allowedFieldsToSortForNotes.includes(param[0])) {
+          const KEYS = {
+            name: `patient.${param[0]}`,
+          };
+          // Order by key and parameter
+          qr.orderBy(KEYS[param[0]], param[1]);
+        }
+      } else {
+        qr.orderBy(`notes.updatedAt`, 'DESC');
+      }
+      //pagination
+      return await this._paginate<INotes>(qr, {
+        limit: data.limit || 10,
+        page: data.page || 1,
+      });
     } catch (error) {
       const errorRes = {
         message: ERROR_MESSAGES.errorLog,

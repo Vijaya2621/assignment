@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   Request,
   UseGuards,
 } from '@nestjs/common';
@@ -16,7 +17,7 @@ import {
   STATUSCODE,
   SUCCESS_MESSAGES,
 } from 'apps/utils/message';
-import { PatientDto } from './patient.dto';
+import { FindPatientDto, PatientDto } from './patient.dto';
 import { YupValidationPipe } from 'apps/utils/validation';
 import { PatientSchema } from './patient.schema';
 import { TYPE } from 'apps/utils/entities';
@@ -30,6 +31,29 @@ export class PatientController {
   @Get('hello')
   getHello(): string {
     return this.patientService.getHello();
+  }
+  /**
+   * controller to find patient
+   */
+  @Get('/all')
+  @UseGuards(AuthGuard)
+  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH(TYPE.HOSPITAL) })
+  @ApiResponse({
+    status: STATUSCODE.SUCCESS,
+    description: SUCCESS_MESSAGES.FETCH(TYPE.HOSPITAL),
+    type: Patient,
+  })
+  @ApiResponse({
+    status: STATUSCODE.INTERNALSERVERERROR,
+    description: ERROR_MESSAGES.INTERNAL_SERVER_ERROR,
+  })
+  @ApiResponse({
+    status: STATUSCODE.BADREQUEST,
+    description: ERROR_MESSAGES.VALIDATION_ERROR,
+  })
+  async findAllPatient(@Query() data: FindPatientDto, @Request() req) {
+    const userRole = req?.user?.role;
+    return await this.patientService.getAll(data, userRole);
   }
 
   /**

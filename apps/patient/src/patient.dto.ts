@@ -83,7 +83,7 @@ export class FindPatientDto extends PaginationDto {
 
   @ApiProperty({ description: 'role' })
   @IsString()
-  role: ROLES;
+  role?: ROLES;
 
   @ApiProperty({
     description: 'Email',

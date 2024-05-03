@@ -10,7 +10,7 @@ import {
 } from '../../utils/message';
 import { BaseService } from 'apps/abstracts';
 import { IHospital, ROLES } from 'apps/utils/entities';
-import { allowedFieldsToSortForHospitals } from './hospital.common';
+import { allowedFieldsToSortForHospitals } from '../../utils/common';
 import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcrypt';
 
