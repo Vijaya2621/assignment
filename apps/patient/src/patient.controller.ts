@@ -37,10 +37,10 @@ export class PatientController {
    */
   @Get('/all')
   @UseGuards(AuthGuard)
-  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH(TYPE.HOSPITAL) })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH(TYPE.PATIENT) })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
-    description: SUCCESS_MESSAGES.FETCH(TYPE.HOSPITAL),
+    description: SUCCESS_MESSAGES.FETCH(TYPE.PATIENT),
     type: Patient,
   })
   @ApiResponse({
