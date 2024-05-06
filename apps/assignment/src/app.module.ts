@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-// import { AppController } from './app.controller';
-// import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DoctorModule } from 'apps/doctor/src/doctor.module';
 import { HospitalModule } from 'apps/hospital/src/hospital.module';

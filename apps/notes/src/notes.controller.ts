@@ -37,10 +37,10 @@ export class NotesController {
    */
   @Get('/all')
   @UseGuards(AuthGuard)
-  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH(TYPE.HOSPITAL) })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.FETCH(TYPE.NOTES) })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
-    description: SUCCESS_MESSAGES.FETCH(TYPE.HOSPITAL),
+    description: SUCCESS_MESSAGES.FETCH(TYPE.NOTES),
     type: Notes,
   })
   @ApiResponse({
@@ -150,10 +150,10 @@ export class NotesController {
    */
   @Delete('/:id')
   @UseGuards(AuthGuard)
-  @ApiOperation({ summary: SUCCESS_MESSAGES.UPDATE(TYPE.HOSPITAL) })
+  @ApiOperation({ summary: SUCCESS_MESSAGES.UPDATE(TYPE.NOTES) })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
-    description: SUCCESS_MESSAGES.UPDATE(TYPE.HOSPITAL),
+    description: SUCCESS_MESSAGES.UPDATE(TYPE.NOTES),
   })
   @ApiResponse({
     status: STATUSCODE.INTERNALSERVERERROR,

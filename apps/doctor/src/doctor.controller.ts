@@ -197,6 +197,9 @@ export class DoctorController {
     return await this.doctorService.deleteDoctor(id, userRole);
   }
 
+  /**
+   * controller to login
+   */
   @Post('/logIn')
   @ApiOperation({ summary: SUCCESS_MESSAGES.CREATE(TYPE.HEALTHCARE_WORKER) })
   @ApiResponse({
