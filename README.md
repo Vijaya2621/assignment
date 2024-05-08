@@ -41,89 +41,89 @@ Nest is [MIT licensed](LICENSE).
 
 ## App skeleton
 ├── apps                                                                   
-├── abstracts
-│   ├── base.entity.ts
-│   ├── base.service.ts
-│   └── index.ts
-├── assignment
-│   ├── src
-│   │   ├── app.controller.ts
-│   │   ├── app.module.ts
-│   │   ├── app.service.ts
-│   │   └── main.ts
-│   ├── test
-│   │   ├── app.e2e-spec.ts
-│   │   └── jest-e2e.json
-│   └── tsconfig.app.json
-├── common
-│   ├── auth
-│   │   ├── auth.controller.ts
-│   │   ├── auth.module.ts
-│   │   └── auth.services.ts
-│   ├── dtos
-│   │   └── pagination.dto.ts
-│   ├── guards
-│   │   └── auth.guard.services.ts
-│   ├── logger
-│   │   └── logger.ts
-│   └── middleware
-│       ├── middleware.module.ts
-│       └── middleware.service.ts
-├── database
-│   └── database.config.ts
-├── doctor
-│   ├── src
-│   │   ├── doctor.controller.ts
-│   │   ├── doctor.dto.ts
-│   │   ├── doctor.entity.ts
-│   │   ├── doctor.module.ts
-│   │   ├── doctor.schema.ts
-│   │   ├── doctor.service.ts
-│   │   └── main.ts
-│   ├── test
-│   │   ├── app.e2e-spec.ts
-│   │   └── jest-e2e.json
-│   └── tsconfig.app.json
-├── hospital
-│   ├── src
-│   │   ├── hospital.controller.ts
-│   │   ├── hospital.dto.ts
-│   │   ├── hospital.entity.ts
-│   │   ├── hospital.module.ts
-│   │   ├── hospital.schema.ts
-│   │   ├── hospital.service.ts
-│   │   └── main.ts
-│   ├── test
-│   │   ├── app.e2e-spec.ts
-│   │   └── jest-e2e.json
-│   └── tsconfig.app.json
-├── notes
-│   ├── src
-│   │   ├── main.ts
-│   │   ├── notes.controller.ts
-│   │   ├── notes.dto.ts
-│   │   ├── notes.entity.ts
-│   │   ├── notes.module.ts
-│   │   ├── notes.schema.ts
-│   │   └── notes.service.ts
-│   ├── test
-│   │   ├── app.e2e-spec.ts
-│   │   └── jest-e2e.json
-│   └── tsconfig.app.json
-├── patient
-│   ├── src
-│   │   ├── main.ts
-│   │   ├── patient.controller.ts
-│   │   ├── patient.dto.ts
-│   │   ├── patient.entity.ts
-│   │   ├── patient.module.ts
-│   │   ├── patient.schema.ts
-│   │   └── patient.service.ts
-│   ├── test
-│   │   ├── app.e2e-spec.ts
-│   │   └── jest-e2e.json
-│   └── tsconfig.app.json
-└── utils
+├── abstract   
+│   ├── base.entity.ts     
+│   ├── base.service.ts   
+│   └── index.ts   
+├── assignment  
+│   ├── src   
+│   │   ├── app.controller.ts   
+│   │   ├── app.module.ts   
+│   │   ├── app.service.ts   
+│   │   └── main.ts   
+│   ├── test  
+│   │   ├── app.e2e-spec.ts   
+│   │   └── jest-e2e.json  
+│   └── tsconfig.app.json   
+├── common  
+│   ├── auth   
+│   │   ├── auth.controller.ts   
+│   │   ├── auth.module.ts   
+│   │   └── auth.services.ts   
+│   ├── dtos   
+│   │   └── pagination.dto.ts     
+│   ├── guards   
+│   │   └── auth.guard.services.ts     
+│   ├── logger   
+│   │   └── logger.ts     
+│   └── middleware  
+│       ├── middleware.module.ts     
+│       └── middleware.service.ts      
+├── database   
+│   └── database.config.ts      
+├── doctor   
+│   ├── src    
+│   │   ├── doctor.controller.ts   
+│   │   ├── doctor.dto.ts   
+│   │   ├── doctor.entity.ts   
+│   │   ├── doctor.module.ts   
+│   │   ├── doctor.schema.ts   
+│   │   ├── doctor.service.ts   
+│   │   └── main.ts   
+│   ├── test   
+│   │   ├── app.e2e-spec.ts      
+│   │   └── jest-e2e.json   
+│   └── tsconfig.app.json   
+├── hospital    
+│   ├── src    
+│   │   ├── hospital.controller.ts   
+│   │   ├── hospital.dto.ts   
+│   │   ├── hospital.entity.ts   
+│   │   ├── hospital.module.ts   
+│   │   ├── hospital.schema.ts   
+│   │   ├── hospital.service.ts   
+│   │   └── main.ts   
+│   ├── test   
+│   │   ├── app.e2e-spec.ts       
+│   │   └── jest-e2e.json   
+│   └── tsconfig.app.json    
+├── notes    
+│   ├── src    
+│   │   ├── main.ts   
+│   │   ├── notes.controller.ts   
+│   │   ├── notes.dto.ts   
+│   │   ├── notes.entity.ts   
+│   │   ├── notes.module.ts   
+│   │   ├── notes.schema.ts   
+│   │   └── notes.service.ts   
+│   ├── test    
+│   │   ├── app.e2e-spec.ts       
+│   │   └── jest-e2e.json   
+│   └── tsconfig.app.json   
+├── patient   
+│   ├── src    
+│   │   ├── main.ts      
+│   │   ├── patient.controller.ts   
+│   │   ├── patient.dto.ts   
+│   │   ├── patient.entity.ts   
+│   │   ├── patient.module.ts   
+│   │   ├── patient.schema.ts   
+│   │   └── patient.service.ts   
+│   ├── test    
+│   │   ├── app.e2e-spec.ts      
+│   │   └── jest-e2e.json   
+│   └── tsconfig.app.json   
+└── utils    
 └── node_modules   
 ├── nest-cli.json   
 ├── package.       
