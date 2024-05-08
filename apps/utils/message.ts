@@ -33,26 +33,26 @@ export const ERROR_MESSAGES = {
   PERMISSION_DENIED_TO_CREATE_HOSPITAL:
     'Insufficient permissions to create hospital',
   PERMISSION_DENIED_TO_CREATE_HEALTH_CARE_WORKER:
-    'Insufficient permissions to create healthcareworker',
+    'Insufficient permissions to create health care worker',
   PERMISSION_DENIED_TO_CREATE_PATIENT:
     'Insufficient permissions to create patient',
   PERMISSION_DENIED_TO_CREATE_NOTES: 'Insufficient permissions to create notes',
   PERMISSION_DENIED_TO_GET_HOSPITAL: 'Insufficient permissions to get hospital',
   PERMISSION_DENIED_TO_GET_HEALTH_CARE_WORKER:
-    'Insufficient permissions to get healthcareworker',
+    'Insufficient permissions to get health care worker',
   PERMISSION_DENIED_TO_GET_PATIENT: 'Insufficient permissions to get patient',
   PERMISSION_DENIED_TO_GET_NOTES: 'Insufficient permissions to get notes',
   PERMISSION_DENIED_TO_DELETE_HOSPITAL:
     'Insufficient permissions to delete hospital',
   PERMISSION_DENIED_TO_DELETE_HEALTH_CARE_WORKER:
-    'Insufficient permissions to delete healthcareworker',
+    'Insufficient permissions to delete health care worker',
   PERMISSION_DENIED_TO_DELETE_PATIENT:
     'Insufficient permissions to delete patient',
   PERMISSION_DENIED_TO_DELETE_NOTES: 'Insufficient permissions to delete notes',
   PERMISSION_DENIED_TO_UPDATE_HOSPITAL:
     'Insufficient permissions to update hospital',
   PERMISSION_DENIED_TO_UPDATE_HEALTH_CARE_WORKER:
-    'Insufficient permissions to update healthcareworker',
+    'Insufficient permissions to update health care worker',
   PERMISSION_DENIED_TO_UPDATE_PATIENT:
     'Insufficient permissions to update patient',
   PERMISSION_DENIED_TO_UPDATE_NOTES: 'Insufficient permissions to update notes',
