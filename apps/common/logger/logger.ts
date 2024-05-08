@@ -1,94 +1,114 @@
-// import { v4 as uuidv4 } from 'uuid'
-// const namespace = require('continuation-local-storage').getNamespace('logger')
-// const { createLogger, format, transports } = require('winston')
-// const DailyRotateFile = require('winston-daily-rotate-file')
-// const appRoot = require('app-root-path')
-// const logsPath = `${appRoot}/lib/logger/logs/`
+// import { v4 as uuidv4 } from 'uuid';
+// import { getNamespace } from 'continuation-local-storage';
+// import { createLogger, format, transports } from 'winston';
+// import DailyRotateFile from 'winston-daily-rotate-file';
+// import appRoot from 'app-root-path';
+// interface DailyRotateFileOptions {
+//   filename: string;
+//   level?: string;
+//   handleExceptions?: boolean;
+//   json?: boolean;
+//   maxsize?: number;
+//   colorize?: boolean;
+// }
+// const namespace = getNamespace('logger');
+// const logsPath = `${appRoot}/lib/logger/logs/`;
 
 // const fileFormat = format.combine(
 //   format.timestamp(),
 //   format.align(),
-//   format.printf((info: any) => {
-//     let log = ''
+//   format.printf((info) => {
+//     let log = '';
 //     try {
-//       const logId = namespace && namespace.get('logId') ? namespace.get('logId') : uuidv4()
-//       const { timestamp, level, message, ...args } = info
-//       const ts = timestamp.slice(0, 19).replace('T', ' ')
-//       log = `${ts} - ${logId} - ${level}: ${message ? message.trim() : ''} ${Object.keys(args).length ? JSON.stringify(args, null, 2) : ''}`
-//       return log
+//       const logId =
+//         namespace && namespace.get('logId') ? namespace.get('logId') : uuidv4();
+//       const { timestamp, level, message, ...args } = info;
+//       const ts = timestamp.slice(0, 19).replace('T', ' ');
+//       log = `${ts} - ${logId} - ${level}: ${message ? message.trim() : ''} ${
+//         Object.keys(args).length ? JSON.stringify(args, null, 2) : ''
+//       }`;
+//       return log;
 //     } catch (error) {
-//       console.log('Error @ fileFormat @ logger ', error)
+//       console.log('Error @ fileFormat @ logger ', error);
 //     }
 //   }),
-// )
+// );
+
+// const infoTransportOptions = {
+//   level: 'info',
+//   filename: `${logsPath}/info-%DATE%.log`,
+//   handleExceptions: true,
+//   json: true,
+//   maxsize: 5242880, // 5MB
+//   colorize: false,
+// };
+
+// const errorTransportOptions = {
+//   level: 'error',
+//   filename: `${logsPath}/error-%DATE%.log`,
+//   handleExceptions: true,
+//   json: true,
+//   maxsize: 5242880, // 5MB
+//   colorize: false,
+// };
 
 // const info = createLogger({
 //   level: 'info',
 //   format: fileFormat,
 //   transports: [
-//     new DailyRotateFile({
-//       level: 'info',
-//       filename: `${logsPath}/info-%DATE%.log`,
-//       handleExceptions: true,
-//       json: true,
-//       maxsize: 5242880, // 5MB
-//       colorize: false,
-//     }),
+//     new DailyRotateFile(infoTransportOptions as DailyRotateFileOptions),
 //   ],
-// })
+// });
 
 // const error = createLogger({
 //   level: 'error',
 //   format: fileFormat,
 //   transports: [
-//     new DailyRotateFile({
-//       level: 'error',
-//       filename: `${logsPath}/error-%DATE%.log`,
-//       handleExceptions: true,
-//       json: true,
-//       maxsize: 5242880, // 5MB
-//       colorize: false,
-//     }),
+//     new DailyRotateFile(errorTransportOptions as DailyRotateFileOptions),
 //   ],
-// })
+// });
 
 // const consoleFormat = format.combine(
 //   format.colorize(),
 //   format.timestamp(),
 //   format.align(),
-//   format.printf((info: any) => {
-//     let log = ''
+//   format.printf((info) => {
+//     let log = '';
 //     try {
-//       const logId = namespace && namespace.get('logId') ? namespace.get('logId') : uuidv4()
-//       const { timestamp, level, message, ...args } = info
-//       const ts = timestamp.slice(0, 19).replace('T', ' ')
-//       log = `${ts} - ${logId} - ${level}: ${message ? message.trim() : ''} ${Object.keys(args).length ? JSON.stringify(args, null, 2) : ''}`
-//       return log
+//       const logId =
+//         namespace && namespace.get('logId') ? namespace.get('logId') : uuidv4();
+//       const { timestamp, level, message, ...args } = info;
+//       const ts = timestamp.slice(0, 19).replace('T', ' ');
+//       log = `${ts} - ${logId} - ${level}: ${message ? message.trim() : ''} ${
+//         Object.keys(args).length ? JSON.stringify(args, null, 2) : ''
+//       }`;
+//       return log;
 //     } catch (error) {
-//       console.log('Error @ fileFormat @ logger ', error)
+//       console.log('Error @ fileFormat @ logger ', error);
 //     }
 //   }),
-// )
+// );
 
 // if (process.env.NODE_ENV !== 'production') {
 //   info.add(
 //     new transports.Console({
 //       format: consoleFormat,
 //     }),
-//   )
+//   );
 //   error.add(
 //     new transports.Console({
 //       format: consoleFormat,
 //     }),
-//   )
+//   );
 // }
 
 // const logger = {
-//   info: async (msg: any, ...args: any) => {
-//     info.info(msg, ...args)
+//   info: async (msg, ...args) => {
+//     info.info(msg, ...args);
 //   },
-//   error: async (msg: any, ...args: any) => {
-//     error.error(msg, ...args)
+//   error: async (msg, ...args) => {
+//     error.error(msg, ...args);
 //   },
-// }
-// export default logger
+// };
+
+// export default logger;

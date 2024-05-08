@@ -16,6 +16,15 @@ Hospital Management System
 Hospital management software can be defined as a digital system that helps manage all patient information and automates billing, scheduling, and appointment processes.We are developing a hospital management system to manage all the processes digitally.
 
 
+## Database 
+Database used: mysql
+
+## node version
+node version: v18.19.1
+
+    $ node --version
+    To check the version of node
+
 ## Installing nest globally
 
 ```bash
@@ -39,7 +48,8 @@ $ yarn run start:dev
 $ npm run start:dev
 
 ```
-
+## Postman collection
+File name: Hospital_Management.postman_collection.json 
 
 ## App skeleton
 ├── apps                                                                   
