@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "210eb241-d51a-4868-9dfe-d0e0728bf284",
 		"name": "Hospital_Management",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "31942548"
 	},
 	"item": [
@@ -23,16 +23,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3002/hospital",
-							"host": [
-								"localhost"
-							],
-							"port": "3002",
-							"path": [
-								"hospital"
-							]
-						}
+						"url": "localhost:3002/hospital"
 					},
 					"response": [
 						{
@@ -49,16 +40,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "localhost:3002/hospital",
-									"host": [
-										"localhost"
-									],
-									"port": "3002",
-									"path": [
-										"hospital"
-									]
-								}
+								"url": "localhost:3002/hospital"
 							},
 							"status": "Created",
 							"code": 201,
@@ -110,16 +92,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "localhost:3002/hospital",
-									"host": [
-										"localhost"
-									],
-									"port": "3002",
-									"path": [
-										"hospital"
-									]
-								}
+								"url": "localhost:3002/hospital"
 							},
 							"status": "Created",
 							"code": 201,
@@ -164,26 +137,13 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRiMGE0ZDMwLTkzMjAtNDhmNS05YTQ4LWJlZWU3Njg2N2IzZiIsImVtYWlsIjoiaG9zcGl0YWw0QHlvcG1haWwuY29tIiwicm9sZSI6InN1cGVyQWRtaW4iLCJpYXQiOjE3MTQwNDU5OTIsImV4cCI6MTcxNDA0OTU5Mn0.EdKhbkc2g_qBspqKkbCSrpmWf2WkIvr15bbeekjyoyE",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjRiMGE0ZDMwLTkzMjAtNDhmNS05YTQ4LWJlZWU3Njg2N2IzZiIsImVtYWlsIjoiaG9zcGl0YWw0QHlvcG1haWwuY29tIiwicm9sZSI6InN1cGVyQWRtaW4iLCJpYXQiOjE3MTQwNDU5OTIsImV4cCI6MTcxNDA0OTU5Mn0.EdKhbkc2g_qBspqKkbCSrpmWf2WkIvr15bbeekjyoyE"
+							}
 						},
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "localhost:3002/hospital",
-							"host": [
-								"localhost"
-							],
-							"port": "3002",
-							"path": [
-								"hospital"
-							]
-						}
+						"url": "localhost:3002/hospital"
 					},
 					"response": [
 						{
@@ -191,16 +151,7 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "localhost:3002/hospital",
-									"host": [
-										"localhost"
-									],
-									"port": "3002",
-									"path": [
-										"hospital"
-									]
-								}
+								"url": "localhost:3002/hospital"
 							},
 							"status": "OK",
 							"code": 200,
@@ -248,13 +199,9 @@
 					"request": {
 						"auth": {
 							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkxNzM1OTFjLTc5YWEtNGI4OS1iOTdkLWUwMTk5ZThhYmY5MSIsImVtYWlsIjoiaG9zcGl0YWwzQHlvcG1haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE0MDQwNjM1LCJleHAiOjE3MTQwNDQyMzV9.zd5ZtQBqsavhCtEWN4VstcalcUvq4bPj0rc4W0DdfVw",
-									"type": "string"
-								}
-							]
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkxNzM1OTFjLTc5YWEtNGI4OS1iOTdkLWUwMTk5ZThhYmY5MSIsImVtYWlsIjoiaG9zcGl0YWwzQHlvcG1haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzE0MDQwNjM1LCJleHAiOjE3MTQwNDQyMzV9.zd5ZtQBqsavhCtEWN4VstcalcUvq4bPj0rc4W0DdfVw"
+							}
 						},
 						"method": "GET",
 						"header": [],
@@ -267,17 +214,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3002/hospital/9173591c-79aa-4b89-b97d-e0199e8abf91",
-							"host": [
-								"localhost"
-							],
-							"port": "3002",
-							"path": [
-								"hospital",
-								"9173591c-79aa-4b89-b97d-e0199e8abf91"
-							]
-						}
+						"url": "localhost:3002/hospital/9173591c-79aa-4b89-b97d-e0199e8abf91"
 					},
 					"response": [
 						{
@@ -285,17 +222,7 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "localhost:3002/hospital/41141dff-a576-4285-a674-11d8e324a269",
-									"host": [
-										"localhost"
-									],
-									"port": "3002",
-									"path": [
-										"hospital",
-										"41141dff-a576-4285-a674-11d8e324a269"
-									]
-								}
+								"url": "localhost:3002/hospital/41141dff-a576-4285-a674-11d8e324a269"
 							},
 							"status": "OK",
 							"code": 200,
@@ -338,17 +265,7 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "localhost:3002/hospital/41141dff-a576-4285-a674-11d8e324ac269",
-									"host": [
-										"localhost"
-									],
-									"port": "3002",
-									"path": [
-										"hospital",
-										"41141dff-a576-4285-a674-11d8e324ac269"
-									]
-								}
+								"url": "localhost:3002/hospital/41141dff-a576-4285-a674-11d8e324ac269"
 							},
 							"status": "OK",
 							"code": 200,
@@ -402,17 +319,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3002/hospital/41141dff-a576-4285-a674-11d8e324a269s",
-							"host": [
-								"localhost"
-							],
-							"port": "3002",
-							"path": [
-								"hospital",
-								"41141dff-a576-4285-a674-11d8e324a269s"
-							]
-						}
+						"url": "localhost:3002/hospital/41141dff-a576-4285-a674-11d8e324a269s"
 					},
 					"response": [
 						{
@@ -429,17 +336,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "localhost:3002/hospital/41141dff-a576-4285-a674-11d8e324a269",
-									"host": [
-										"localhost"
-									],
-									"port": "3002",
-									"path": [
-										"hospital",
-										"41141dff-a576-4285-a674-11d8e324a269"
-									]
-								}
+								"url": "localhost:3002/hospital/41141dff-a576-4285-a674-11d8e324a269"
 							},
 							"status": "OK",
 							"code": 200,
@@ -491,17 +388,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "localhost:3002/hospital/41141dff-a576-4285-a674-11d8e324a269s",
-									"host": [
-										"localhost"
-									],
-									"port": "3002",
-									"path": [
-										"hospital",
-										"41141dff-a576-4285-a674-11d8e324a269s"
-									]
-								}
+								"url": "localhost:3002/hospital/41141dff-a576-4285-a674-11d8e324a269s"
 							},
 							"status": "OK",
 							"code": 200,
@@ -560,16 +447,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3002/doctor",
-							"host": [
-								"localhost"
-							],
-							"port": "3002",
-							"path": [
-								"doctor"
-							]
-						}
+						"url": "localhost:3002/doctor"
 					},
 					"response": [
 						{
@@ -586,16 +464,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "localhost:3002/doctor",
-									"host": [
-										"localhost"
-									],
-									"port": "3002",
-									"path": [
-										"doctor"
-									]
-								}
+								"url": "localhost:3002/doctor"
 							},
 							"status": "Created",
 							"code": 201,
@@ -647,16 +516,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "localhost:3002/doctor",
-									"host": [
-										"localhost"
-									],
-									"port": "3002",
-									"path": [
-										"doctor"
-									]
-								}
+								"url": "localhost:3002/doctor"
 							},
 							"status": "Created",
 							"code": 201,
@@ -708,16 +568,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "localhost:3002/doctor",
-									"host": [
-										"localhost"
-									],
-									"port": "3002",
-									"path": [
-										"doctor"
-									]
-								}
+								"url": "localhost:3002/doctor"
 							},
 							"status": "Created",
 							"code": 201,
@@ -762,17 +613,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "localhost:3002/doctor/1bef339e-b8ec-45a9-8c03-40c3e8858a0e",
-							"host": [
-								"localhost"
-							],
-							"port": "3002",
-							"path": [
-								"doctor",
-								"1bef339e-b8ec-45a9-8c03-40c3e8858a0e"
-							]
-						}
+						"url": "localhost:3002/doctor/1bef339e-b8ec-45a9-8c03-40c3e8858a0e"
 					},
 					"response": [
 						{
@@ -780,17 +621,7 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "localhost:3002/doctor/1bef339e-b8ec-45a9-8c03-40c3e8858a0e",
-									"host": [
-										"localhost"
-									],
-									"port": "3002",
-									"path": [
-										"doctor",
-										"1bef339e-b8ec-45a9-8c03-40c3e8858a0e"
-									]
-								}
+								"url": "localhost:3002/doctor/1bef339e-b8ec-45a9-8c03-40c3e8858a0e"
 							},
 							"status": "OK",
 							"code": 200,
@@ -833,17 +664,7 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "localhost:3002/doctor/1bef339e-b8ec-45a9-8c03-40c3e8858d0e",
-									"host": [
-										"localhost"
-									],
-									"port": "3002",
-									"path": [
-										"doctor",
-										"1bef339e-b8ec-45a9-8c03-40c3e8858d0e"
-									]
-								}
+								"url": "localhost:3002/doctor/1bef339e-b8ec-45a9-8c03-40c3e8858d0e"
 							},
 							"status": "OK",
 							"code": 200,
@@ -897,17 +718,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3002/doctor/1bef339e-b8ec-45a9-8c03-40c3e8858a0e",
-							"host": [
-								"localhost"
-							],
-							"port": "3002",
-							"path": [
-								"doctor",
-								"1bef339e-b8ec-45a9-8c03-40c3e8858a0e"
-							]
-						}
+						"url": "localhost:3002/doctor/1bef339e-b8ec-45a9-8c03-40c3e8858a0e"
 					},
 					"response": [
 						{
@@ -924,17 +735,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "localhost:3002/doctor/1bef339e-b8ec-45a9-8c03-40c3e8858a0e",
-									"host": [
-										"localhost"
-									],
-									"port": "3002",
-									"path": [
-										"doctor",
-										"1bef339e-b8ec-45a9-8c03-40c3e8858a0e"
-									]
-								}
+								"url": "localhost:3002/doctor/1bef339e-b8ec-45a9-8c03-40c3e8858a0e"
 							},
 							"status": "OK",
 							"code": 200,
@@ -979,17 +780,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": "localhost:3002/doctor/all",
-							"host": [
-								"localhost"
-							],
-							"port": "3002",
-							"path": [
-								"doctor",
-								"all"
-							]
-						}
+						"url": "localhost:3002/doctor/all"
 					},
 					"response": [
 						{
@@ -997,17 +788,7 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"url": {
-									"raw": "localhost:3002/doctor/all",
-									"host": [
-										"localhost"
-									],
-									"port": "3002",
-									"path": [
-										"doctor",
-										"all"
-									]
-								}
+								"url": "localhost:3002/doctor/all"
 							},
 							"status": "OK",
 							"code": 200,
@@ -1044,6 +825,49 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"items\": [\n        {\n            \"id\": \"a65e050c-f161-4bcd-ba10-dbdfd09a5293\",\n            \"emailVerified\": true,\n            \"image\": \"image\",\n            \"role\": \"superAdmin\",\n            \"email\": \"doctor1@gmail.com\",\n            \"specialzation\": \"heart\",\n            \"name\": \"doctor1\",\n            \"phoneNumber\": \"23456782345\"\n        },\n        {\n            \"id\": \"1bef339e-b8ec-45a9-8c03-40c3e8858a0e\",\n            \"emailVerified\": true,\n            \"image\": \"image\",\n            \"role\": \"superAdmin\",\n            \"email\": \"updateddoctor1@gmail.com\",\n            \"specialzation\": \"heart\",\n            \"name\": \"upfateddoctor1\",\n            \"phoneNumber\": \"23456782345\"\n        }\n    ],\n    \"meta\": {\n        \"currentPage\": 1,\n        \"itemCount\": 2,\n        \"itemsPerPage\": 10,\n        \"totalItems\": 2,\n        \"totalPages\": 1\n    }\n}"
+						},
+						{
+							"name": "get all doctor",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "localhost:3002/doctor/all"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1107"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"453-cWk2seXomadf3Fwbo+cugjxas1c\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 30 Apr 2024 06:24:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"updatedAt\": \"2024-04-26T07:20:20.023Z\",\n            \"id\": \"b16f2a92-f753-4de6-80e1-1241af2575cc\",\n            \"emailVerified\": true,\n            \"image\": \"image\",\n            \"role\": \"superAdmin\",\n            \"email\": \"doctor2@gmail.com\",\n            \"specialzation\": \"heart\",\n            \"name\": \"doctor2\",\n            \"phoneNumber\": \"23456782345\",\n            \"patient\": []\n        },\n        {\n            \"updatedAt\": \"2024-04-25T06:19:33.000Z\",\n            \"id\": \"ae5981a2-ab65-47f6-a9fc-64dd38bb8a4c\",\n            \"emailVerified\": true,\n            \"image\": \"image\",\n            \"role\": \"superAdmin\",\n            \"email\": \"doctor1@gmail.com\",\n            \"specialzation\": \"heart\",\n            \"name\": \"doctor1\",\n            \"phoneNumber\": \"23456782345\",\n            \"patient\": [\n                {\n                    \"createdAt\": \"2024-04-30T06:15:36.530Z\",\n                    \"updatedAt\": \"2024-04-30T06:15:36.530Z\",\n                    \"id\": \"c7037850-172a-4dbb-adb5-855c39fa15f6\",\n                    \"createdBy\": null,\n                    \"updatedBy\": null,\n                    \"image\": \"image1\",\n                    \"active\": true,\n                    \"role\": \"patient\",\n                    \"email\": \"patient3@yopmail.com\",\n                    \"password\": \"$2b$10$rKbFOGlEytI4BLfHODJHkOpa/2sYzApUKrv/fNUIBN.wwDyeNr/CO\",\n                    \"condition\": \"condition2\",\n                    \"name\": \"patient3\",\n                    \"phoneNumber\": \"1234567890\",\n                    \"dateOfBirth\": \"2001-11-17\",\n                    \"education\": \"Graduation\",\n                    \"enrolledDate\": \"2023-11-17\",\n                    \"height\": 177,\n                    \"weight\": \"59\",\n                    \"gender\": \"female\"\n                }\n            ]\n        }\n    ],\n    \"meta\": {\n        \"currentPage\": 1,\n        \"itemCount\": 2,\n        \"itemsPerPage\": 10,\n        \"totalItems\": 2,\n        \"totalPages\": 1\n    }\n}"
 						}
 					]
 				}
@@ -1055,27 +879,24 @@
 				{
 					"name": "create patient ",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIxNmYyYTkyLWY3NTMtNGRlNi04MGUxLTEyNDFhZjI1NzVjYyIsImVtYWlsIjoiZG9jdG9yMkBnbWFpbC5jb20iLCJyb2xlIjoic3VwZXJBZG1pbiIsImlhdCI6MTcxNDQ1NTcxNiwiZXhwIjoxNzE0NDU5MzE2fQ.gf9raOEC8eJ7V_6xXLvlxte919TPaYGDvh3uybZOTT0"
+							}
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"image\":\"image1\",\n    \"active\":true,\n    \"role\": \"Patient\",\n    \"email\": \"patient1@yopmail.com\",\n    \"password\": \"1234567890\",\n    \"condition\": \"condition1\",\n    \"name\": \"patient1\",\n    \"phoneNumber\":\"1234567890\",\n    \"dateOfBirth\": \"2001-11-17\",\n    \"education\": \"Graduation\",\n    \"enrolledDate\": \"2023-11-17\",\n    \"height\": \"177\",\n    \"weight\": \"59\",\n    \"gender\": \"female\",\n    \"hospital\": \"0d02d8e8-bab9-402d-8e86-949d46434ae1\"\n\n}",
+							"raw": "{\n    \"image\":\"image1\",\n    \"active\":true,\n    \"role\": \"patient\",\n    \"email\": \"patient3@yopmail.com\",\n    \"password\": \"1234567890\",\n    \"condition\": \"condition2\",\n    \"name\": \"patient3\",\n    \"phoneNumber\":\"1234567890\",\n    \"dateOfBirth\": \"2001-11-17\",\n    \"education\": \"Graduation\",\n    \"enrolledDate\": \"2023-11-17\",\n    \"height\": \"177\",\n    \"weight\": \"59\",\n    \"gender\": \"female\",\n    \"hospital\": \"0d02d8e8-bab9-402d-8e86-949d46434ae1\",\n    \"healthCareWorker\": \"ae5981a2-ab65-47f6-a9fc-64dd38bb8a4c\"\n\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3002/patient",
-							"host": [
-								"localhost"
-							],
-							"port": "3002",
-							"path": [
-								"patient"
-							]
-						}
+						"url": "localhost:3002/patient"
 					},
 					"response": [
 						{
@@ -1092,16 +913,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "localhost:3002/patient",
-									"host": [
-										"localhost"
-									],
-									"port": "3002",
-									"path": [
-										"patient"
-									]
-								}
+								"url": "localhost:3002/patient"
 							},
 							"status": "Created",
 							"code": 201,
@@ -1153,16 +965,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "localhost:3002/patient",
-									"host": [
-										"localhost"
-									],
-									"port": "3002",
-									"path": [
-										"patient"
-									]
-								}
+								"url": "localhost:3002/patient"
 							},
 							"status": "Created",
 							"code": 201,
@@ -1201,6 +1004,536 @@
 							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"savedPatient\": {\n            \"image\": \"image1\",\n            \"active\": true,\n            \"role\": \"atient\",\n            \"email\": \"patient21@yopmail.com\",\n            \"password\": \"$2b$10$t3WkJnAgzlC62Pz9bLl/B.HEEyZELumYeQnPhxFyCbPlJBiiheXOO\",\n            \"condition\": \"condition2\",\n            \"name\": \"patient2\",\n            \"phoneNumber\": \"1234567890\",\n            \"dateOfBirth\": \"2001-11-17\",\n            \"education\": \"Graduation\",\n            \"enrolledDate\": \"2023-11-17\",\n            \"height\": 177,\n            \"weight\": \"59\",\n            \"gender\": \"female\",\n            \"hospital\": \"0d02d8e8-bab9-402d-8e86-949d46434ae1\",\n            \"createdAt\": \"2024-04-29T13:01:05.896Z\",\n            \"updatedAt\": \"2024-04-29T13:01:05.896Z\",\n            \"createdBy\": null,\n            \"updatedBy\": null,\n            \"id\": \"8f38f7d5-cff0-4a99-8b7c-5bde6b1d28ec\"\n        }\n    },\n    \"message\": \"Success\"\n}"
 						}
 					]
+				},
+				{
+					"name": "get patient by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIxNmYyYTkyLWY3NTMtNGRlNi04MGUxLTEyNDFhZjI1NzVjYyIsImVtYWlsIjoiZG9jdG9yMkBnbWFpbC5jb20iLCJyb2xlIjoic3VwZXJBZG1pbiIsImlhdCI6MTcxNDQ1NTcxNiwiZXhwIjoxNzE0NDU5MzE2fQ.gf9raOEC8eJ7V_6xXLvlxte919TPaYGDvh3uybZOTT0"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:3002/patient/260c372a-2e7a-426c-9655-25e53507dc8c"
+					},
+					"response": [
+						{
+							"name": "success response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "localhost:3002/patient/260c372a-2e7a-426c-9655-25e53507dc8c"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "568"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"238-nCpQi406Qv9zZeZgs834XsX1EJQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 30 Apr 2024 05:42:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"foundPatient\": {\n            \"createdAt\": \"2024-04-29T12:55:34.618Z\",\n            \"updatedAt\": \"2024-04-29T12:55:34.618Z\",\n            \"id\": \"260c372a-2e7a-426c-9655-25e53507dc8c\",\n            \"createdBy\": null,\n            \"updatedBy\": null,\n            \"image\": \"image1\",\n            \"active\": true,\n            \"role\": \"Patient\",\n            \"email\": \"patient1@yopmail.com\",\n            \"password\": \"$2b$10$U./y0BqQWA4hzUfgDizjROf110qI6rHO3iz6aI1CBj2rVbUI4YnCq\",\n            \"condition\": \"condition1\",\n            \"name\": \"patient1\",\n            \"phoneNumber\": \"1234567890\",\n            \"dateOfBirth\": \"2001-11-17\",\n            \"education\": \"Graduation\",\n            \"enrolledDate\": \"2023-11-17\",\n            \"height\": 177,\n            \"weight\": \"59\",\n            \"gender\": \"female\"\n        }\n    },\n    \"message\": \"Success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIxNmYyYTkyLWY3NTMtNGRlNi04MGUxLTEyNDFhZjI1NzVjYyIsImVtYWlsIjoiZG9jdG9yMkBnbWFpbC5jb20iLCJyb2xlIjoic3VwZXJBZG1pbiIsImlhdCI6MTcxNDQ1NTcxNiwiZXhwIjoxNzE0NDU5MzE2fQ.gf9raOEC8eJ7V_6xXLvlxte919TPaYGDvh3uybZOTT0"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"image\":\"image1\",\n    \"active\":true,\n    \"role\": \"patient\",\n    \"password\": \"1234567890\",\n    \"condition\": \"condition2\",\n    \"name\": \"updatedpatient2\",\n    \"phoneNumber\":\"1234567890\",\n    \"dateOfBirth\": \"2001-11-17\",\n    \"education\": \"Graduation\",\n    \"enrolledDate\": \"2023-11-17\",\n    \"height\": \"177\",\n    \"weight\": \"59\",\n    \"gender\": \"female\",\n    \"hospital\": \"0d02d8e8-bab9-402d-8e86-949d46434ae1\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3002/patient/260c372a-2e7a-426c-9655-25e53507dc8c"
+					},
+					"response": [
+						{
+							"name": "success response",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"image\":\"image1\",\n    \"active\":true,\n    \"role\": \"patient\",\n    \"password\": \"1234567890\",\n    \"condition\": \"condition2\",\n    \"name\": \"updatedpatient2\",\n    \"phoneNumber\":\"1234567890\",\n    \"dateOfBirth\": \"2001-11-17\",\n    \"education\": \"Graduation\",\n    \"enrolledDate\": \"2023-11-17\",\n    \"height\": \"177\",\n    \"weight\": \"59\",\n    \"gender\": \"female\",\n    \"hospital\": \"0d02d8e8-bab9-402d-8e86-949d46434ae1\"\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3002/patient/260c372a-2e7a-426c-9655-25e53507dc8c"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "586"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"24a-awCWdcykFB4WgSgrAIEPILgcxjU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 30 Apr 2024 05:53:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"updatedPatient\": {\n            \"createdAt\": \"2024-04-29T12:55:34.618Z\",\n            \"updatedAt\": \"2024-04-30T05:53:06.000Z\",\n            \"id\": \"260c372a-2e7a-426c-9655-25e53507dc8c\",\n            \"createdBy\": null,\n            \"updatedBy\": null,\n            \"image\": \"image1\",\n            \"active\": true,\n            \"role\": \"patient\",\n            \"email\": \"updatepatient21@yopmail.com\",\n            \"password\": \"1234567890\",\n            \"condition\": \"condition2\",\n            \"name\": \"updatedpatient2\",\n            \"phoneNumber\": \"1234567890\",\n            \"dateOfBirth\": \"2001-11-17\",\n            \"education\": \"Graduation\",\n            \"enrolledDate\": \"2023-11-17\",\n            \"height\": \"177\",\n            \"weight\": \"59\",\n            \"gender\": \"female\",\n            \"hospital\": \"0d02d8e8-bab9-402d-8e86-949d46434ae1\"\n        }\n    },\n    \"message\": \"Success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get all patient ",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIxNmYyYTkyLWY3NTMtNGRlNi04MGUxLTEyNDFhZjI1NzVjYyIsImVtYWlsIjoiZG9jdG9yMkBnbWFpbC5jb20iLCJyb2xlIjoic3VwZXJBZG1pbiIsImlhdCI6MTcxNDcyMTg5NCwiZXhwIjoxNzE0NzI1NDk0fQ.AT8OLbD4XMZM98ooHVopyBxnXn8zPgd8RUxWGcnmKAc"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:3002/patient/all"
+					},
+					"response": [
+						{
+							"name": "success response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "localhost:3002/patient/all"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1246"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4de-Z0HvJDAswEqPyZZYSnuFUXY1OIs\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 May 2024 07:49:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"updatedAt\": \"2024-04-30T06:15:36.530Z\",\n            \"id\": \"c7037850-172a-4dbb-adb5-855c39fa15f6\",\n            \"image\": \"image1\",\n            \"active\": true,\n            \"role\": \"patient\",\n            \"email\": \"patient3@yopmail.com\",\n            \"condition\": \"condition2\",\n            \"name\": \"patient3\",\n            \"phoneNumber\": \"1234567890\",\n            \"dateOfBirth\": \"2001-11-17\",\n            \"education\": \"Graduation\",\n            \"enrolledDate\": \"2023-11-17\",\n            \"height\": 177,\n            \"weight\": \"59\",\n            \"gender\": \"female\",\n            \"notes\": [],\n            \"healthCareWorker\": {\n                \"id\": \"ae5981a2-ab65-47f6-a9fc-64dd38bb8a4c\",\n                \"email\": \"doctor1@gmail.com\",\n                \"specialization\": \"heart\",\n                \"name\": \"doctor1\",\n                \"phoneNumber\": \"23456782345\"\n            }\n        },\n        {\n            \"updatedAt\": \"2024-04-30T05:53:06.000Z\",\n            \"id\": \"260c372a-2e7a-426c-9655-25e53507dc8c\",\n            \"image\": \"image1\",\n            \"active\": true,\n            \"role\": \"patient\",\n            \"email\": \"updatepatient21@yopmail.com\",\n            \"condition\": \"condition2\",\n            \"name\": \"updatedpatient2\",\n            \"phoneNumber\": \"1234567890\",\n            \"dateOfBirth\": \"2001-11-17\",\n            \"education\": \"Graduation\",\n            \"enrolledDate\": \"2023-11-17\",\n            \"height\": 177,\n            \"weight\": \"59\",\n            \"gender\": \"female\",\n            \"notes\": [\n                {\n                    \"createdAt\": \"2024-05-02T12:44:25.292Z\",\n                    \"updatedAt\": \"2024-05-02T12:44:25.292Z\",\n                    \"id\": \"222d8621-ad0d-4ed4-93b5-61099ef63730\",\n                    \"createdBy\": null,\n                    \"updatedBy\": null,\n                    \"title\": \"note2\",\n                    \"description\": \"note2 for patient\"\n                }\n            ],\n            \"healthCareWorker\": null\n        }\n    ],\n    \"meta\": {\n        \"currentPage\": 1,\n        \"itemCount\": 2,\n        \"itemsPerPage\": 10,\n        \"totalItems\": 2,\n        \"totalPages\": 1\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "notes",
+			"item": [
+				{
+					"name": "create notes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFlNTk4MWEyLWFiNjUtNDdmNi1hOWZjLTY0ZGQzOGJiOGE0YyIsImVtYWlsIjoiZG9jdG9yMUBnbWFpbC5jb20iLCJyb2xlIjoiZG9jdG9yIiwiaWF0IjoxNzE0NjUzNjkxLCJleHAiOjE3MTQ2NTcyOTF9.bD7qwEhCTsyY67x2KtiJ25UUyGT8GQljA0-c35ZMtao"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"note2\",\n    \"description\": \"note2 for patient\",\n   \"healthCareWorker\": \"ae5981a2-ab65-47f6-a9fc-64dd38bb8a4c\",\n   \"patient\": \"260c372a-2e7a-426c-9655-25e53507dc8c\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3002/notes"
+					},
+					"response": [
+						{
+							"name": "success response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"note2\",\n    \"description\": \"note2 for patient\",\n   \"healthCareWorker\": \"ae5981a2-ab65-47f6-a9fc-64dd38bb8a4c\",\n   \"patient\": \"260c372a-2e7a-426c-9655-25e53507dc8c\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3002/notes"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "370"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"172-PQ9XhQGNYsfJOx2nkVlN2fH62n8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 May 2024 12:44:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"saved\": {\n            \"title\": \"note2\",\n            \"description\": \"note2 for patient\",\n            \"healthCareWorker\": \"ae5981a2-ab65-47f6-a9fc-64dd38bb8a4c\",\n            \"patient\": \"260c372a-2e7a-426c-9655-25e53507dc8c\",\n            \"createdAt\": \"2024-05-02T12:44:25.292Z\",\n            \"updatedAt\": \"2024-05-02T12:44:25.292Z\",\n            \"createdBy\": null,\n            \"updatedBy\": null,\n            \"id\": \"222d8621-ad0d-4ed4-93b5-61099ef63730\"\n        }\n    },\n    \"message\": \"Success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "find note",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIxNmYyYTkyLWY3NTMtNGRlNi04MGUxLTEyNDFhZjI1NzVjYyIsImVtYWlsIjoiZG9jdG9yMkBnbWFpbC5jb20iLCJyb2xlIjoic3VwZXJBZG1pbiIsImlhdCI6MTcxNDY1NDM1NSwiZXhwIjoxNzE0NjU3OTU1fQ.aTuEVHftFHl_XcwgRCrplV_PNJhFNLZZBPz1AVJNjDg"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:3002/notes/e76e8619-ad90-4978-a7bc-3fb71fd22e04"
+					},
+					"response": [
+						{
+							"name": "success response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "localhost:3002/notes/e76e8619-ad90-4978-a7bc-3fb71fd22e04"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "267"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10b-og1UYRCg47g5jnLIrY7Tj6DnwpU\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 May 2024 12:52:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"foundNote\": {\n            \"createdAt\": \"2024-05-02T12:41:49.059Z\",\n            \"updatedAt\": \"2024-05-02T12:41:49.059Z\",\n            \"id\": \"e76e8619-ad90-4978-a7bc-3fb71fd22e04\",\n            \"createdBy\": null,\n            \"updatedBy\": null,\n            \"title\": \"note1\",\n            \"description\": \"note1 for patient\"\n        }\n    },\n    \"message\": \"Success\"\n}"
+						},
+						{
+							"name": "error response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "localhost:3002/notes/e76e8619-ad90-4978-a7bc-3fb71fd22e0"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-CcFR9ISmGyoQnBlJZqjAPMqnILk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 May 2024 12:53:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorRes\": {},\n    \"statusCode\": 204,\n    \"message\": \"Fail\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update notes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIxNmYyYTkyLWY3NTMtNGRlNi04MGUxLTEyNDFhZjI1NzVjYyIsImVtYWlsIjoiZG9jdG9yMkBnbWFpbC5jb20iLCJyb2xlIjoic3VwZXJBZG1pbiIsImlhdCI6MTcxNDY1NDM1NSwiZXhwIjoxNzE0NjU3OTU1fQ.aTuEVHftFHl_XcwgRCrplV_PNJhFNLZZBPz1AVJNjDg"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"updatednote2\",\n    \"description\": \"updatednote2 for patient\",\n   \"healthCareWorker\": \"ae5981a2-ab65-47f6-a9fc-64dd38bb8a4c\",\n   \"patient\": \"260c372a-2e7a-426c-9655-25e53507dc8c\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3002/notes/e76e8619-ad90-4978-a7bc-3fb71fd22e04"
+					},
+					"response": [
+						{
+							"name": "success response",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"updatednote2\",\n    \"description\": \"updatednote2 for patient\",\n   \"healthCareWorker\": \"ae5981a2-ab65-47f6-a9fc-64dd38bb8a4c\",\n   \"patient\": \"260c372a-2e7a-426c-9655-25e53507dc8c\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3002/notes/e76e8619-ad90-4978-a7bc-3fb71fd22e04"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "391"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"187-YDhvH/DkOPjm8/Z6iwRX/1X55wY\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 May 2024 13:02:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"updatedNotes\": {\n            \"createdAt\": \"2024-05-02T12:41:49.059Z\",\n            \"updatedAt\": \"2024-05-02T13:02:57.000Z\",\n            \"id\": \"e76e8619-ad90-4978-a7bc-3fb71fd22e04\",\n            \"createdBy\": null,\n            \"updatedBy\": null,\n            \"title\": \"updatednote2\",\n            \"description\": \"updatednote2 for patient\",\n            \"healthCareWorker\": \"ae5981a2-ab65-47f6-a9fc-64dd38bb8a4c\",\n            \"patient\": \"260c372a-2e7a-426c-9655-25e53507dc8c\"\n        }\n    },\n    \"message\": \"Success\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete note",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIxNmYyYTkyLWY3NTMtNGRlNi04MGUxLTEyNDFhZjI1NzVjYyIsImVtYWlsIjoiZG9jdG9yMkBnbWFpbC5jb20iLCJyb2xlIjoic3VwZXJBZG1pbiIsImlhdCI6MTcxNDY1NDM1NSwiZXhwIjoxNzE0NjU3OTU1fQ.aTuEVHftFHl_XcwgRCrplV_PNJhFNLZZBPz1AVJNjDg"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:3002/notes/e76e8619-ad90-4978-a7bc-3fb71fd22e04"
+					},
+					"response": []
+				},
+				{
+					"name": "get all notes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIxNmYyYTkyLWY3NTMtNGRlNi04MGUxLTEyNDFhZjI1NzVjYyIsImVtYWlsIjoiZG9jdG9yMkBnbWFpbC5jb20iLCJyb2xlIjoic3VwZXJBZG1pbiIsImlhdCI6MTcxNDcyMzUxMCwiZXhwIjoxNzE0NzI3MTEwfQ.F84aYT61ZPWDHfP4NIimTJgK49HcnAJsQnU0SBRipAg"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:3002/notes/all"
+					},
+					"response": [
+						{
+							"name": "success response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "localhost:3002/notes/all"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "571"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"23b-ALUxo83lQeyaV/VCmPr+uc27OXg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 May 2024 08:07:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"items\": [\n        {\n            \"updatedAt\": \"2024-05-02T12:44:25.292Z\",\n            \"id\": \"222d8621-ad0d-4ed4-93b5-61099ef63730\",\n            \"title\": \"note2\",\n            \"description\": \"note2 for patient\",\n            \"healthCareWorker\": {\n                \"id\": \"ae5981a2-ab65-47f6-a9fc-64dd38bb8a4c\",\n                \"email\": \"doctor1@gmail.com\",\n                \"specialization\": \"heart\",\n                \"name\": \"doctor1\",\n                \"phoneNumber\": \"23456782345\"\n            },\n            \"patient\": {\n                \"id\": \"260c372a-2e7a-426c-9655-25e53507dc8c\",\n                \"active\": true,\n                \"role\": \"patient\",\n                \"email\": \"updatepatient21@yopmail.com\",\n                \"condition\": \"condition2\",\n                \"name\": \"updatedpatient2\"\n            }\n        }\n    ],\n    \"meta\": {\n        \"currentPage\": 1,\n        \"itemCount\": 1,\n        \"itemsPerPage\": 10,\n        \"totalItems\": 1,\n        \"totalPages\": 1\n    }\n}"
+						}
+					]
 				}
 			]
 		},
@@ -1218,17 +1551,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "localhost:3002/hospital/logIn",
-					"host": [
-						"localhost"
-					],
-					"port": "3002",
-					"path": [
-						"hospital",
-						"logIn"
-					]
-				}
+				"url": "localhost:3002/hospital/logIn"
 			},
 			"response": [
 				{
@@ -1245,17 +1568,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3002/hospital/logIn",
-							"host": [
-								"localhost"
-							],
-							"port": "3002",
-							"path": [
-								"hospital",
-								"logIn"
-							]
-						}
+						"url": "localhost:3002/hospital/logIn"
 					},
 					"status": "Created",
 					"code": 201,
@@ -1309,16 +1622,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "localhost:3002/email",
-					"host": [
-						"localhost"
-					],
-					"port": "3002",
-					"path": [
-						"email"
-					]
-				}
+				"url": "localhost:3002/email"
 			},
 			"response": []
 		}

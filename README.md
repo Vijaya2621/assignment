@@ -15,13 +15,18 @@ Hospital Management System
 ## Description
 Hospital management software can be defined as a digital system that helps manage all patient information and automates billing, scheduling, and appointment processes.We are developing a hospital management system to manage all the processes digitally.
 
+
+## Installing nest globally
+
+```bash
+$ npm i -g @nestjs/cli
+```
 ## Installation
 
 ```bash
 $ yarn install
 $ npm install
 ```
-
 ## Running the app
 
 ```bash
@@ -35,9 +40,6 @@ $ npm run start:dev
 
 ```
 
-## License
-
-Nest is [MIT licensed](LICENSE).
 
 ## App skeleton
 ├── apps                                                                   
