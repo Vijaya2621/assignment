@@ -355,7 +355,6 @@ export class DoctorService extends BaseService {
         const successRes = {
           message: SUCCESS_MESSAGES.LOGIN,
           generatedToken: token,
-          code: STATUSCODE.SUCCESS,
         };
         return this.responses(successRes, STATUSCODE.SUCCESS);
       }

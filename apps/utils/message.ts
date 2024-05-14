@@ -69,7 +69,7 @@ export const ERROR_MESSAGES = {
 
 //status code
 export const STATUSCODE = {
-  SUCCESS: 200,
+  SUCCESS: 201,
   BADREQUEST: 400,
   SERVERERROR: 501,
   INTERNALSERVERERROR: 500,
