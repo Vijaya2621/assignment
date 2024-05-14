@@ -49,7 +49,7 @@ export class NotesService extends BaseService {
       //  if saved then return success response
       const successRes = {
         saved,
-        message: SUCCESS_MESSAGES.CREATE,
+        message: SUCCESS_MESSAGES.CREATE(saved.title),
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
 
@@ -87,14 +87,14 @@ export class NotesService extends BaseService {
       //if not found then return error
       if (!foundNote) {
         const errorRes = {
-          message: ERROR_MESSAGES.NOTEXIST,
+          message: ERROR_MESSAGES.NOTEXIST(foundNote.title),
         };
         return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
       //if found then return notes
       const successRes = {
         foundNote,
-        message: SUCCESS_MESSAGES.FETCH,
+        message: SUCCESS_MESSAGES.FETCH(foundNote.title),
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
@@ -130,7 +130,7 @@ export class NotesService extends BaseService {
       //if not then give error
       if (!foundNotes) {
         const errorRes = {
-          message: ERROR_MESSAGES.NOTEXIST,
+          message: ERROR_MESSAGES.NOTEXIST(foundNotes.title),
         };
         return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
@@ -143,7 +143,7 @@ export class NotesService extends BaseService {
       const updatedNotes = await this.notesRepository.save(updateNotes);
       const successRes = {
         updatedNotes,
-        message: SUCCESS_MESSAGES.UPDATE,
+        message: SUCCESS_MESSAGES.UPDATE(foundNotes.title),
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
@@ -179,7 +179,7 @@ export class NotesService extends BaseService {
       //if not found then give error
       if (!foundNote) {
         const errorRes = {
-          message: ERROR_MESSAGES.NOTEXIST,
+          message: ERROR_MESSAGES.NOTEXIST(foundNote.title),
         };
         return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
@@ -187,7 +187,7 @@ export class NotesService extends BaseService {
       const deletedNote = await this.notesRepository.delete(id);
       const successRes = {
         deletedNote,
-        message: SUCCESS_MESSAGES.DELETE,
+        message: SUCCESS_MESSAGES.DELETE(foundNote.title),
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {

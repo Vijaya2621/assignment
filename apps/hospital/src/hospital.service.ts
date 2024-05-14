@@ -56,7 +56,7 @@ export class HospitalService extends BaseService {
       //  if saved then return success response
       const successRes = {
         saved,
-        message: SUCCESS_MESSAGES.CREATE,
+        message: SUCCESS_MESSAGES.CREATE(saved.name),
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
 
@@ -94,14 +94,14 @@ export class HospitalService extends BaseService {
       //if not found then return error
       if (!foundHospital) {
         const errorRes = {
-          message: ERROR_MESSAGES.NOTEXIST,
+          message: ERROR_MESSAGES.NOTEXIST(foundHospital.name),
         };
         return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
       //if found then return hospital
       const successRes = {
         foundHospital,
-        message: SUCCESS_MESSAGES.FETCH,
+        message: SUCCESS_MESSAGES.FETCH(foundHospital.name),
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
@@ -137,7 +137,7 @@ export class HospitalService extends BaseService {
       //if not then give error
       if (!foundHospital) {
         const errorRes = {
-          message: ERROR_MESSAGES.NOTEXIST,
+          message: ERROR_MESSAGES.NOTEXIST(foundHospital.name),
         };
         return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
@@ -151,7 +151,7 @@ export class HospitalService extends BaseService {
         await this.hospitalRepository.save(updateHospital);
       const successRes = {
         updatedHospital,
-        message: SUCCESS_MESSAGES.UPDATE,
+        message: SUCCESS_MESSAGES.UPDATE(foundHospital.name),
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
@@ -187,7 +187,7 @@ export class HospitalService extends BaseService {
       //if not found then give error
       if (!foundHospital) {
         const errorRes = {
-          message: ERROR_MESSAGES.NOTEXIST,
+          message: ERROR_MESSAGES.NOTEXIST(foundHospital.name),
         };
         return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
@@ -195,7 +195,7 @@ export class HospitalService extends BaseService {
       const deletedHospital = await this.hospitalRepository.delete(id);
       const successRes = {
         deletedHospital,
-        message: SUCCESS_MESSAGES.DELETE,
+        message: SUCCESS_MESSAGES.DELETE(foundHospital.name),
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
@@ -279,14 +279,14 @@ export class HospitalService extends BaseService {
       //if not found then return error
       if (!foundHospital) {
         const errorRes = {
-          message: ERROR_MESSAGES.NOTEXIST,
+          message: ERROR_MESSAGES.NOTEXIST(foundHospital.name),
         };
         return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
       //if found then return hospital
       const successRes = {
         foundHospital,
-        message: SUCCESS_MESSAGES.CREATE,
+        message: SUCCESS_MESSAGES.CREATE(foundHospital.name),
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {

@@ -62,7 +62,7 @@ export class PatientService extends BaseService {
       //  if saved then return success response
       const successRes = {
         savedPatient,
-        message: SUCCESS_MESSAGES.CREATE,
+        message: SUCCESS_MESSAGES.CREATE(savedPatient.name),
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
       // if not saved then return error response
@@ -99,14 +99,14 @@ export class PatientService extends BaseService {
       //if not found then return error
       if (!foundPatient) {
         const errorRes = {
-          message: ERROR_MESSAGES.NOTEXIST,
+          message: ERROR_MESSAGES.NOTEXIST(foundPatient.name),
         };
         return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
       //if found then return patient
       const successRes = {
         foundPatient,
-        message: SUCCESS_MESSAGES.CREATE,
+        message: SUCCESS_MESSAGES.CREATE(foundPatient.name),
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
@@ -142,7 +142,7 @@ export class PatientService extends BaseService {
       //if not then give error
       if (!foundPatient) {
         const errorRes = {
-          message: ERROR_MESSAGES.NOTEXIST,
+          message: ERROR_MESSAGES.NOTEXIST(foundPatient.name),
         };
         return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
@@ -155,7 +155,7 @@ export class PatientService extends BaseService {
       const updatedPatient = await this.patientRepository.save(updatePatient);
       const successRes = {
         updatedPatient,
-        message: SUCCESS_MESSAGES.UPDATE,
+        message: SUCCESS_MESSAGES.UPDATE(foundPatient.name),
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
@@ -191,7 +191,7 @@ export class PatientService extends BaseService {
       //if not found then give error
       if (!foundPatient) {
         const errorRes = {
-          message: ERROR_MESSAGES.NOTEXIST,
+          message: ERROR_MESSAGES.NOTEXIST(foundPatient.name),
         };
         return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
@@ -199,7 +199,7 @@ export class PatientService extends BaseService {
       const deletedPatient = await this.patientRepository.delete(id);
       const successRes = {
         deletedPatient,
-        message: SUCCESS_MESSAGES.DELETE,
+        message: SUCCESS_MESSAGES.DELETE(foundPatient.name),
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {

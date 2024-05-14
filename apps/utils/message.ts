@@ -5,19 +5,19 @@
 
 // success messages
 export const SUCCESS_MESSAGES = {
-  LOGIN: 'Login successfully',
+  LOGIN: 'Login_successfully',
 
   CREATE: (value: string) => {
-    return `${value} created successfully.`;
+    return `${value} created_successfully.`;
   },
   FETCH: (value: string) => {
-    return `${value} fetched successfully.`;
+    return `${value} fetched_successfully.`;
   },
   UPDATE: (value: string) => {
-    return `${value} updated successfully.`;
+    return `${value} updated_successfully.`;
   },
   DELETE: (value: string) => {
-    return `${value} deleted successfully.`;
+    return `${value} deleted_successfully.`;
   },
 };
 

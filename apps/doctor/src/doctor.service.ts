@@ -61,7 +61,7 @@ export class DoctorService extends BaseService {
       //  if saved then return success response
       const successRes = {
         saved,
-        message: SUCCESS_MESSAGES.CREATE,
+        message: SUCCESS_MESSAGES.CREATE(data.name),
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
       //   if not saved then return error response
@@ -98,14 +98,14 @@ export class DoctorService extends BaseService {
       //if not found then return error
       if (!foundDoctor) {
         const errorRes = {
-          message: ERROR_MESSAGES.NOTEXIST,
+          message: ERROR_MESSAGES.NOTEXIST(foundDoctor.name),
         };
         return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
       //if found then return Doctor
       const successRes = {
         foundDoctor,
-        message: SUCCESS_MESSAGES.FETCH,
+        message: SUCCESS_MESSAGES.FETCH(foundDoctor.name),
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
@@ -142,7 +142,7 @@ export class DoctorService extends BaseService {
       //if not then give error
       if (!foundDoctor) {
         const errorRes = {
-          message: ERROR_MESSAGES.NOTEXIST,
+          message: ERROR_MESSAGES.NOTEXIST(foundDoctor.name),
         };
         return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
@@ -155,7 +155,7 @@ export class DoctorService extends BaseService {
       const updatedDoctor = await this.doctorRepository.save(updateDoctor);
       const successRes = {
         updatedDoctor,
-        message: SUCCESS_MESSAGES.UPDATE,
+        message: SUCCESS_MESSAGES.UPDATE(foundDoctor.name),
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
@@ -191,7 +191,7 @@ export class DoctorService extends BaseService {
       //if not found then give error
       if (!foundDoctor) {
         const errorRes = {
-          message: ERROR_MESSAGES.NOTEXIST,
+          message: ERROR_MESSAGES.NOTEXIST(foundDoctor.name),
         };
         return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
@@ -199,7 +199,7 @@ export class DoctorService extends BaseService {
       const deletedDoctor = await this.doctorRepository.delete(id);
       const successRes = {
         deletedDoctor,
-        message: SUCCESS_MESSAGES.DELETE,
+        message: SUCCESS_MESSAGES.DELETE(foundDoctor.name),
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
@@ -283,14 +283,14 @@ export class DoctorService extends BaseService {
       //if not found then return error
       if (!foundDoctor) {
         const errorRes = {
-          message: ERROR_MESSAGES.NOTEXIST,
+          message: ERROR_MESSAGES.NOTEXIST(foundDoctor.name),
         };
         return this.errorResponses(errorRes, STATUSCODE.NOTFOUND);
       }
       //if found then return hospital
       const successRes = {
         foundDoctor,
-        message: SUCCESS_MESSAGES.FETCH,
+        message: SUCCESS_MESSAGES.FETCH(foundDoctor.name),
       };
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
@@ -353,8 +353,9 @@ export class DoctorService extends BaseService {
           { expiresIn: process.env.EXPIRESIN },
         );
         const successRes = {
+          message: SUCCESS_MESSAGES.LOGIN,
           generatedToken: token,
-          message: SUCCESS_MESSAGES.CREATE,
+          code: STATUSCODE.SUCCESS,
         };
         return this.responses(successRes, STATUSCODE.SUCCESS);
       }
