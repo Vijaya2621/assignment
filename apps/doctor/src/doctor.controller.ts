@@ -60,6 +60,7 @@ export class DoctorController {
    * controller to create doctor
    */
   @Post()
+  @UseGuards(AuthGuard)
   @ApiOperation({ summary: SUCCESS_MESSAGES.CREATE(TYPE.HEALTHCARE_WORKER) })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
@@ -79,7 +80,7 @@ export class DoctorController {
     @Request() req,
   ): Promise<any> {
     // Extract the user's role from the request object
-    const userRole = req?.body?.role;
+    const userRole = req?.user?.role;
     return this.doctorService.createDoctor(data, userRole);
   }
 

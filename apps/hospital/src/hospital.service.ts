@@ -12,8 +12,6 @@ import { BaseService } from 'apps/abstracts';
 import { IHospital, ROLES } from 'apps/utils/entities';
 import { allowedFieldsToSortForHospitals } from '../../utils/common';
 import { ConfigService } from '@nestjs/config';
-import * as bcrypt from 'bcrypt';
-
 @Injectable()
 export class HospitalService extends BaseService {
   constructor(
@@ -30,6 +28,7 @@ export class HospitalService extends BaseService {
    *@developedBy Vijaya Kumari
    */
   async createHospital(data: HospitalDto, userRole: ROLES) {
+    debugger;
     try {
       // Check if the user has permission to create a hospital
       if (userRole !== ROLES.ADMIN && userRole !== ROLES.SUPER_ADMIN) {
@@ -47,10 +46,6 @@ export class HospitalService extends BaseService {
       if (existingHospital) {
         return this._getBadRequestError(ERROR_MESSAGES.ALREADYEXIST(data.name));
       }
-
-      //Hash the password before creating the user
-      const hashedPassword = await bcrypt.hash(data.password, 15);
-      data.password = hashedPassword;
 
       //   create the new hospital
       const created = this.hospitalRepository.create(data);
@@ -71,7 +66,7 @@ export class HospitalService extends BaseService {
         error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes.error.message, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -111,9 +106,10 @@ export class HospitalService extends BaseService {
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
+        error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes.error.message, STATUSCODE.BADREQUEST);
     }
   }
   /**update hospital
@@ -125,6 +121,7 @@ export class HospitalService extends BaseService {
 
   async updateHospital(data: HospitalDto, id: string, userRole) {
     try {
+      debugger;
       // Check if the user has permission to update a hospital
       if (userRole !== ROLES.ADMIN && userRole !== ROLES.SUPER_ADMIN) {
         // If not, return an error indicating insufficient permissions
@@ -159,9 +156,10 @@ export class HospitalService extends BaseService {
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
+        error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes.error.message, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -202,9 +200,10 @@ export class HospitalService extends BaseService {
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
+        error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes.error.message, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -259,9 +258,10 @@ export class HospitalService extends BaseService {
       });
     } catch (error) {
       const errorRes = {
+        error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes.error.message, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -291,9 +291,10 @@ export class HospitalService extends BaseService {
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
+        error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes.error.message, STATUSCODE.BADREQUEST);
     }
   }
 }

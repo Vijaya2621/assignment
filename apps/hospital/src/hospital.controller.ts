@@ -32,6 +32,7 @@ export class HospitalController {
    * controller to create hospital
    */
   @Post()
+  @UseGuards(AuthGuard)
   @ApiOperation({ summary: SUCCESS_MESSAGES.CREATE(TYPE.HOSPITAL) })
   @ApiResponse({
     status: STATUSCODE.SUCCESS,
@@ -51,7 +52,7 @@ export class HospitalController {
     @Request() req,
   ): Promise<any> {
     // Extract the user's role from the request object
-    const userRole = req?.body?.role;
+    const userRole = req?.user?.role;
 
     return this.hospitalService.createHospital(data, userRole);
   }

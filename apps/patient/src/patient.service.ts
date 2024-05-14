@@ -71,7 +71,7 @@ export class PatientService extends BaseService {
         error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes.error.message, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -111,9 +111,10 @@ export class PatientService extends BaseService {
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
+        error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes.error.message, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -159,9 +160,10 @@ export class PatientService extends BaseService {
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
+        error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes.error.message, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -202,9 +204,10 @@ export class PatientService extends BaseService {
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
+        error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes.error.message, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -272,9 +275,10 @@ export class PatientService extends BaseService {
       });
     } catch (error) {
       const errorRes = {
+        error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes.error.message, STATUSCODE.BADREQUEST);
     }
   }
 }

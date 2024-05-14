@@ -33,6 +33,7 @@ export class DoctorService extends BaseService {
    */
   async createDoctor(data: DoctorDto, userRole) {
     try {
+      debugger;
       // Check if the user has permission to create a healthcareworker
       if (userRole !== ROLES.SUPER_ADMIN && userRole !== ROLES.ADMIN) {
         // If not, return an error indicating insufficient permissions
@@ -69,7 +70,7 @@ export class DoctorService extends BaseService {
         error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes.error.message, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -109,9 +110,10 @@ export class DoctorService extends BaseService {
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
+        error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes.error.message, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -161,7 +163,7 @@ export class DoctorService extends BaseService {
         error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes.error.message, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -205,7 +207,7 @@ export class DoctorService extends BaseService {
         error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes.error.message, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -215,6 +217,7 @@ export class DoctorService extends BaseService {
    */
   async getAll(data: FindDoctorDto, userRole) {
     try {
+      debugger;
       // Check if the user has permission to get a hospital
       if (userRole !== ROLES.SUPER_ADMIN) {
         // If not, return an error indicating insufficient permissions
@@ -230,7 +233,7 @@ export class DoctorService extends BaseService {
         'doctor.emailVerified',
         'doctor.image',
         'doctor.email',
-        'doctor.specialzation',
+        'doctor.specialization',
         'doctor.role',
         'doctor.phoneNumber',
         'doctor.name',
@@ -262,7 +265,7 @@ export class DoctorService extends BaseService {
         error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes.error.message, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -292,9 +295,10 @@ export class DoctorService extends BaseService {
       return this.responses(successRes, STATUSCODE.SUCCESS);
     } catch (error) {
       const errorRes = {
+        error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes.error.message, STATUSCODE.BADREQUEST);
     }
   }
 
@@ -361,9 +365,10 @@ export class DoctorService extends BaseService {
       return this.errorResponses(errorRes, STATUSCODE.FAILED);
     } catch (error) {
       const errorRes = {
+        error,
         message: ERROR_MESSAGES.errorLog,
       };
-      return this.errorResponses(errorRes, STATUSCODE.BADREQUEST);
+      return this.errorResponses(errorRes.error.message, STATUSCODE.BADREQUEST);
     }
   }
 }
